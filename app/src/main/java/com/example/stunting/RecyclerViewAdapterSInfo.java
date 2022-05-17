@@ -3,14 +3,14 @@ package com.example.stunting;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class RecyclerViewAdapterSInfo extends RecyclerView.Adapter<RecyclerViewAdapterSInfo.ViewHolder>  {
+public class RecyclerViewAdapterSInfo extends RecyclerView.Adapter<RecyclerViewAdapterSInfo.ViewHolder> {
     private ArrayList<String> rvData;
 
     public RecyclerViewAdapterSInfo(ArrayList<String> inputData) {
@@ -21,7 +21,7 @@ public class RecyclerViewAdapterSInfo extends RecyclerView.Adapter<RecyclerViewA
         public TextView tvTitle;
         public TextView tvSubtitle;
 
-        public ViewHolder(View v){
+        public ViewHolder(View v) {
             super(v);
             tvTitle = v.findViewById(R.id.tv_title);
             tvSubtitle = v.findViewById(R.id.tv_subtitle);
@@ -46,7 +46,7 @@ public class RecyclerViewAdapterSInfo extends RecyclerView.Adapter<RecyclerViewA
     public void onBindViewHolder(ViewHolder holder, int position) {
         final String name = rvData.get(position);
         holder.tvTitle.setText(name);
-        holder.tvSubtitle.setText("Frau "+position+" DescripitonDescripitonDescripitonDescripitonDescripitonDescripitonDescripitonDescripitonDescripitonDescripiton");
+        holder.tvSubtitle.setText("Frau " + position + " DescripitonDescripitonDescripitonDescripitonDescripitonDescripitonDescripitonDescripitonDescripitonDescripiton");
     }
 
     @Override

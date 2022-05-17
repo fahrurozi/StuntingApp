@@ -70,14 +70,14 @@
             android:layout_marginBottom="22dp"
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Email"
                 android:textColor="@color/white"
                 android:textSize="16sp"
-                android:layout_marginBottom="5dp"
-                />
+                android:layout_marginBottom="5dp" />
 
             <EditText
                 android:id="@+id/xemail"
@@ -86,8 +86,7 @@
                 android:background="@color/white"
                 android:inputType="text"
                 android:lines="1"
-                android:paddingLeft="12dp"
-                />
+                android:paddingLeft="12dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -97,14 +96,14 @@
             android:layout_marginBottom="22dp"
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Password"
                 android:textColor="@color/white"
                 android:textSize="16sp"
-                android:layout_marginBottom="5dp"
-                />
+                android:layout_marginBottom="5dp" />
 
             <EditText
                 android:id="@+id/xpassword"
@@ -113,8 +112,7 @@
                 android:background="@color/white"
                 android:inputType="text"
                 android:lines="1"
-                android:paddingLeft="12dp"
-                />
+                android:paddingLeft="12dp" />
         </LinearLayout>
     </LinearLayout>
 
