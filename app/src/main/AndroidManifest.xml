@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SplashScreen">
         <activity
-            android:name=".stunting_trace.StuntingTraceActivity"
+            android:name=".stunting_map.StuntingMapActivity"
             android:exported="false" />
         <activity
             android:name=".StuntingHealth"
@@ -39,6 +39,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${MAPS_API_KEY}" />
     </application>
 
 </manifest>
