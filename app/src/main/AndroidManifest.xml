@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SplashScreen">
         <activity
+            android:name=".stunting_trace.StuntingTraceActivity"
+            android:exported="false" />
+        <activity
             android:name=".StuntingHealth"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
@@ -17,9 +20,6 @@
             android:name=".StuntingInfoActivity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
-        <activity
-            android:name=".HomeActivity"
-            android:exported="false" />
         <activity
             android:name=".RegisterActivity"
             android:exported="false" />

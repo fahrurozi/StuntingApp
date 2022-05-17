@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Stunting</string>
+    <string name="title_home">Home</string>
+    <string name="title_child">Child</string>
+    <string name="title_account">Account</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_stuntingapp">StuntingApp</string>
+    <string name="title_date">22 Jan 2022</string>
+    <string name="title_null">null</string>
+    <string name="title_name">Lorem Ipsum</string>
+    <string name="title_bulan">Bulan</string>
+    <string name="title_lorem_ipsum">Lorem Ipsum</string>
+    <string name="title_readmore">Read more</string>
+    <string name="title_good">Good</string>
 </resources>
