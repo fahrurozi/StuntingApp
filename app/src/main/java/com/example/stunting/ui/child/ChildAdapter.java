@@ -69,7 +69,7 @@ public class ChildAdapter extends RecyclerView.Adapter<ChildAdapter.ViewHolder> 
 
     public void insertDataList(List<DataChild> inputData) {
         this.rvData.clear();
-        this.rvData = inputData;
+        this.rvData.addAll(inputData);
         notifyDataSetChanged();
     }
 }
