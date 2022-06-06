@@ -47,7 +47,7 @@ public class RegisterActivity extends AppCompatActivity {
                     JSONStringer json = new JSONStringer();
                     json.object();
                     json.key("name").value(name);
-                    json.key("username").value(name);
+                    json.key("username").value(username);
                     json.key("email").value(email);
                     json.key("b64_profile_img").value("");
                     json.key("role_name").value("user");

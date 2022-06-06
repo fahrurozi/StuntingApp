@@ -14,4 +14,8 @@
     <string name="title_readmore">Read more</string>
     <string name="title_good">Good</string>
     <string name="title_stuntingmaps">StuntingMaps</string>
+    <string name="token">token</string>
+    <string name="username">Username</string>
+    <string name="name">Name</string>
+    <string name="id">ID</string>
 </resources>
