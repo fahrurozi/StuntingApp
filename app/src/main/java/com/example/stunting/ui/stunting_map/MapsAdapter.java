@@ -60,6 +60,7 @@ public class MapsAdapter extends RecyclerView.Adapter<MapsAdapter.ViewHolder> {
         holder.tvName.setText(data.getPlaceDetail().getResult().getName());
         holder.tvJarak.setText(data.getPlaceDetail().getResult().getTypes().get(0));
         holder.tvOpen.setText(data.getPlaceDetail().getResult().getOpening_hours().getOpenNow() ? "Open" : "Close");
+        holder.tvOpen.setTextColor(data.getPlaceDetail().getResult().getOpening_hours().getOpenNow() ? holder.tvOpen.getContext().getResources().getColor(R.color.blue) : holder.tvOpen.getContext().getResources().getColor(R.color.red_no));
         if (data.getPlaceDetail().getResult().getPhotos() != null && data.getPlaceDetail().getResult().getPhotos().size() > 0) {
             String url = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&key=AIzaSyAzeGY38uY2J2R8w9tZraIitteSLqVakTc&photo_reference=";
             Picasso.get().load(
@@ -76,7 +77,8 @@ public class MapsAdapter extends RecyclerView.Adapter<MapsAdapter.ViewHolder> {
     }
 
     public void insertDataList(List<DataPlace> inputData) {
-        this.rvData = inputData;
+        this.rvData.clear();
+        this.rvData.addAll(inputData);
         notifyDataSetChanged();
     }
 }

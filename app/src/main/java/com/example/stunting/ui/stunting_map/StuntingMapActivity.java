@@ -113,6 +113,7 @@ public class StuntingMapActivity extends AppCompatActivity implements OnMapReady
                 try {
                     searchLocation();
                     hideSoftKeyboard();
+                    etSearch.clearFocus();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
