@@ -19,4 +19,8 @@
     <color name="menu_red">#F7714B</color>
     <color name="menu_purple">#8D70F3</color>
     <color name="menu_blue">#3BB5E5</color>
+
+    <color name="green_yes">#00C52E</color>
+    <color name="red_no">#EF7474</color>
+
 </resources>

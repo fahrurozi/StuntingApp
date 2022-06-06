@@ -17,8 +17,10 @@ import java.util.List;
 
 public class ChildAdapter extends RecyclerView.Adapter<ChildAdapter.ViewHolder> {
     private List<DataChild> rvData;
+    private ChildInterface childInterface;
 
-    public ChildAdapter() {
+    public ChildAdapter(ChildInterface childInterface) {
+        this.childInterface = childInterface;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -51,6 +53,12 @@ public class ChildAdapter extends RecyclerView.Adapter<ChildAdapter.ViewHolder> 
         } else {
             holder.llRoot.setBackground(holder.llRoot.getContext().getResources().getDrawable(R.drawable.round_week));
         }
+
+        holder.llRoot.setOnClickListener(r -> {
+            if (childInterface != null) {
+                childInterface.onChildClick(data);
+            }
+        });
     }
 
     @Override
