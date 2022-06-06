@@ -1,7 +1,5 @@
 package com.example.stunting.data.model.child;
 
-import androidx.annotation.NonNull;
-
 import com.google.gson.annotations.SerializedName;
 
 public class DataChild {

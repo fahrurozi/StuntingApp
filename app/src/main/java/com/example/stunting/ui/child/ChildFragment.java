@@ -196,9 +196,7 @@ public class ChildFragment extends Fragment implements ChildInterface {
             noPenyakit.setBackground(child.getDisease_history() ? getResources().getDrawable(R.drawable.round_no) : getResources().getDrawable(R.drawable.round_yes));
         });
 
-        rbImunisasi.setOnClickListener(v -> {
-            child.setImmunization_history(rbImunisasi.isChecked() ? "HepB, Campak" : "");
-        });
+        rbImunisasi.setOnClickListener(v -> child.setImmunization_history(rbImunisasi.isChecked() ? "HepB, Campak" : ""));
 
         btnClose.setOnClickListener(v -> alertDialog.dismiss());
 

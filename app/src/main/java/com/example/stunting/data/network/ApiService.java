@@ -8,7 +8,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class ApiService {
     private static ApiEndpoint retrofit;
-    private final static String BASE_URL = "http://192.168.8.101:8000/";
+    private final static String BASE_URL = "http://192.168.8.100:8000/";
 
     public static ApiEndpoint getRetrofitInstance() {
         OkHttpClient client = new OkHttpClient().newBuilder().addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)).build();

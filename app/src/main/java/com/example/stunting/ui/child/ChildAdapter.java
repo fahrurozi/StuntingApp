@@ -13,10 +13,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.stunting.R;
 import com.example.stunting.data.model.child.DataChild;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChildAdapter extends RecyclerView.Adapter<ChildAdapter.ViewHolder> {
-    private List<DataChild> rvData;
+    private List<DataChild> rvData = new ArrayList();;
     private ChildInterface childInterface;
 
     public ChildAdapter(ChildInterface childInterface) {
