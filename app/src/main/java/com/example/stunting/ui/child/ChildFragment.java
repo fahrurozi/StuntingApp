@@ -170,6 +170,8 @@ public class ChildFragment extends Fragment implements ChildInterface {
             yesPenyakit.setBackground(child.getDisease_history() ? getResources().getDrawable(R.drawable.round_yes) : getResources().getDrawable(R.drawable.round_no));
             noPenyakit.setBackground(child.getDisease_history() ? getResources().getDrawable(R.drawable.round_no) : getResources().getDrawable(R.drawable.round_yes));
             rbImunisasi.setChecked(!child.getImmunization_history().equals(""));
+        }else{
+            child.setImmunization_history("");
         }
 
         yesASI.setOnClickListener(v -> {
@@ -210,7 +212,6 @@ public class ChildFragment extends Fragment implements ChildInterface {
             if (!etTinggi.getText().toString().isEmpty()) {
                 child.setHeight(Float.parseFloat(etTinggi.getText().toString()));
             }
-            child.setImmunization_history("");
             if (child.getAge_day() != null &&
                     child.getWeight() != null &&
                     child.getHeight() != null &&
