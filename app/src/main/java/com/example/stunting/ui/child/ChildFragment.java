@@ -1,4 +1,4 @@
-package com.example.stunting.child;
+package com.example.stunting.ui.child;
 
 import android.os.Bundle;
 

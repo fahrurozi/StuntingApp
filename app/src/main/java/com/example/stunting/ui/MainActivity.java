@@ -1,4 +1,4 @@
-package com.example.stunting;
+package com.example.stunting.ui;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -6,9 +6,10 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import com.example.stunting.account.AccountFragment;
-import com.example.stunting.child.ChildFragment;
-import com.example.stunting.home.HomeFragment;
+import com.example.stunting.R;
+import com.example.stunting.ui.account.AccountFragment;
+import com.example.stunting.ui.child.ChildFragment;
+import com.example.stunting.ui.home.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {

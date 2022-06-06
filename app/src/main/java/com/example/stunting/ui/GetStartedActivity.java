@@ -1,10 +1,14 @@
-package com.example.stunting;
+package com.example.stunting.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.stunting.R;
+import com.example.stunting.ui.login.LoginActivity;
+import com.example.stunting.ui.register.RegisterActivity;
 
 public class GetStartedActivity extends AppCompatActivity {
 

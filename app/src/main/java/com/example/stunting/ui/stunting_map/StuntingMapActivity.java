@@ -1,4 +1,4 @@
-package com.example.stunting.stunting_map;
+package com.example.stunting.ui.stunting_map;
 
 import android.os.Bundle;
 import android.widget.ImageView;

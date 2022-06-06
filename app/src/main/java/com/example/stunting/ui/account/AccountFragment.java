@@ -1,4 +1,4 @@
-package com.example.stunting.account;
+package com.example.stunting.ui.account;
 
 import android.os.Bundle;
 

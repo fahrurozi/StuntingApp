@@ -1,4 +1,4 @@
-package com.example.stunting;
+package com.example.stunting.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.stunting.R;
 
 public class SplashScreen extends AppCompatActivity {
     Animation app_splash, btt;

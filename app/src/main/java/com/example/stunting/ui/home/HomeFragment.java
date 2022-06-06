@@ -1,4 +1,4 @@
-package com.example.stunting.home;
+package com.example.stunting.ui.home;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,8 +13,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.stunting.R;
-import com.example.stunting.StuntingInfoActivity;
-import com.example.stunting.stunting_map.StuntingMapActivity;
+import com.example.stunting.ui.info.StuntingInfoActivity;
+import com.example.stunting.ui.stunting_map.StuntingMapActivity;
 
 public class HomeFragment extends Fragment {
 

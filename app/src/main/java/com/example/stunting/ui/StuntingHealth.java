@@ -1,8 +1,10 @@
-package com.example.stunting;
+package com.example.stunting.ui;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.stunting.R;
 
 public class StuntingHealth extends AppCompatActivity {
 
