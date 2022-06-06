@@ -20,6 +20,7 @@
         <entry key="app/src/main/res/drawable/cyrcle_health.xml" value="0.243" />
         <entry key="app/src/main/res/drawable/ic_account.xml" value="0.243" />
         <entry key="app/src/main/res/drawable/ic_account_active.xml" value="0.243" />
+        <entry key="app/src/main/res/drawable/ic_baseline_arrow_forward_24.xml" value="0.1925" />
         <entry key="app/src/main/res/drawable/ic_child.xml" value="0.243" />
         <entry key="app/src/main/res/drawable/ic_child_active.xml" value="0.243" />
         <entry key="app/src/main/res/drawable/ic_home.xml" value="0.243" />
@@ -28,6 +29,7 @@
         <entry key="app/src/main/res/drawable/round_search.xml" value="0.1915" />
         <entry key="app/src/main/res/drawable/round_top.xml" value="0.243" />
         <entry key="app/src/main/res/drawable/round_week.xml" value="0.243" />
+        <entry key="app/src/main/res/drawable/round_week_null.xml" value="0.1925" />
         <entry key="app/src/main/res/layout/activity_get_started.xml" value="0.3515625" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.3515625" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.3515625" />
@@ -38,8 +40,9 @@
         <entry key="app/src/main/res/layout/activity_stunting_info.xml" value="0.3515625" />
         <entry key="app/src/main/res/layout/activity_stunting_map.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_stunting_trace.xml" value="0.3515625" />
-        <entry key="app/src/main/res/layout/fragment_child.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_child.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/list_child.xml" value="0.33" />
         <entry key="app/src/main/res/menu/navigation.xml" value="0.3515625" />
       </map>
     </option>

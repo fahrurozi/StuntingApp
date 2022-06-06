@@ -1,5 +1,6 @@
 package com.example.stunting.data.network;
 
+import com.example.stunting.data.model.child.ResponseChild;
 import com.example.stunting.data.model.login.ResponseLogin;
 import com.example.stunting.data.model.register.ResponseRegister;
 import com.example.stunting.data.model.token.ResponseToken;
@@ -24,6 +25,12 @@ public interface ApiEndpoint {
 
     @GET("api/v1/user")
     Call<ResponseLogin> getProfile(
+            @Header("token") String token
+    );
+
+
+    @GET("api/v1/trace")
+    Call<ResponseChild> getTrace(
             @Header("token") String token
     );
 
