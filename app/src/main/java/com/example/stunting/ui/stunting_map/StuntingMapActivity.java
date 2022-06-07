@@ -49,12 +49,16 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 import org.json.JSONException;
 import org.json.JSONStringer;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import dmax.dialog.SpotsDialog;
 import okhttp3.RequestBody;
@@ -80,7 +84,7 @@ public class StuntingMapActivity extends AppCompatActivity implements OnMapReady
     EditTextWithBackPressEvent etSearch;
 
     private SharedPreferences sharedPref;
-
+    List<Marker> AllMarkers = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -160,12 +164,13 @@ public class StuntingMapActivity extends AppCompatActivity implements OnMapReady
                         if (response.body().getPlaces().size() == 0)
                             Toast.makeText(getApplicationContext(), "Data tidak ditemukan", Toast.LENGTH_SHORT).show();
                         adapter.insertDataList(response.body().getPlaces());
+                        removeAllMarkers();
                         for (DataPlace data : response.body().getPlaces()) {
                             MarkerOptions markerLocation = new MarkerOptions()
                                     .position(new LatLng(data.getPlaceDetail().getResult().getGeometry().getLocation().getLat(), data.getPlaceDetail().getResult().getGeometry().getLocation().getLng()))
                                     .icon(bitmapDescriptorFromVector(getApplicationContext(), R.drawable.ic_point_maps))
                                     .title(data.getPlaceDetail().getResult().getName());
-                            mMap.addMarker(markerLocation);
+                            AllMarkers.add(mMap.addMarker(markerLocation));
                         }
                         sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
                     }
@@ -189,6 +194,14 @@ public class StuntingMapActivity extends AppCompatActivity implements OnMapReady
         Canvas canvas = new Canvas(bitmap);
         vectorDrawable.draw(canvas);
         return BitmapDescriptorFactory.fromBitmap(bitmap);
+    }
+
+    private void removeAllMarkers() {
+        for (Marker mLocationMarker: AllMarkers) {
+            mLocationMarker.remove();
+        }
+        AllMarkers.clear();
+
     }
 
     @Override
