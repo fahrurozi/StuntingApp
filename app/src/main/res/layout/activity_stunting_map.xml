@@ -45,7 +45,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="16dp" />
 
-        <EditText
+        <com.example.stunting.ui.custom.EditTextWithBackPressEvent
             android:id="@+id/etSearch"
             android:layout_width="match_parent"
             android:layout_height="40dp"

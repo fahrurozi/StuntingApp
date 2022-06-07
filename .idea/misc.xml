@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.28020833333333334" />
         <entry key="..\:/Kuliah/1 - Universitas Gadjah Mada/Semester 4/Praktikum Pemrograman Perangkat Bergerak 2/Tugas Akhir Java 3/Stunting/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1425" />
         <entry key="..\:/Kuliah/1 - Universitas Gadjah Mada/Semester 4/Praktikum Pemrograman Perangkat Bergerak 2/Tugas Akhir Java 3/Stunting/app/src/main/res/drawable/button_login.xml" value="0.1425" />
         <entry key="..\:/Kuliah/1 - Universitas Gadjah Mada/Semester 4/Praktikum Pemrograman Perangkat Bergerak 2/Tugas Akhir Java 3/Stunting/app/src/main/res/drawable/ic_baseline_arrow_forward_24.xml" value="0.1425" />
@@ -46,7 +47,7 @@
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.17528858486532706" />
         <entry key="app/src/main/res/layout/activity_stunting_health.xml" value="0.3515625" />
         <entry key="app/src/main/res/layout/activity_stunting_info.xml" value="0.3515625" />
-        <entry key="app/src/main/res/layout/activity_stunting_map.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_stunting_map.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_stunting_trace.xml" value="0.3515625" />
         <entry key="app/src/main/res/layout/custom_dialog_child.xml" value="0.3148148148148148" />
         <entry key="app/src/main/res/layout/fragment_child.xml" value="0.33" />

@@ -16,7 +16,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -34,6 +33,7 @@ import com.example.stunting.data.model.maps.DataPlace;
 import com.example.stunting.data.model.maps.ResponseMaps;
 import com.example.stunting.data.network.ApiEndpoint;
 import com.example.stunting.data.network.ApiService;
+import com.example.stunting.ui.custom.EditTextWithBackPressEvent;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -77,7 +77,7 @@ public class StuntingMapActivity extends AppCompatActivity implements OnMapReady
     private LinearLayout bottom_sheet;
 
     private MapsAdapter adapter;
-    EditText etSearch;
+    EditTextWithBackPressEvent etSearch;
 
     private SharedPreferences sharedPref;
 
@@ -110,17 +110,24 @@ public class StuntingMapActivity extends AppCompatActivity implements OnMapReady
         etSearch = findViewById(R.id.etSearch);
         etSearch.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                try {
-                    searchLocation();
-                    hideSoftKeyboard();
-                    etSearch.clearFocus();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                searchLocation(etSearch.getText().toString());
+                hideSoftKeyboard();
+                etSearch.clearFocus();
                 return true;
             }
             return false;
         });
+        etSearch.setOnFocusChangeListener((v, hasFocus) -> {
+            if (!hasFocus) {
+                if (etSearch.getText().toString().isEmpty()) {
+                    searchLocation("");
+                }
+            } else {
+                sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+            }
+        });
+
+        etSearch.setOnBackPressListener(() -> etSearch.clearFocus());
 
     }
 
@@ -132,14 +139,14 @@ public class StuntingMapActivity extends AppCompatActivity implements OnMapReady
     }
 
 
-    private void searchLocation() throws JSONException {
-        if (!etSearch.getText().toString().isEmpty()) {
+    private void searchLocation(String query) {
+        try {
             spotsDialog.show();
             RequestBody body;
             JSONStringer json = new JSONStringer();
             json.object();
             json.key("location").value(location.getLatitude() + "," + location.getLongitude());
-            json.key("keyword").value(etSearch.getText().toString());
+            json.key("keyword").value(query);
             json.endObject();
             body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), json.toString());
 
@@ -149,7 +156,9 @@ public class StuntingMapActivity extends AppCompatActivity implements OnMapReady
                 @Override
                 public void onResponse(Call<ResponseMaps> call, Response<ResponseMaps> response) {
                     spotsDialog.dismiss();
-                    if (response.body().getPlaces() != null && response.body().getPlaces().size() > 0) {
+                    if (response.body().getPlaces() != null) {
+                        if (response.body().getPlaces().size() == 0)
+                            Toast.makeText(getApplicationContext(), "Data tidak ditemukan", Toast.LENGTH_SHORT).show();
                         adapter.insertDataList(response.body().getPlaces());
                         for (DataPlace data : response.body().getPlaces()) {
                             MarkerOptions markerLocation = new MarkerOptions()
@@ -168,6 +177,8 @@ public class StuntingMapActivity extends AppCompatActivity implements OnMapReady
                     Toast.makeText(StuntingMapActivity.this, "Gagal mengambil data", Toast.LENGTH_SHORT).show();
                 }
             });
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
 
@@ -253,6 +264,7 @@ public class StuntingMapActivity extends AppCompatActivity implements OnMapReady
         spotsDialog.dismiss();
         locationManager.removeUpdates(this);
         setUserLocation();
+        searchLocation("");
     }
 
     @Override
@@ -270,13 +282,14 @@ public class StuntingMapActivity extends AppCompatActivity implements OnMapReady
     @Override
     public void onDirection(DataPlace data) {
         Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
-                Uri.parse("http://maps.google.com/maps?saddr="+ location.getLatitude()+","+ location.getLongitude()+"&daddr="+data.getPlaceDetail().getResult().getGeometry().getLocation().getLat()+","+data.getPlaceDetail().getResult().getGeometry().getLocation().getLng()));
+                Uri.parse("http://maps.google.com/maps?saddr=" + location.getLatitude() + "," + location.getLongitude() + "&daddr=" + data.getPlaceDetail().getResult().getGeometry().getLocation().getLat() + "," + data.getPlaceDetail().getResult().getGeometry().getLocation().getLng()));
         startActivity(intent);
     }
 
     @Override
     public void onShare(DataPlace data) {
-        Intent intent2 = new Intent(); intent2.setAction(Intent.ACTION_SEND);
+        Intent intent2 = new Intent();
+        intent2.setAction(Intent.ACTION_SEND);
         intent2.setType("text/plain");
         intent2.putExtra(Intent.EXTRA_TEXT, data.getPlaceDetail().getResult().getUrl());
         startActivity(Intent.createChooser(intent2, "Share via"));
@@ -286,5 +299,11 @@ public class StuntingMapActivity extends AppCompatActivity implements OnMapReady
     public void onClick(DataPlace data) {
         LatLng latLng = new LatLng(data.getPlaceDetail().getResult().getGeometry().getLocation().getLat(), data.getPlaceDetail().getResult().getGeometry().getLocation().getLng());
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f));
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        etSearch.clearFocus();
     }
 }
