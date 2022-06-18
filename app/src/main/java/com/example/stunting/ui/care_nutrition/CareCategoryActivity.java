@@ -63,7 +63,7 @@ public class CareCategoryActivity extends AppCompatActivity implements CareInter
             endpoint.getArticle(sharedPref.getString(getString(R.string.token), ""), body).enqueue(new retrofit2.Callback<ResponseCare>() {
                 @Override
                 public void onResponse(Call<ResponseCare> call, retrofit2.Response<ResponseCare> response) {
-                    if (response.isSuccessful()) {
+                    if (response.isSuccessful() && response.body() != null && response.body().getArticles() != null) {
                         adapter.insertDataList(response.body().getArticles());
                     }
                 }
