@@ -1,5 +1,6 @@
 package com.example.stunting.data.network;
 
+import com.example.stunting.data.model.care.ResponseCare;
 import com.example.stunting.data.model.child.ResponseChild;
 import com.example.stunting.data.model.child.ResponsePutChild;
 import com.example.stunting.data.model.login.ResponseLogin;
@@ -44,6 +45,12 @@ public interface ApiEndpoint {
 
     @POST("api/v1/maps")
     Call<ResponseMaps> getMaps(
+            @Header("token") String token,
+            @Body RequestBody body
+    );
+
+    @POST("api/v1/article")
+    Call<ResponseCare> getArticle(
             @Header("token") String token,
             @Body RequestBody body
     );

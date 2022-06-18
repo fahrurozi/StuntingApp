@@ -22,5 +22,6 @@
 
     <color name="green_yes">#00C52E</color>
     <color name="red_no">#EF7474</color>
+    <color name="teks">#38456D</color>
 
 </resources>

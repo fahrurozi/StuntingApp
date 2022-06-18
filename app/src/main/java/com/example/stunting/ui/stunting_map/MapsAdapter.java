@@ -16,6 +16,7 @@ import com.example.stunting.data.model.maps.DataPlace;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class MapsAdapter extends RecyclerView.Adapter<MapsAdapter.ViewHolder> {
@@ -59,7 +60,13 @@ public class MapsAdapter extends RecyclerView.Adapter<MapsAdapter.ViewHolder> {
         DataPlace data = rvData.get(position);
         holder.tvName.setText(data.getPlaceDetail().getResult().getName());
         holder.tvJarak.setText(data.getPlaceDetail().getResult().getTypes().get(0));
-        holder.tvOpen.setText(data.getPlaceDetail().getResult().getOpening_hours().getOpenNow() ? "Open" : "Close");
+        String open;
+        if (getCurrentWeek() == 0) {
+            open = data.getPlaceDetail().getResult().getOpening_hours().getWeekday_text().get(6).split(": ")[1];
+        } else {
+            open = data.getPlaceDetail().getResult().getOpening_hours().getWeekday_text().get(getCurrentWeek() - 1).split(": ")[1];
+        }
+        holder.tvOpen.setText(data.getPlaceDetail().getResult().getOpening_hours().getOpenNow() ? open : "Closed");
         holder.tvOpen.setTextColor(data.getPlaceDetail().getResult().getOpening_hours().getOpenNow() ? holder.tvOpen.getContext().getResources().getColor(R.color.blue) : holder.tvOpen.getContext().getResources().getColor(R.color.red_no));
         if (data.getPlaceDetail().getResult().getPhotos() != null && data.getPlaceDetail().getResult().getPhotos().size() > 0) {
             String url = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&key=AIzaSyAzeGY38uY2J2R8w9tZraIitteSLqVakTc&photo_reference=";
@@ -80,5 +87,11 @@ public class MapsAdapter extends RecyclerView.Adapter<MapsAdapter.ViewHolder> {
         this.rvData.clear();
         this.rvData.addAll(inputData);
         notifyDataSetChanged();
+    }
+
+
+    private int getCurrentWeek() {
+        Calendar c = Calendar.getInstance();
+        return c.get(Calendar.DAY_OF_WEEK);
     }
 }

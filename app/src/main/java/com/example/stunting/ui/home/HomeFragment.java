@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.stunting.BuildConfig;
 import com.example.stunting.R;
+import com.example.stunting.ui.care_nutrition.CareNutritionActivity;
 import com.example.stunting.ui.info.StuntingInfoActivity;
 import com.example.stunting.ui.stunting_map.StuntingMapActivity;
 
@@ -29,6 +30,7 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         Button btnInfo = view.findViewById(R.id.btn_goto_info);
         LinearLayout btnStuntingMap = view.findViewById(R.id.btn_stunting_map);
+        LinearLayout btnCare = view.findViewById(R.id.btn_menu_care);
 
         //Session
         sharedPref = getContext().getSharedPreferences(BuildConfig.APPLICATION_ID, Context.MODE_PRIVATE);
@@ -45,6 +47,10 @@ public class HomeFragment extends Fragment {
 
         btnStuntingMap.setOnClickListener(v ->
                 startActivity(new Intent(requireContext(), StuntingMapActivity.class))
+        );
+
+        btnCare.setOnClickListener(c ->
+                startActivity(new Intent(requireContext(), CareNutritionActivity.class))
         );
     }
 

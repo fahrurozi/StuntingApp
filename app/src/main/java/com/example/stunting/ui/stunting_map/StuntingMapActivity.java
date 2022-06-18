@@ -58,6 +58,7 @@ import org.json.JSONException;
 import org.json.JSONStringer;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import dmax.dialog.SpotsDialog;
@@ -94,6 +95,8 @@ public class StuntingMapActivity extends AppCompatActivity implements OnMapReady
         sharedPref = this.getSharedPreferences(BuildConfig.APPLICATION_ID, Context.MODE_PRIVATE);
 
         ImageView btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(v -> finish());
+
         spotsDialog = new SpotsDialog(this, "Mohon Tunggu...");
 
         adapter = new MapsAdapter(this);
@@ -101,7 +104,6 @@ public class StuntingMapActivity extends AppCompatActivity implements OnMapReady
         rvData.setAdapter(adapter);
         rvData.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
-        btnBack.setOnClickListener(v -> finish());
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
@@ -110,7 +112,6 @@ public class StuntingMapActivity extends AppCompatActivity implements OnMapReady
         bottom_sheet = findViewById(R.id.llBottom);
         sheetBehavior = BottomSheetBehavior.from(bottom_sheet);
         sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-
         etSearch = findViewById(R.id.etSearch);
         etSearch.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
@@ -160,7 +161,7 @@ public class StuntingMapActivity extends AppCompatActivity implements OnMapReady
                 @Override
                 public void onResponse(Call<ResponseMaps> call, Response<ResponseMaps> response) {
                     spotsDialog.dismiss();
-                    if (response.body().getPlaces() != null) {
+                    if (response.isSuccessful() && response.body().getPlaces() != null) {
                         if (response.body().getPlaces().size() == 0)
                             Toast.makeText(getApplicationContext(), "Data tidak ditemukan", Toast.LENGTH_SHORT).show();
                         adapter.insertDataList(response.body().getPlaces());
@@ -197,11 +198,10 @@ public class StuntingMapActivity extends AppCompatActivity implements OnMapReady
     }
 
     private void removeAllMarkers() {
-        for (Marker mLocationMarker: AllMarkers) {
+        for (Marker mLocationMarker : AllMarkers) {
             mLocationMarker.remove();
         }
         AllMarkers.clear();
-
     }
 
     @Override
@@ -319,4 +319,5 @@ public class StuntingMapActivity extends AppCompatActivity implements OnMapReady
         super.onBackPressed();
         etSearch.clearFocus();
     }
+
 }
