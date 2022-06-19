@@ -58,20 +58,20 @@ public class MapsAdapter extends RecyclerView.Adapter<MapsAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         DataPlace data = rvData.get(position);
-        holder.tvName.setText(data.getPlaceDetail().getResult().getName());
-        holder.tvJarak.setText(data.getPlaceDetail().getResult().getTypes().get(0));
+        holder.tvName.setText(data.getPlaceDetail().getName());
+        holder.tvJarak.setText(data.getPlaceDetail().getTypes().get(0));
         String open;
         if (getCurrentWeek() == 0) {
-            open = data.getPlaceDetail().getResult().getOpening_hours().getWeekday_text().get(6).split(": ")[1];
+            open = data.getPlaceDetail().getOpening_hours().getWeekday_text().get(6).split(": ")[1];
         } else {
-            open = data.getPlaceDetail().getResult().getOpening_hours().getWeekday_text().get(getCurrentWeek() - 1).split(": ")[1];
+            open = data.getPlaceDetail().getOpening_hours().getWeekday_text().get(getCurrentWeek() - 1).split(": ")[1];
         }
-        holder.tvOpen.setText(data.getPlaceDetail().getResult().getOpening_hours().getOpenNow() ? open : "Closed");
-        holder.tvOpen.setTextColor(data.getPlaceDetail().getResult().getOpening_hours().getOpenNow() ? holder.tvOpen.getContext().getResources().getColor(R.color.blue) : holder.tvOpen.getContext().getResources().getColor(R.color.red_no));
-        if (data.getPlaceDetail().getResult().getPhotos() != null && data.getPlaceDetail().getResult().getPhotos().size() > 0) {
-            String url = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&key=AIzaSyAzeGY38uY2J2R8w9tZraIitteSLqVakTc&photo_reference=";
+        holder.tvOpen.setText(data.getPlaceDetail().getOpening_hours().getOpenNow() ? open : "Closed");
+        holder.tvOpen.setTextColor(data.getPlaceDetail().getOpening_hours().getOpenNow() ? holder.tvOpen.getContext().getResources().getColor(R.color.blue) : holder.tvOpen.getContext().getResources().getColor(R.color.red_no));
+        if (data.getPlaceDetail().getPhotos() != null && data.getPlaceDetail().getPhotos().size() > 0) {
+            String url = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&key=AIzaSyANMqbpveaHFPV89TiLaziyYFiNdd_PQlU&photo_reference=";
             Picasso.get().load(
-                    url + data.getPlaceDetail().getResult().getPhotos().get(0).getPhotoReference()).into(holder.ivMaps);
+                    url + data.getPlaceDetail().getPhotos().get(0).getPhotoReference()).into(holder.ivMaps);
         }
         holder.ivMaps.setOnClickListener(v -> mapsInterface.onClick(data));
         holder.btnDirection.setOnClickListener(v -> mapsInterface.onDirection(data));

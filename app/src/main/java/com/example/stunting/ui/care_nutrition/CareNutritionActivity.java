@@ -26,7 +26,7 @@ public class CareNutritionActivity extends AppCompatActivity {
         btnBack.setOnClickListener(v -> finish());
 
         btnBreakfast.setOnClickListener(v -> {
-            startActivity(new Intent(this, CareCategoryActivity.class).putExtra("category", "nutrition"));
+            startActivity(new Intent(this, CareCategoryActivity.class).putExtra("category", "breakfast"));
         });
 
         btnLunch.setOnClickListener(v -> {

@@ -40,6 +40,7 @@ public class AuthInterceptor implements Interceptor {
                     if (response.body().getToken() != null) {
                         App.sharedPref.edit().putString("token", response.body().getToken()).apply();
                         try {
+                            res.close();
                             proceedWithToken(chain, req, response.body().getToken());
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -65,7 +66,7 @@ public class AuthInterceptor implements Interceptor {
     private Response proceedWithToken(Chain chain, Request req, String token) throws IOException {
         Request.Builder builder = req.newBuilder();
         if (token != null) {
-            builder.addHeader("Authorization", token);
+//            builder.addHeader("token", token);
         }
 
         Request request = builder.removeHeader("@").build();

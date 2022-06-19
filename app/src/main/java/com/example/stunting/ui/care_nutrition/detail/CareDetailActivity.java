@@ -1,6 +1,7 @@
 package com.example.stunting.ui.care_nutrition.detail;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ImageView;
@@ -26,6 +27,9 @@ public class CareDetailActivity extends AppCompatActivity {
         btnBack.setOnClickListener(v -> finish());
         TextView tvTitle = findViewById(R.id.tvTitle);
         datacare = (DataCare) getIntent().getParcelableExtra("datacare");
+
+        Log.e("TAG", "onCreate: " + datacare.toString());
+
         tvTitle.setText(datacare.getTitle());
         WebView webView = (WebView) findViewById(R.id.wvArticle);
         webView.clearCache(true);

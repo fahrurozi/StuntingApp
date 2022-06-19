@@ -15,4 +15,12 @@ public class ResponseMaps {
     public void setPlaces(List<DataPlace> places) {
         this.places = places;
     }
+
+    @Override
+    public String toString() {
+        return "ResponseMaps{" +
+                "places=" + places +
+                '}';
+    }
+
 }

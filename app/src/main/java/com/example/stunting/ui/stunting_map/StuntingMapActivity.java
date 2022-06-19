@@ -14,6 +14,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
@@ -74,6 +75,7 @@ public class StuntingMapActivity extends AppCompatActivity implements OnMapReady
     private Location location;
     private Integer lcoationPermissionCode = 2;
     private SpotsDialog spotsDialog;
+    private SpotsDialog spotsDialogLocation;
     private LocationManager locationManager;
 
     private ApiEndpoint endpoint = ApiService.getRetrofitInstance();
@@ -98,6 +100,7 @@ public class StuntingMapActivity extends AppCompatActivity implements OnMapReady
         btnBack.setOnClickListener(v -> finish());
 
         spotsDialog = new SpotsDialog(this, "Mohon Tunggu...");
+        spotsDialogLocation = new SpotsDialog(this, "Get Location...");
 
         adapter = new MapsAdapter(this);
         RecyclerView rvData = findViewById(R.id.rvData);
@@ -152,6 +155,7 @@ public class StuntingMapActivity extends AppCompatActivity implements OnMapReady
             json.object();
             json.key("location").value(location.getLatitude() + "," + location.getLongitude());
             json.key("keyword").value(query);
+            json.key("radius").value(100000);
             json.endObject();
             body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), json.toString());
 
@@ -162,18 +166,21 @@ public class StuntingMapActivity extends AppCompatActivity implements OnMapReady
                 public void onResponse(Call<ResponseMaps> call, Response<ResponseMaps> response) {
                     spotsDialog.dismiss();
                     if (response.isSuccessful() && response.body().getPlaces() != null) {
-                        if (response.body().getPlaces().size() == 0)
+                        if (response.body().getPlaces().size() == 0){
                             Toast.makeText(getApplicationContext(), "Data tidak ditemukan", Toast.LENGTH_SHORT).show();
-                        adapter.insertDataList(response.body().getPlaces());
-                        removeAllMarkers();
-                        for (DataPlace data : response.body().getPlaces()) {
-                            MarkerOptions markerLocation = new MarkerOptions()
-                                    .position(new LatLng(data.getPlaceDetail().getResult().getGeometry().getLocation().getLat(), data.getPlaceDetail().getResult().getGeometry().getLocation().getLng()))
-                                    .icon(bitmapDescriptorFromVector(getApplicationContext(), R.drawable.ic_point_maps))
-                                    .title(data.getPlaceDetail().getResult().getName());
-                            AllMarkers.add(mMap.addMarker(markerLocation));
+                        }else{
+                            adapter.insertDataList(response.body().getPlaces());
+                            removeAllMarkers();
+                            for (DataPlace data : response.body().getPlaces()) {
+                                MarkerOptions markerLocation = new MarkerOptions()
+                                        .position(new LatLng(data.getPlaceDetail().getGeometry().getLocation().getLat(), data.getPlaceDetail().getGeometry().getLocation().getLng()))
+                                        .icon(bitmapDescriptorFromVector(getApplicationContext(), R.drawable.ic_point_maps))
+                                        .title(data.getPlaceDetail().getName());
+                                AllMarkers.add(mMap.addMarker(markerLocation));
+                            }
+                            Log.e("Data Lokasi", "onResponse: " + response.body().getPlaces().toString());
+                            sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
                         }
-                        sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
                     }
                 }
 
@@ -238,12 +245,13 @@ public class StuntingMapActivity extends AppCompatActivity implements OnMapReady
 
     @SuppressLint("MissingPermission")
     private void getLocation() {
-        spotsDialog.show();
+        spotsDialogLocation.show();
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         if ((ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
             ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, lcoationPermissionCode);
         } else {
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 5f, this);
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 5f, this);
         }
     }
 
@@ -274,7 +282,7 @@ public class StuntingMapActivity extends AppCompatActivity implements OnMapReady
     @Override
     public void onLocationChanged(@NonNull Location location) {
         this.location = location;
-        spotsDialog.dismiss();
+        spotsDialogLocation.dismiss();
         locationManager.removeUpdates(this);
         setUserLocation();
         searchLocation("");
@@ -295,7 +303,7 @@ public class StuntingMapActivity extends AppCompatActivity implements OnMapReady
     @Override
     public void onDirection(DataPlace data) {
         Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
-                Uri.parse("http://maps.google.com/maps?saddr=" + location.getLatitude() + "," + location.getLongitude() + "&daddr=" + data.getPlaceDetail().getResult().getGeometry().getLocation().getLat() + "," + data.getPlaceDetail().getResult().getGeometry().getLocation().getLng()));
+                Uri.parse("http://maps.google.com/maps?saddr=" + location.getLatitude() + "," + location.getLongitude() + "&daddr=" + data.getPlaceDetail().getGeometry().getLocation().getLat() + "," + data.getPlaceDetail().getGeometry().getLocation().getLng()));
         startActivity(intent);
     }
 
@@ -304,13 +312,13 @@ public class StuntingMapActivity extends AppCompatActivity implements OnMapReady
         Intent intent2 = new Intent();
         intent2.setAction(Intent.ACTION_SEND);
         intent2.setType("text/plain");
-        intent2.putExtra(Intent.EXTRA_TEXT, data.getPlaceDetail().getResult().getUrl());
+        intent2.putExtra(Intent.EXTRA_TEXT, data.getPlaceDetail().getUrl());
         startActivity(Intent.createChooser(intent2, "Share via"));
     }
 
     @Override
     public void onClick(DataPlace data) {
-        LatLng latLng = new LatLng(data.getPlaceDetail().getResult().getGeometry().getLocation().getLat(), data.getPlaceDetail().getResult().getGeometry().getLocation().getLng());
+        LatLng latLng = new LatLng(data.getPlaceDetail().getGeometry().getLocation().getLat(), data.getPlaceDetail().getGeometry().getLocation().getLng());
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f));
     }
 
@@ -320,4 +328,9 @@ public class StuntingMapActivity extends AppCompatActivity implements OnMapReady
         etSearch.clearFocus();
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        getLocation();
+    }
 }

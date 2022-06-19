@@ -24,6 +24,7 @@ public class DataCare implements Parcelable {
     private String title;
 
     protected DataCare(Parcel in) {
+        title = in.readString();
         articleCoverFile = in.readString();
         articleFile = in.readString();
         articleSubType = in.readString();
@@ -35,7 +36,6 @@ public class DataCare implements Parcelable {
         } else {
             id = in.readInt();
         }
-        title = in.readString();
     }
 
     public static final Creator<DataCare> CREATOR = new Creator<DataCare>() {
@@ -135,6 +135,7 @@ public class DataCare implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(title);
         parcel.writeString(articleCoverFile);
         parcel.writeString(articleFile);
         parcel.writeString(articleSubType);
@@ -142,6 +143,5 @@ public class DataCare implements Parcelable {
         parcel.writeString(articleType);
         parcel.writeString(date);
         parcel.writeInt(id);
-        parcel.writeString(title);
     }
 }

@@ -57,7 +57,7 @@ public class CareCategoryActivity extends AppCompatActivity implements CareInter
             JSONStringer json = new JSONStringer();
             json.object();
             json.key("get_articles").value("filter_articles");
-            json.key("article_type").value(category);
+            json.key("article_sub_type").value(category);
             json.endObject();
             body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), json.toString());
             endpoint.getArticle(sharedPref.getString(getString(R.string.token), ""), body).enqueue(new retrofit2.Callback<ResponseCare>() {
