@@ -12,7 +12,7 @@ android {
         targetSdk 32
         versionCode 1
         versionName "1.0"
-
+        manifestPlaceholders = [MAPS_API_KEY:"AIzaSyDas9wElfktQdlWKgkPBKOHTE5vlyvQa4A"]
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -27,7 +27,6 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 }
-
 
 
 dependencies {
@@ -64,6 +63,7 @@ dependencies {
     //Swipper Refresh Layout
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-beta01'
 
+    implementation "androidx.core:core:1.6.0"
 //    Notifyme
 //    implementation 'com.github.jakebonk:NotifyMe:1.0.1'
 //    implementation 'com.github.jakebonk:Notifyme:1.0.0'

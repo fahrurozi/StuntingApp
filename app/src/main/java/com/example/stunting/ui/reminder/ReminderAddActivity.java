@@ -12,10 +12,13 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.stunting.BuildConfig;
 import com.example.stunting.R;
+import com.example.stunting.components.NotificationUtils;
+import com.example.stunting.components.ScheduleUtils;
 import com.example.stunting.data.model.child.DataChild;
 import com.example.stunting.data.model.child.ResponsePutChild;
 import com.example.stunting.data.model.reminder.DataReminder;
@@ -31,6 +34,11 @@ import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import java.sql.Time;
+import java.time.LocalTime;
+import java.util.Calendar;
+import java.util.Date;
 
 public class ReminderAddActivity extends AppCompatActivity {
 
@@ -54,6 +62,7 @@ public class ReminderAddActivity extends AppCompatActivity {
         tpInputTime.setIs24HourView(true);
 
         fabSimpan.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
                 int hour;
@@ -69,11 +78,17 @@ public class ReminderAddActivity extends AppCompatActivity {
                 }
                 time = hour+":"+minute;
 
+                LocalTime timeNow = LocalTime.now();
+                int seconds_now = timeNow.getHour()*3600+timeNow.getMinute()*60;
+                int seconds_later = hour*3600+minute*60;
+                System.out.println("SECONDS NEXT " + String.valueOf(seconds_later-seconds_now));
+                new ScheduleUtils(getApplicationContext()).scheduleNotification(seconds_later-seconds_now, getString(R.string.title_stunt_reminder), getString(R.string.title_stunt_reminder_description));
                 try {
                     addReminder(time);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
             }
         });
     }
