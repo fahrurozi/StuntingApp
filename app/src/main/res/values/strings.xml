@@ -9,7 +9,7 @@
     <string name="title_date">22 Jan 2022</string>
     <string name="title_null">null</string>
     <string name="title_name">Lorem Ipsum</string>
-    <string name="title_bulan">Bulan</string>
+    <string name="title_bulan">Month</string>
     <string name="title_lorem_ipsum">Lorem Ipsum</string>
     <string name="title_readmore">Read more</string>
     <string name="title_good">Good</string>
@@ -23,4 +23,8 @@
     <string name="foo">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eros iaculis tempus, lacus congue id iaculis. Eget odio amet amet in cras purus nisl vulputate. Pellentesque convallis amet nulla nunc nulla facilisis scelerisque velit. Placerat mi ullamcorper lacus malesuada cum molestie.</string>
     <string name="title_lunch">Lunch</string>
     <string name="title_dinner">Dinner</string>
+    <string name="title_stunt_reminder">Stunt Reminder</string>
+    <string name="title_add_reminder">Create Reminder</string>
+    <string name="message_delete_data">are you sure you want to delete the data?</string>
+    <string name="title_dialog_delete">Alert!</string>
 </resources>
