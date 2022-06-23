@@ -39,7 +39,8 @@ public class CareCategoryActivity extends AppCompatActivity implements CareInter
         sharedPref = this.getSharedPreferences(BuildConfig.APPLICATION_ID, Context.MODE_PRIVATE);
         category = getIntent().getStringExtra("category");
         TextView tvTitle = findViewById(R.id.tvTitle);
-        tvTitle.setText(capitalizeString(category));
+     tvTitle.setText(capitalizeString(category));
+
         adapter = new CareAdapter(this);
         RecyclerView rvCare = findViewById(R.id.rvData);
         rvCare.setAdapter(adapter);

@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import com.example.stunting.BuildConfig;
 import com.example.stunting.R;
 import com.example.stunting.ui.care_nutrition.CareNutritionActivity;
+import com.example.stunting.ui.child.ChildFragment;
 import com.example.stunting.ui.info.StuntingInfoActivity;
 import com.example.stunting.ui.reminder.ReminderActivity;
 import com.example.stunting.ui.stunting_map.StuntingMapActivity;
@@ -58,6 +59,8 @@ public class HomeFragment extends Fragment {
         btnReminder.setOnClickListener(c ->
                 startActivity(new Intent(requireContext(), ReminderActivity.class))
         );
+
+
     }
 
     public HomeFragment() {
@@ -70,4 +73,5 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
+
 }

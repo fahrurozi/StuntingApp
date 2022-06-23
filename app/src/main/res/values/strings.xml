@@ -4,27 +4,33 @@
     <string name="title_child">Child</string>
     <string name="title_account">Account</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_stuntingapp">StuntingApp</string>
-    <string name="title_date">22 Jan 2022</string>
-    <string name="title_null">null</string>
-    <string name="title_name">Lorem Ipsum</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="title_stuntingapp" translatable="false">StuntingApp</string>
+    <string name="title_date" translatable="false">22 Jan 2022</string>
+    <string name="title_null" translatable="false">null</string>
+    <string name="title_name" translatable="false">Lorem Ipsum</string>
     <string name="title_bulan">Month</string>
-    <string name="title_lorem_ipsum">Lorem Ipsum</string>
+    <string name="title_lorem_ipsum" translatable="false">Lorem Ipsum</string>
     <string name="title_readmore">Read more</string>
     <string name="title_good">Good</string>
     <string name="title_stuntingmaps">StuntingMaps</string>
-    <string name="token">token</string>
-    <string name="username">Username</string>
-    <string name="name">Name</string>
-    <string name="id">ID</string>
+    <string name="token" translatable="false">token</string>
+    <string name="username" translatable="false">Username</string>
+    <string name="name" translatable="false">Name</string>
+    <string name="id" translatable="false">ID</string>
     <string name="title_care_nutrition">Care Nutrition</string>
     <string name="title_breakfast">Breakfast</string>
-    <string name="foo">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eros iaculis tempus, lacus congue id iaculis. Eget odio amet amet in cras purus nisl vulputate. Pellentesque convallis amet nulla nunc nulla facilisis scelerisque velit. Placerat mi ullamcorper lacus malesuada cum molestie.</string>
+    <string name="foo" translatable="false">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eros iaculis tempus, lacus congue id iaculis. Eget odio amet amet in cras purus nisl vulputate. Pellentesque convallis amet nulla nunc nulla facilisis scelerisque velit. Placerat mi ullamcorper lacus malesuada cum molestie.</string>
     <string name="title_lunch">Lunch</string>
     <string name="title_dinner">Dinner</string>
-    <string name="title_stunt_reminder">Stunt Reminder</string>
+    <string name="title_stunt_reminder">Stunting Reminder</string>
     <string name="title_add_reminder">Create Reminder</string>
     <string name="message_delete_data">are you sure you want to delete the data?</string>
     <string name="title_dialog_delete">Alert!</string>
+    <string name="btn_my_profile">My Profile</string>
+    <string name="title_stunting_info">Stunting Info</string>
+    <string name="title_stunting_trace">Stunting Trace</string>
+    <string name="title_stunting_maps">Stunting Maps</string>
+    <string name="title_stunting_health">Stunting Health</string>
+
 </resources>
