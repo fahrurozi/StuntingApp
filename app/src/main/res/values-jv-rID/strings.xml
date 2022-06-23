@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Stunting</string>
+    <string name="title_home">Omah</string>
+    <string name="title_child">Bocah</string>
+    <string name="title_account">Akun</string>
+    <string name="title_bulan">Wulan</string>
+    <string name="title_readmore">Luih Akeh</string>
+    <string name="title_good">Apik</string>
+    <string name="title_stuntingmaps">Peta Stunting</string>
+    <string name="title_care_nutrition">Nutrisi</string>
+    <string name="title_breakfast">Sarapan</string>
+    <string name="title_lunch">Mangan Awan</string>
+    <string name="title_dinner">Mangan Mbengi</string>
+    <string name="title_stunt_reminder">Pangeling-eling</string>
+    <string name="title_add_reminder">Tambah Pangeling</string>
+    <string name="message_delete_data">Tenane koe pingin hapus data iki?</string>
+    <string name="title_dialog_delete">Pengertian!</string>
+    <string name="btn_my_profile">Profilku</string>
+    <string name="title_stunting_info">Informasi Stunting</string>
+    <string name="title_stunting_trace">Trasing Stunting</string>
+    <string name="title_stunting_maps">Peta Stunting</string>
+    <string name="title_stunting_health">Sehat Stunting</string>
+</resources>

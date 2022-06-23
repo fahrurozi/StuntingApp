@@ -126,7 +126,7 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginTop="5dp"
                             android:background="@drawable/button_border"
-                            android:text="My Profile"
+                            android:text="@string/btn_my_profile"
                             android:textColor="@color/menu_orange"
                             android:textSize="10sp"
                             tools:ignore="TouchTargetSizeCheck" />
@@ -186,7 +186,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:width="70sp"
-                        android:text="Stunting Trace"
+                        android:text="@string/title_stunting_trace"
                         android:textAlignment="center"
                         android:textColor="@color/blue"
                         android:textSize="14sp" />
@@ -212,7 +212,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:width="70sp"
-                        android:text="Stunting Maps"
+                        android:text="@string/title_stunting_maps"
                         android:textAlignment="center"
                         android:textColor="@color/blue"
                         android:textSize="14sp" />
@@ -237,7 +237,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:width="70sp"
-                        android:text="Care Nutrition"
+                        android:text="@string/title_care_nutrition"
                         android:textAlignment="center"
                         android:textColor="@color/blue"
                         android:textSize="14sp" />
@@ -262,13 +262,14 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:width="70sp"
-                        android:text="Stunting Health"
+                        android:text="@string/title_stunting_health"
                         android:textAlignment="center"
                         android:textColor="@color/blue"
                         android:textSize="14sp" />
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/btn_menu_remind"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="5dp"
@@ -277,7 +278,7 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/btn_menu_remind"
+
                         android:layout_width="64dp"
                         android:layout_height="64dp"
                         android:src="@drawable/stunting_reminder" />
@@ -287,7 +288,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:width="70sp"
-                        android:text="Stunting Reminder"
+                        android:text="@string/title_stunt_reminder"
                         android:textAlignment="center"
                         android:textColor="@color/blue"
                         android:textSize="14sp" />
@@ -323,7 +324,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="9"
                 android:gravity="left"
-                android:text="Stunting Info"
+                android:text="@string/title_stunting_info"
                 android:textColor="@color/blue"
                 android:textSize="18sp"
                 android:textStyle="bold" />

@@ -17,6 +17,12 @@
         android:theme="@style/Theme.SplashScreen"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.reminder.ReminderAddActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.reminder.ReminderActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.care_nutrition.detail.CareDetailActivity"
             android:exported="false" />
         <activity

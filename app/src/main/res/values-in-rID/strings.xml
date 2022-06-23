@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Stunting</string>
+    <string name="title_home">Rumah</string>
+    <string name="title_child">Anak</string>
+    <string name="title_account">Akun</string>
+    <string name="title_bulan">Bulan</string>
+    <string name="title_readmore">Lebih Banyak</string>
+    <string name="title_good">Bagus</string>
+    <string name="title_stuntingmaps">Peta Stunting</string>
+    <string name="title_care_nutrition">Nutrisi</string>
+    <string name="title_breakfast">Sarapan</string>
+    <string name="title_lunch">Makan Siang</string>
+    <string name="title_dinner">Makan Malam</string>
+    <string name="title_stunt_reminder">Pengingat</string>
+    <string name="title_add_reminder">Tambah Pengingat</string>
+    <string name="message_delete_data">apakah anda yakin akan menghapus data?</string>
+    <string name="title_dialog_delete">Perhatian!</string>
+    <string name="btn_my_profile">Profilku</string>
+    <string name="title_stunting_info">Informasi Stunting</string>
+    <string name="title_stunting_trace">Trasing Stunting</string>
+    <string name="title_stunting_maps">Peta Stunting</string>
+    <string name="title_stunting_health">Sehat Stunting</string>
+</resources>

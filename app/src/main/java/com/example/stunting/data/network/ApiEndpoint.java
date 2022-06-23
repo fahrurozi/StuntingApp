@@ -6,11 +6,14 @@ import com.example.stunting.data.model.child.ResponsePutChild;
 import com.example.stunting.data.model.login.ResponseLogin;
 import com.example.stunting.data.model.maps.ResponseMaps;
 import com.example.stunting.data.model.register.ResponseRegister;
+import com.example.stunting.data.model.reminder.ResponseAddReminder;
+import com.example.stunting.data.model.reminder.ResponseReminder;
 import com.example.stunting.data.model.token.ResponseToken;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
@@ -67,4 +70,16 @@ public interface ApiEndpoint {
             @Header("token") String token,
             @Body RequestBody body
     );
+
+    @GET("api/v1/reminder")
+    Call<ResponseReminder> getReminder(
+            @Header("token") String token
+    );
+
+    @POST("api/v1/reminder")
+    Call<ResponseAddReminder> addReminder(
+            @Header("Token") String token,
+            @Body RequestBody body
+    );
+
 }
