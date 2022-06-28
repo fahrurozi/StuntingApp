@@ -15,4 +15,11 @@ public class ResponseChild {
     public void setAll_traces(List<DataChild> all_traces) {
         this.all_traces = all_traces;
     }
+
+    @Override
+    public String toString() {
+        return "ResponseChild{" +
+                "all_traces=" + all_traces +
+                '}';
+    }
 }

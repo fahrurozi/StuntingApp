@@ -44,41 +44,34 @@ public interface ApiEndpoint {
 
     @GET("api/v1/user")
     Call<ResponseLogin> getProfile(
-            @Header("token") String token
     );
 
     @GET("api/v1/trace")
     Call<ResponseChild> getTrace(
-            @Header("token") String token
     );
 
     @POST("api/v1/trace")
     Call<ResponsePutChild> putTrace(
-            @Header("token") String token,
             @Body RequestBody body
     );
 
 
     @POST("api/v1/maps")
     Call<ResponseMaps> getMaps(
-            @Header("token") String token,
             @Body RequestBody body
     );
 
     @POST("api/v1/article")
     Call<ResponseCare> getArticle(
-            @Header("token") String token,
             @Body RequestBody body
     );
 
     @GET("api/v1/reminder")
     Call<ResponseReminder> getReminder(
-            @Header("token") String token
     );
 
     @POST("api/v1/reminder")
     Call<ResponseAddReminder> addReminder(
-            @Header("Token") String token,
             @Body RequestBody body
     );
 

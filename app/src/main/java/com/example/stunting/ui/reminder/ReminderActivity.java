@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -23,6 +24,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -80,7 +82,7 @@ public class ReminderActivity extends AppCompatActivity {
     }
 
     public void retrireveData(){
-        endpoint.getReminder(sharedPref.getString(getString(R.string.token), "")).enqueue(new retrofit2.Callback<ResponseReminder>() {
+        endpoint.getReminder().enqueue(new retrofit2.Callback<ResponseReminder>() {
             @Override
             public void onResponse(Call<ResponseReminder> call, retrofit2.Response<ResponseReminder> response) {
                 if (response.isSuccessful() && response.body() != null) {
@@ -94,7 +96,11 @@ public class ReminderActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ResponseReminder> call, Throwable t) {
-
+                if (Objects.equals(t.getMessage(), "closed")) {
+                    retrireveData();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

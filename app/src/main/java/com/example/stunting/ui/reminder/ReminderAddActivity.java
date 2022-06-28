@@ -104,7 +104,7 @@ public class ReminderAddActivity extends AppCompatActivity {
         Log.e("GAGAL", "addReminder: "+json );
 
         body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), json.toString());
-        Call<ResponseAddReminder> addReminderCall = endpoint.addReminder(sharedPref.getString(getString(R.string.token), ""), body);
+        Call<ResponseAddReminder> addReminderCall = endpoint.addReminder(body);
 
         addReminderCall.enqueue(new Callback<ResponseAddReminder>() {
 

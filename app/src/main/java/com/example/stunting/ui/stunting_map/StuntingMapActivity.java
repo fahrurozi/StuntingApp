@@ -61,6 +61,7 @@ import org.json.JSONStringer;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Objects;
 
 import dmax.dialog.SpotsDialog;
 import okhttp3.RequestBody;
@@ -159,7 +160,7 @@ public class StuntingMapActivity extends AppCompatActivity implements OnMapReady
             json.endObject();
             body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), json.toString());
 
-            Call<ResponseMaps> mapsCall = endpoint.getMaps(sharedPref.getString(getString(R.string.token), ""), body);
+            Call<ResponseMaps> mapsCall = endpoint.getMaps( body);
             mapsCall.enqueue(new Callback<ResponseMaps>() {
 
                 @Override
@@ -187,7 +188,11 @@ public class StuntingMapActivity extends AppCompatActivity implements OnMapReady
                 @Override
                 public void onFailure(Call<ResponseMaps> call, Throwable t) {
                     spotsDialog.dismiss();
-                    Toast.makeText(StuntingMapActivity.this, "Gagal mengambil data", Toast.LENGTH_SHORT).show();
+                    if (Objects.equals(t.getMessage(), "closed")) {
+                        searchLocation(query);
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
         } catch (JSONException e) {

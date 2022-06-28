@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +39,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Objects;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -96,12 +98,14 @@ public class ChildFragment extends Fragment implements ChildInterface {
     }
 
     private void getTrace() {
-        Call<ResponseChild> getTraceCall = endpoint.getTrace(sharedPref.getString(getString(R.string.token), ""));
+        Call<ResponseChild> getTraceCall = endpoint.getTrace();
+        Log.e("TAG", "getTrace() returned: ");
         getTraceCall.enqueue(new retrofit2.Callback<ResponseChild>() {
 
             @Override
             public void onResponse(Call<ResponseChild> call, Response<ResponseChild> response) {
                 if (response.isSuccessful()) {
+                    Log.e("TAG", "getTrace() berhasil: " + response.body().toString());
                     ResponseChild responseChild = response.body();
                     if (responseChild.getAll_traces() != null) {
                         for (int i = 0; i < responseChild.getAll_traces().size(); i++) {
@@ -118,6 +122,11 @@ public class ChildFragment extends Fragment implements ChildInterface {
 
             @Override
             public void onFailure(Call<ResponseChild> call, Throwable t) {
+                if (Objects.equals(t.getMessage(), "closed")){
+                    getTrace();
+                }else{
+                    Toast.makeText(getContext(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -131,6 +140,8 @@ public class ChildFragment extends Fragment implements ChildInterface {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_child, container, false);
     }
+
+    private DataChild dataChildReq = null;
 
     @SuppressLint({"SetTextI18n", "UseCompatLoadingForDrawables"})
     @Override
@@ -221,6 +232,7 @@ public class ChildFragment extends Fragment implements ChildInterface {
             ) {
                 alertDialog.dismiss();
                 try {
+                    dataChildReq = child;
                     putTrace(child);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -253,7 +265,7 @@ public class ChildFragment extends Fragment implements ChildInterface {
         json.endObject();
 
         body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), json.toString());
-        Call<ResponsePutChild> putChildCall = endpoint.putTrace(sharedPref.getString(getString(R.string.token), ""), body);
+        Call<ResponsePutChild> putChildCall = endpoint.putTrace( body);
 
         putChildCall.enqueue(new Callback<ResponsePutChild>() {
 
@@ -264,7 +276,15 @@ public class ChildFragment extends Fragment implements ChildInterface {
 
             @Override
             public void onFailure(Call<ResponsePutChild> call, Throwable t) {
-                Toast.makeText(getContext(), "Gagal mengirim data", Toast.LENGTH_SHORT).show();
+                if (Objects.equals(t.getMessage(), "closed")){
+                    try {
+                        putTrace(child);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }else{
+                    Toast.makeText(getContext(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

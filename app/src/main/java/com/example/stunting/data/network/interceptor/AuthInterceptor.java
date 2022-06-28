@@ -29,36 +29,27 @@ public class AuthInterceptor implements Interceptor {
 
         String token = App.sharedPref.getString("token", null);
         Response res = this.proceedWithToken(chain, req, token);
-        if (res.code() != 401){
+        if (res.code() != 401) {
             return res;
-        }else{
+        } else {
             Call<ResponseToken> loginCall = App.apiService.refreshToken(token);
-
-            loginCall.enqueue(new retrofit2.Callback<ResponseToken>() {
-                @Override
-                public void onResponse(Call<ResponseToken> call, retrofit2.Response<ResponseToken> response) {
-                    if (response.body().getToken() != null) {
-                        App.sharedPref.edit().putString("token", response.body().getToken()).apply();
-                        try {
-                            res.close();
-                            proceedWithToken(chain, req, response.body().getToken());
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    } else {
-                        res.close();
-                        try {
-                            proceedWithToken(chain, req, null);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
+            retrofit2.Response<ResponseToken> responseToken = loginCall.execute();
+            if (responseToken.body().getToken() != null) {
+                App.sharedPref.edit().putString("token", responseToken.body().getToken()).apply();
+                try {
+                    res.close();
+                    proceedWithToken(chain, req, responseToken.body().getToken());
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-
-                @Override
-                public void onFailure(Call<ResponseToken> call, Throwable t) {
+            } else {
+                res.close();
+                try {
+                    proceedWithToken(chain, req, null);
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-            });
+            }
         }
         return res;
     }
@@ -66,7 +57,7 @@ public class AuthInterceptor implements Interceptor {
     private Response proceedWithToken(Chain chain, Request req, String token) throws IOException {
         Request.Builder builder = req.newBuilder();
         if (token != null) {
-//            builder.addHeader("token", token);
+            builder.addHeader("token", token);
         }
 
         Request request = builder.removeHeader("@").build();

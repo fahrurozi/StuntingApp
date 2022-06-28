@@ -68,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
                             if (response.body().getToken() != null) {
                                 editor.putString(getString(R.string.token), response.body().getToken());
                                 editor.apply();
-                                getProfile(response.body().getToken());
+                                getProfile();
                             } else {
                                 Toast.makeText(getApplicationContext(), "Login gagal", Toast.LENGTH_SHORT).show();
                             }
@@ -87,8 +87,8 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void getProfile(String token) {
-        Call<ResponseLogin> profileCall = endpoint.getProfile(token);
+    private void getProfile() {
+        Call<ResponseLogin> profileCall = endpoint.getProfile();
         profileCall.enqueue(new retrofit2.Callback<ResponseLogin>() {
             @Override
             public void onResponse(Call<ResponseLogin> call, retrofit2.Response<ResponseLogin> response) {

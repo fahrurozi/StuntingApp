@@ -4,8 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,6 +23,8 @@ import com.example.stunting.ui.care_nutrition.detail.CareDetailActivity;
 
 import org.json.JSONException;
 import org.json.JSONStringer;
+
+import java.util.Objects;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -39,7 +43,7 @@ public class CareCategoryActivity extends AppCompatActivity implements CareInter
         sharedPref = this.getSharedPreferences(BuildConfig.APPLICATION_ID, Context.MODE_PRIVATE);
         category = getIntent().getStringExtra("category");
         TextView tvTitle = findViewById(R.id.tvTitle);
-     tvTitle.setText(capitalizeString(category));
+        tvTitle.setText(capitalizeString(category));
 
         adapter = new CareAdapter(this);
         RecyclerView rvCare = findViewById(R.id.rvData);
@@ -61,7 +65,7 @@ public class CareCategoryActivity extends AppCompatActivity implements CareInter
             json.key("article_sub_type").value(category);
             json.endObject();
             body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), json.toString());
-            endpoint.getArticle(sharedPref.getString(getString(R.string.token), ""), body).enqueue(new retrofit2.Callback<ResponseCare>() {
+            endpoint.getArticle(body).enqueue(new retrofit2.Callback<ResponseCare>() {
                 @Override
                 public void onResponse(Call<ResponseCare> call, retrofit2.Response<ResponseCare> response) {
                     if (response.isSuccessful() && response.body() != null && response.body().getArticles() != null) {
@@ -71,7 +75,11 @@ public class CareCategoryActivity extends AppCompatActivity implements CareInter
 
                 @Override
                 public void onFailure(Call<ResponseCare> call, Throwable t) {
-
+                    if (Objects.equals(t.getMessage(), "closed")) {
+                        getArticle();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
         } catch (JSONException e) {
