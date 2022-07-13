@@ -29,6 +29,7 @@
     <string name="title_dialog_delete">Alert!</string>
     <string name="btn_my_profile">My Profile</string>
     <string name="title_stunting_info">Stunting Info</string>
+    <string name="title_nutrition_info">Nutrition Info</string>
     <string name="title_stunting_trace">Stunting Trace</string>
     <string name="title_stunting_maps">Stunting Maps</string>
     <string name="title_stunting_health">Stunting Health</string>

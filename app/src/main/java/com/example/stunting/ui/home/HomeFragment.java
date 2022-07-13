@@ -18,9 +18,9 @@ import androidx.fragment.app.Fragment;
 import com.example.stunting.BuildConfig;
 import com.example.stunting.R;
 import com.example.stunting.ui.care_nutrition.CareNutritionActivity;
-import com.example.stunting.ui.child.ChildFragment;
-import com.example.stunting.ui.info.StuntingInfoActivity;
+import com.example.stunting.ui.info.StuntingInfoActivityBak;
 import com.example.stunting.ui.reminder.ReminderActivity;
+import com.example.stunting.ui.stunting_health.StuntingHealthActivity;
 import com.example.stunting.ui.stunting_map.StuntingMapActivity;
 
 public class HomeFragment extends Fragment {
@@ -34,6 +34,7 @@ public class HomeFragment extends Fragment {
         LinearLayout btnStuntingMap = view.findViewById(R.id.btn_stunting_map);
         LinearLayout btnCare = view.findViewById(R.id.btn_menu_care);
         LinearLayout btnReminder = view.findViewById(R.id.btn_menu_remind);
+        LinearLayout btnHealth = view.findViewById(R.id.btn_menu_health);
 
         //Session
         sharedPref = getContext().getSharedPreferences(BuildConfig.APPLICATION_ID, Context.MODE_PRIVATE);
@@ -45,7 +46,7 @@ public class HomeFragment extends Fragment {
         tvUsername.setText(sharedPref.getString(getString(R.string.username), ""));
 
         btnInfo.setOnClickListener(v ->
-                startActivity(new Intent(requireContext(), StuntingInfoActivity.class))
+                startActivity(new Intent(requireContext(), StuntingInfoActivityBak.class))
         );
 
         btnStuntingMap.setOnClickListener(v ->
@@ -58,6 +59,10 @@ public class HomeFragment extends Fragment {
 
         btnReminder.setOnClickListener(c ->
                 startActivity(new Intent(requireContext(), ReminderActivity.class))
+        );
+
+        btnHealth.setOnClickListener(c ->
+                startActivity(new Intent(requireContext(), StuntingHealthActivity.class))
         );
 
 
