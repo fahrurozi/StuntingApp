@@ -14,10 +14,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.example.stunting.BuildConfig;
 import com.example.stunting.R;
 import com.example.stunting.ui.care_nutrition.CareNutritionActivity;
+import com.example.stunting.ui.child.ChildFragment;
+import com.example.stunting.ui.food_help.FoodHelpActivity;
+import com.example.stunting.ui.info.StuntingInfoActivity;
 import com.example.stunting.ui.info.StuntingInfoActivityBak;
 import com.example.stunting.ui.reminder.ReminderActivity;
 import com.example.stunting.ui.stunting_health.StuntingHealthActivity;
@@ -35,6 +39,9 @@ public class HomeFragment extends Fragment {
         LinearLayout btnCare = view.findViewById(R.id.btn_menu_care);
         LinearLayout btnReminder = view.findViewById(R.id.btn_menu_remind);
         LinearLayout btnHealth = view.findViewById(R.id.btn_menu_health);
+        LinearLayout btnFoodHelp = view.findViewById(R.id.btn_food_help);
+        LinearLayout btnMenuInfo = view.findViewById(R.id.btn_menu_info);
+        LinearLayout btnTrace = view.findViewById(R.id.btn_menu_trace);
 
         //Session
         sharedPref = getContext().getSharedPreferences(BuildConfig.APPLICATION_ID, Context.MODE_PRIVATE);
@@ -46,7 +53,11 @@ public class HomeFragment extends Fragment {
         tvUsername.setText(sharedPref.getString(getString(R.string.username), ""));
 
         btnInfo.setOnClickListener(v ->
-                startActivity(new Intent(requireContext(), StuntingInfoActivityBak.class))
+                startActivity(new Intent(requireContext(), StuntingInfoActivity.class))
+        );
+
+        btnMenuInfo.setOnClickListener(v ->
+                startActivity(new Intent(requireContext(), StuntingInfoActivity.class))
         );
 
         btnStuntingMap.setOnClickListener(v ->
@@ -65,7 +76,13 @@ public class HomeFragment extends Fragment {
                 startActivity(new Intent(requireContext(), StuntingHealthActivity.class))
         );
 
+        btnFoodHelp.setOnClickListener(c ->
+                startActivity(new Intent(requireContext(), FoodHelpActivity.class))
+        );
 
+        btnTrace.setOnClickListener(c ->
+                startActivity(new Intent(requireContext(), StuntingInfoActivityBak.class))
+        );
     }
 
     public HomeFragment() {
@@ -78,5 +95,6 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
+
 
 }

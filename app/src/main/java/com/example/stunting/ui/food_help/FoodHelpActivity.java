@@ -1,4 +1,4 @@
-package com.example.stunting.ui.info;
+package com.example.stunting.ui.food_help;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,12 +13,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.stunting.R;
 import com.example.stunting.data.model.care.DataCare;
 import com.example.stunting.data.model.care.ResponseCare;
-import com.example.stunting.data.model.info.DataInfo;
-import com.example.stunting.data.model.info.ResponseInfo;
 import com.example.stunting.data.network.ApiEndpoint;
 import com.example.stunting.data.network.ApiService;
 import com.example.stunting.ui.care_nutrition.detail.CareDetailActivity;
-import com.example.stunting.ui.info.detail.InfoDetailActivity;
+import com.example.stunting.ui.food_help.detail.FoodDetailActivity;
+import com.example.stunting.ui.info.InfoAdapter;
 
 import org.json.JSONException;
 import org.json.JSONStringer;
@@ -28,19 +27,19 @@ import java.util.Objects;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 
-public class StuntingInfoActivity extends AppCompatActivity implements InfoInterface{
 
+public class FoodHelpActivity extends AppCompatActivity implements FoodInterface {
     private ApiEndpoint endpoint = ApiService.getRetrofitInstance();
-    private InfoAdapter adapter;
+    private FoodAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_stunting_info);
-        adapter = new InfoAdapter(this);
-        RecyclerView rvInfo = findViewById(R.id.rvInfoData);
-        rvInfo.setAdapter(adapter);
-        rvInfo.setLayoutManager(new LinearLayoutManager(this));
+        setContentView(R.layout.activity_food_help);
+        adapter = new FoodAdapter(this);
+        RecyclerView rvFood = findViewById(R.id.rvFoodData);
+        rvFood.setAdapter(adapter);
+        rvFood.setLayoutManager(new LinearLayoutManager(this));
         getArticle();
 
         ImageView btnBack = findViewById(R.id.btnBack);
@@ -55,7 +54,7 @@ public class StuntingInfoActivity extends AppCompatActivity implements InfoInter
             JSONStringer json = new JSONStringer();
             json.object();
             json.key("get_articles").value("filter_articles");
-            json.key("article_type").value("stunting_info");
+            json.key("article_type").value("food_help");
             json.endObject();
             body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), json.toString());
             endpoint.getArticle(body).enqueue(new retrofit2.Callback<ResponseCare>() {
@@ -98,6 +97,6 @@ public class StuntingInfoActivity extends AppCompatActivity implements InfoInter
 
     @Override
     public void onChildClick(DataCare datainfo) {
-        startActivity(new Intent(this, InfoDetailActivity.class).putExtra("datacare", datainfo));
+        startActivity(new Intent(this, FoodDetailActivity.class).putExtra("datacare", datainfo));
     }
 }
