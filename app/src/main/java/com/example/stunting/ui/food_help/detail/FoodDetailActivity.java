@@ -25,11 +25,13 @@ public class FoodDetailActivity extends AppCompatActivity {
         ImageView ivArticle = findViewById(R.id.ivArticle);
         btnBack.setOnClickListener(v -> finish());
         TextView tvTitle = findViewById(R.id.tvTitle);
+        TextView tvAddress = findViewById(R.id.tvAddress);
         datacare = (DataCare) getIntent().getParcelableExtra("datacare");
 
         Log.e("TAG", "onCreate: " + datacare.toString());
 
         tvTitle.setText(datacare.getTitle());
+        tvAddress.setText(datacare.getArticleSubType());
         WebView webView = (WebView) findViewById(R.id.wvArticle);
         webView.clearCache(true);
         WebSettings webSettings = webView.getSettings();
