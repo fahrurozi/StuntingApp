@@ -1,5 +1,6 @@
 package com.example.stunting.ui.account;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -18,6 +20,7 @@ import android.widget.TextView;
 
 import com.example.stunting.BuildConfig;
 import com.example.stunting.R;
+import com.example.stunting.ui.GetStartedActivity;
 import com.example.stunting.ui.care_nutrition.CareNutritionActivity;
 import com.example.stunting.ui.food_help.FoodHelpActivity;
 import com.example.stunting.ui.info.StuntingInfoActivity;
@@ -41,8 +44,17 @@ public class AccountFragment extends Fragment {
         TextView tvName = view.findViewById(R.id.tvName);
         TextView tvUsername = view.findViewById(R.id.tvUsername);
 
+        CardView btnLogout = view.findViewById(R.id.btn_logout);
+
         tvName.setText(sharedPref.getString(getString(R.string.name), ""));
         tvUsername.setText(sharedPref.getString(getString(R.string.username), ""));
+
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logout();
+            }
+        });
     }
 
     @Override
@@ -50,5 +62,23 @@ public class AccountFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         return inflater.inflate(R.layout.fragment_account, container, false);
+    }
+
+    public void logout(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Logout");
+        builder.setMessage("Are you sure want to logout?");
+        builder.setPositiveButton("Yes", (dialog, which) -> {
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.clear();
+            editor.apply();
+            Intent intent = new Intent(getContext(), GetStartedActivity.class);
+            startActivity(intent);
+            getActivity().finish();
+        });
+        builder.setNegativeButton("No", (dialog, which) -> {
+            dialog.dismiss();
+        });
+        builder.show();
     }
 }

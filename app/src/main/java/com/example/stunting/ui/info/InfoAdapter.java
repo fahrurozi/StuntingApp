@@ -62,18 +62,7 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.ViewHolder>{
         String[] label = data.getArticleTags().split("\\|");
         Log.e("TAG", "onBindViewHolder: " + ApiService.BASE_URL +"/static/"+ data.getArticleCoverFile());
         Picasso.get().load(ApiService.BASE_URL +"static/"+ data.getArticleCoverFile()).into(holder.ivBg);
-        for (String textLabel : label) {
-            TextView tvLabel = new TextView(holder.cvRoot.getContext());
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            params.setMarginEnd(4);
-            tvLabel.setLayoutParams(params);
-            tvLabel.setPadding(20, 10, 20, 10);
-            tvLabel.setTextSize(12);
-            tvLabel.setTextColor(holder.cvRoot.getContext().getResources().getColor(R.color.white));
-            tvLabel.setBackground(holder.cvRoot.getContext().getResources().getDrawable(R.drawable.round_orange));
-            tvLabel.setText(textLabel);
-            holder.llLabel.addView(tvLabel);
-        }
+
 
         holder.cvRoot.setOnClickListener(r -> {
             if (infoInterface != null) {

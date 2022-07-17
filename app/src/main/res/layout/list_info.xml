@@ -15,53 +15,67 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/ivInfoBackground"
-            android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:scaleType="centerCrop"
-            android:src="@color/tosca" />
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/bg_dark" />
-
         <LinearLayout
             android:id="@+id/llInfoRoot"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="120dp"
+            android:orientation="horizontal"
+            android:paddingTop="10dp">
 
-
-            <TextView
-                android:id="@+id/tvInfoName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:fontFamily="@font/bold"
-                android:includeFontPadding="false"
-                android:text="@string/title_lorem_ipsum"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
+            <ImageView
+                android:id="@+id/ivInfoBackground"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="5dp"
+                android:maxWidth="80dp"
+                android:maxHeight="100dp"
+                android:src="@mipmap/ic_launcher" />
 
             <LinearLayout
                 android:id="@+id/llInfoLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                android:gravity="bottom"
-                android:orientation="horizontal">
+                android:orientation="vertical"
+                android:layout_marginRight="10dp">
 
+                <TextView
+                    android:id="@+id/tvInfoName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:singleLine="false"
+                    android:text="Example application"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/tv_subtitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:maxLines="3"
+                    android:text="Description"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:gravity="right"
+                    android:text="24-04-2022"
+                    android:textSize="12sp"
+                    android:visibility="invisible" />
             </LinearLayout>
-
         </LinearLayout>
+
+
     </androidx.cardview.widget.CardView>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
