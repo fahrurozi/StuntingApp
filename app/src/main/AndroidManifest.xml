@@ -35,13 +35,25 @@
             android:name=".ui.stunting_map.StuntingMapActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.food_help.FoodHelpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.food_help.detail.FoodDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.StuntingHealth"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
         <activity
-            android:name=".ui.info.StuntingInfoActivity"
+            android:name=".ui.info.StuntingInfoActivityBak"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
+        <activity
+            android:name=".ui.info.StuntingInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.info.detail.InfoDetailActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.register.RegisterActivity"
             android:exported="false" />
@@ -50,6 +62,9 @@
             android:exported="false" />
         <activity
             android:name=".ui.GetStartedActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.stunting_health.StuntingHealthActivity"
             android:exported="false" />
         <activity
             android:name=".ui.SplashScreen"

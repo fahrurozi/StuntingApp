@@ -75,4 +75,9 @@ public interface ApiEndpoint {
             @Body RequestBody body
     );
 
+    @POST("api/v1/article")
+    Call<ResponseCare> getStuntingInfo(
+            @Body RequestBody body
+    );
+
 }

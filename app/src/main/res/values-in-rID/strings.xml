@@ -24,4 +24,10 @@
     <string name="channel_name">StunTech - Jaga anak-anakmu</string>
     <string name="channel_description">Peduli anak-anak Anda, rawat masa depan kita</string>
     <string name="title_stunt_reminder_description">Peduli anak-anak Anda, rawat masa depan kita</string>
+    <string name="title_nutrition_info">Info Nutrisi</string>
+    <string name="title_food_help">Food Help</string>
+    <string name="title_hello_stunting">Hello Stunting</string>
+    <string name="title_fun_stunting">Fun Stunting</string>
+    <string name="title_stunting_tribute">Stunting Tribute</string>
+    <string name="title_profile">Profil</string>
 </resources>
