@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.stunting.BuildConfig;
 import com.example.stunting.R;
+import com.example.stunting.ui.MainInterface;
 import com.example.stunting.ui.care_nutrition.CareNutritionActivity;
 import com.example.stunting.ui.child.ChildFragment;
 import com.example.stunting.ui.info.StuntingInfoActivity;
@@ -26,11 +27,13 @@ import com.example.stunting.ui.stunting_map.StuntingMapActivity;
 public class HomeFragment extends Fragment {
 
     private SharedPreferences sharedPref;
+    private MainInterface parent;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Button btnInfo = view.findViewById(R.id.btn_goto_info);
+        LinearLayout btnStuntingTrace = view.findViewById(R.id.btnStuntingTrace);
         LinearLayout btnStuntingMap = view.findViewById(R.id.btn_stunting_map);
         LinearLayout btnCare = view.findViewById(R.id.btn_menu_care);
         LinearLayout btnReminder = view.findViewById(R.id.btn_menu_remind);
@@ -43,6 +46,8 @@ public class HomeFragment extends Fragment {
 
         tvName.setText(sharedPref.getString(getString(R.string.name), ""));
         tvUsername.setText(sharedPref.getString(getString(R.string.username), ""));
+
+        btnStuntingTrace.setOnClickListener(v -> parent.openMenuNav(R.id.nav_child));
 
         btnInfo.setOnClickListener(v ->
                 startActivity(new Intent(requireContext(), StuntingInfoActivity.class))
@@ -65,6 +70,12 @@ public class HomeFragment extends Fragment {
 
     public HomeFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        parent = (MainInterface) context;
     }
 
     @Override

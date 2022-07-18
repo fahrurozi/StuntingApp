@@ -12,36 +12,46 @@ import com.example.stunting.ui.child.ChildFragment;
 import com.example.stunting.ui.home.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MainInterface {
 
+    BottomNavigationView bnHome;
     @SuppressLint("NonConstantResourceId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        BottomNavigationView bnHome = findViewById(R.id.bnHome);
+        bnHome = findViewById(R.id.bnHome);
 
+        bnHome.setOnItemSelectedListener(item -> openFragment(item.getItemId()));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         // Default fragment
-        openFragment(new HomeFragment());
-
-        bnHome.setOnItemSelectedListener(item -> {
-            switch (item.getItemId()) {
-                case R.id.nav_home:
-                    openFragment(new HomeFragment());
-                    return true;
-                case R.id.nav_child:
-                    openFragment(new ChildFragment());
-                    return true;
-                case R.id.nav_account:
-                    openFragment(new AccountFragment());
-                    return true;
-            }
-            return false;
-        });
-
+        openFragment(R.id.nav_home);
     }
 
-    private void openFragment(Fragment fragment) {
-        getSupportFragmentManager().beginTransaction().replace(R.id.flHome, fragment).commit();
+    @SuppressLint("NonConstantResourceId")
+    private boolean openFragment(Integer menuID) {
+        switch (menuID) {
+            case R.id.nav_home:
+                getSupportFragmentManager().beginTransaction().replace(R.id.flHome, new HomeFragment()).commit();
+                return true;
+            case R.id.nav_child:
+                getSupportFragmentManager().beginTransaction().replace(R.id.flHome, new ChildFragment()).commit();
+                return true;
+            case R.id.nav_account:
+                getSupportFragmentManager().beginTransaction().replace(R.id.flHome, new AccountFragment()).commit();
+                return true;
+        }
+        return false;
     }
+
+    @Override
+    public void openMenuNav(Integer menuID) {
+        bnHome.setSelectedItemId(menuID);
+        openFragment(menuID);
+    }
+
 }
