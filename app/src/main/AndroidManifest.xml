@@ -41,6 +41,12 @@
             android:name=".ui.food_help.detail.FoodDetailActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.hello_stunting.HelloStuntingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.hello_stunting.detail.HelloDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.StuntingHealth"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
