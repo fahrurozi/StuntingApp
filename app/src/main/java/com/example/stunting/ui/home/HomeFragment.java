@@ -37,14 +37,14 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Button btnInfo = view.findViewById(R.id.btn_goto_info);
-        LinearLayout btnStuntingTrace = view.findViewById(R.id.btnStuntingTrace);
+        LinearLayout btnStuntingTrace = view.findViewById(R.id.btn_menu_trace);
         LinearLayout btnStuntingMap = view.findViewById(R.id.btn_stunting_map);
         LinearLayout btnCare = view.findViewById(R.id.btn_menu_care);
         LinearLayout btnReminder = view.findViewById(R.id.btn_menu_remind);
         LinearLayout btnHealth = view.findViewById(R.id.btn_menu_health);
         LinearLayout btnFoodHelp = view.findViewById(R.id.btn_food_help);
         LinearLayout btnMenuInfo = view.findViewById(R.id.btn_menu_info);
-        LinearLayout btnTrace = view.findViewById(R.id.btn_menu_trace);
+//        LinearLayout btnTrace = view.findViewById(R.id.btn_menu_trace);
 
         //Session
         sharedPref = getContext().getSharedPreferences(BuildConfig.APPLICATION_ID, Context.MODE_PRIVATE);
@@ -85,9 +85,9 @@ public class HomeFragment extends Fragment {
                 startActivity(new Intent(requireContext(), FoodHelpActivity.class))
         );
 
-        btnTrace.setOnClickListener(c ->
-                startActivity(new Intent(requireContext(), StuntingInfoActivityBak.class))
-        );
+//        btnTrace.setOnClickListener(c ->
+//                startActivity(new Intent(requireContext(), StuntingInfoActivityBak.class))
+//        );
     }
 
     public HomeFragment() {
