@@ -33,4 +33,5 @@
     <string name="protein">Protein</string>
     <string name="carbo">Karbohidrat</string>
     <string name="fat">Lemak</string>
+    <string name="select_level">Pilih Level</string>
 </resources>
