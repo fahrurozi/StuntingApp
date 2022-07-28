@@ -22,6 +22,7 @@ import com.example.stunting.ui.MainInterface;
 import com.example.stunting.ui.care_nutrition.CareNutritionActivity;
 import com.example.stunting.ui.child.ChildFragment;
 import com.example.stunting.ui.food_help.FoodHelpActivity;
+import com.example.stunting.ui.hello_stunting.HelloStuntingActivity;
 import com.example.stunting.ui.info.StuntingInfoActivity;
 import com.example.stunting.ui.info.StuntingInfoActivityBak;
 import com.example.stunting.ui.reminder.ReminderActivity;
@@ -44,6 +45,7 @@ public class HomeFragment extends Fragment {
         LinearLayout btnHealth = view.findViewById(R.id.btn_menu_health);
         LinearLayout btnFoodHelp = view.findViewById(R.id.btn_food_help);
         LinearLayout btnMenuInfo = view.findViewById(R.id.btn_menu_info);
+        LinearLayout btnMenuHello = view.findViewById(R.id.btn_hello_stunting);
 //        LinearLayout btnTrace = view.findViewById(R.id.btn_menu_trace);
 
         //Session
@@ -83,6 +85,10 @@ public class HomeFragment extends Fragment {
 
         btnFoodHelp.setOnClickListener(c ->
                 startActivity(new Intent(requireContext(), FoodHelpActivity.class))
+        );
+
+        btnMenuHello.setOnClickListener(c ->
+                startActivity(new Intent(requireContext(), HelloStuntingActivity.class))
         );
 
 //        btnTrace.setOnClickListener(c ->

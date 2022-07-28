@@ -256,8 +256,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:layout_marginBottom="10dp"
             android:paddingStart="15dp"
+            android:layout_marginBottom="5dp"
             android:paddingEnd="15dp"
             android:weightSum="2">
 
@@ -269,14 +269,44 @@
                 android:text="Riwayat Imunisasi" />
 
             <androidx.appcompat.widget.AppCompatCheckBox
-                android:id="@+id/rbImunisasi"
+                android:id="@+id/rbHepB"
                 android:layout_width="0dp"
                 android:layout_height="25dp"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/bold"
                 android:gravity="center"
-                android:text="HepB, Campak"
+                android:text="Hepatitis B"
+                android:textColor="@color/black"
+                tools:ignore="NestedWeights" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:weightSum="2">
+
+            <TextView
+                android:visibility="invisible"
+                android:layout_width="0dp"
+                android:layout_height="25dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/bold"
+                android:text="Riwayat Imunisasi" />
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/rbCampak"
+                android:layout_width="0dp"
+                android:layout_height="25dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/bold"
+                android:gravity="center"
+                android:text="Campak"
                 android:textColor="@color/black"
                 tools:ignore="NestedWeights" />
 

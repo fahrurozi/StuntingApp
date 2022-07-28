@@ -32,6 +32,12 @@
             android:name=".ui.care_nutrition.CareNutritionActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.nutrition_info.NutritionInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.nutrition_info.NutritionInfoCategoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.stunting_map.StuntingMapActivity"
             android:exported="false" />
         <activity
@@ -39,6 +45,12 @@
             android:exported="false" />
         <activity
             android:name=".ui.food_help.detail.FoodDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.hello_stunting.HelloStuntingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.hello_stunting.detail.HelloDetailActivity"
             android:exported="false" />
         <activity
             android:name=".ui.StuntingHealth"

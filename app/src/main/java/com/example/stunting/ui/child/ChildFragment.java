@@ -37,6 +37,7 @@ import org.json.JSONStringer;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
@@ -79,22 +80,22 @@ public class ChildFragment extends Fragment implements ChildInterface {
     }
 
     private void initData() {
-        data.add(new DataChild("Minggu", "1", 1));
-        data.add(new DataChild("Minggu", "2", 2));
-        data.add(new DataChild("Minggu", "3", 3));
-        data.add(new DataChild("Bulan", "1", 4));
-        data.add(new DataChild("Bulan", "2", 8));
-        data.add(new DataChild("Bulan", "4", 16));
-        data.add(new DataChild("Bulan", "6", 24));
-        data.add(new DataChild("Bulan", "8", 32));
-        data.add(new DataChild("Bulan", "10", 40));
-        data.add(new DataChild("Bulan", "12", 48));
-        data.add(new DataChild("Bulan", "14", 56));
-        data.add(new DataChild("Bulan", "16", 64));
-        data.add(new DataChild("Bulan", "18", 72));
-        data.add(new DataChild("Bulan", "20", 80));
-        data.add(new DataChild("Bulan", "22", 88));
-        data.add(new DataChild("Bulan", "24", 96));
+        data.add(new DataChild("Bulan", "1", 1));
+        data.add(new DataChild("Bulan", "2", 4));
+        data.add(new DataChild("Bulan", "3", 8));
+        data.add(new DataChild("Bulan", "4", 12));
+        data.add(new DataChild("Bulan", "5", 16));
+        data.add(new DataChild("Bulan", "6", 20));
+        data.add(new DataChild("Bulan", "7", 24));
+        data.add(new DataChild("Bulan", "8", 28));
+        data.add(new DataChild("Bulan", "9", 32));
+        data.add(new DataChild("Bulan", "10", 36));
+        data.add(new DataChild("Bulan", "11", 40));
+        data.add(new DataChild("Bulan", "12", 44));
+        data.add(new DataChild("Bulan", "13", 48));
+        data.add(new DataChild("Bulan", "14", 52));
+        data.add(new DataChild("Bulan", "15", 56));
+        data.add(new DataChild("Bulan", "16", 60));
     }
 
     private void getTrace() {
@@ -164,12 +165,15 @@ public class ChildFragment extends Fragment implements ChildInterface {
         EditText etTinggi = dialogView.findViewById(R.id.etTinggiBadan);
         EditText etBerat = dialogView.findViewById(R.id.etBeratBadan);
 
-        CheckBox rbImunisasi = dialogView.findViewById(R.id.rbImunisasi);
+//        CheckBox rbImunisasi = dialogView.findViewById(R.id.rbImunisasi);
+        CheckBox rbHepB = dialogView.findViewById(R.id.rbHepB);
+        CheckBox rbCampak = dialogView.findViewById(R.id.rbCampak);
 
         builder.setView(dialogView);
         AlertDialog alertDialog = builder.create();
 
         tvTitle.setText(child.getWeek_title() + " " + child.getWeek_name());
+
 
         if (child.getId() != null) {
             etUsia.setText(child.getAge_day().toString());
@@ -180,7 +184,19 @@ public class ChildFragment extends Fragment implements ChildInterface {
 
             yesPenyakit.setBackground(child.getDisease_history() ? getResources().getDrawable(R.drawable.round_yes) : getResources().getDrawable(R.drawable.round_no));
             noPenyakit.setBackground(child.getDisease_history() ? getResources().getDrawable(R.drawable.round_no) : getResources().getDrawable(R.drawable.round_yes));
-            rbImunisasi.setChecked(!child.getImmunization_history().equals(""));
+
+            String[] imunisasi = child.getImmunization_history().split("\\|");
+//            boolean haveCampak = Arrays.asList(immunisasi).contains("Campak");
+//            boolean haveHepB = Arrays.asList(immunisasi).contains("HepB");
+
+            if(imunisasi[1].equals("Campak")) {
+                rbCampak.setChecked(true);
+            }
+            if (imunisasi[0].equals("HepB")) {
+                rbHepB.setChecked(true);
+            }
+            //            rbImunisasi.setChecked(!child.getImmunization_history().equals(""));
+
         }else{
             child.setImmunization_history("");
         }
@@ -209,11 +225,46 @@ public class ChildFragment extends Fragment implements ChildInterface {
             noPenyakit.setBackground(child.getDisease_history() ? getResources().getDrawable(R.drawable.round_no) : getResources().getDrawable(R.drawable.round_yes));
         });
 
-        rbImunisasi.setOnClickListener(v -> child.setImmunization_history(rbImunisasi.isChecked() ? "HepB, Campak" : ""));
+//        rbImunisasi.setOnClickListener(v -> child.setImmunization_history(rbImunisasi.isChecked() ? "HepB, Campak" : ""));
+//        String[] inputImunisasi = child.getImmunization_history().split("\\|");
+        List<String> inputImunisasi =  new ArrayList<>();
+        inputImunisasi.addAll(Arrays.asList(child.getImmunization_history().split("\\|")));
+
+        if(inputImunisasi.size() == 1){
+            inputImunisasi.add(0,null);
+        }
+//                Log.e("inputImunisasi", String.valueOf(inputImunisasi.length));
+        rbHepB.setOnClickListener(v -> {
+            if (rbHepB.isChecked()) {
+                inputImunisasi.set(0, "HepB");
+//                inputImunisasi[0] = "HepB";
+                Log.e("Cok1", "onChildClick: " + inputImunisasi.get(0));
+            } else {
+                inputImunisasi.set(0, null);
+//                inputImunisasi[0] = null;
+                Log.e("Cok1", "onChildClick: " + inputImunisasi.get(0));
+            }
+        });
+
+        rbCampak.setOnClickListener(v -> {
+            if (rbCampak.isChecked()) {
+                inputImunisasi.set(1, "Campak");
+//                inputImunisasi[1] = "Campak";
+                Log.e("Cok1", "onChildClick: " + inputImunisasi.get(1));
+            } else {
+                inputImunisasi.set(1, null);
+//                inputImunisasi[1] = null;
+                Log.e("Cok1", "onChildClick: " + inputImunisasi.get(1));
+            }
+        });
+
 
         btnClose.setOnClickListener(v -> alertDialog.dismiss());
 
         btnEdit.setOnClickListener(v -> {
+            String inputImunisasiString = String.join("|",inputImunisasi);
+            Log.e("Cok2", "onChildClick: " + inputImunisasiString);
+            child.setImmunization_history(inputImunisasiString);
             if (!etUsia.getText().toString().isEmpty()) {
                 child.setAge_day(Integer.parseInt(etUsia.getText().toString()));
             }

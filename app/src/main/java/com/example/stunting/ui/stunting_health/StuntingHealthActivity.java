@@ -10,6 +10,7 @@ import androidx.cardview.widget.CardView;
 import com.example.stunting.R;
 import com.example.stunting.ui.info.StuntingInfoActivity;
 import com.example.stunting.ui.info.StuntingInfoActivityBak;
+import com.example.stunting.ui.nutrition_info.NutritionInfoActivity;
 
 public class StuntingHealthActivity extends AppCompatActivity {
     @Override
@@ -26,6 +27,10 @@ public class StuntingHealthActivity extends AppCompatActivity {
 
         btnInfo.setOnClickListener(v -> {
             startActivity(new Intent(this, StuntingInfoActivity.class));
+        });
+
+        btnNutrition.setOnClickListener(v -> {
+            startActivity(new Intent(this, NutritionInfoActivity.class));
         });
 
     }

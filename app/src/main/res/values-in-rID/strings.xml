@@ -30,4 +30,8 @@
     <string name="title_fun_stunting">Fun Stunting</string>
     <string name="title_stunting_tribute">Stunting Tribute</string>
     <string name="title_profile">Profil</string>
+    <string name="protein">Protein</string>
+    <string name="carbo">Karbohidrat</string>
+    <string name="fat">Lemak</string>
+    <string name="select_level">Pilih Level</string>
 </resources>
