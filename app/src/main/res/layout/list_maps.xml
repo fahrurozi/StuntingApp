@@ -24,8 +24,8 @@
             <ImageView
                 android:id="@+id/ivMaps"
                 android:layout_width="match_parent"
-                android:scaleType="centerCrop"
                 android:layout_height="90dp"
+                android:scaleType="centerCrop"
                 android:src="@color/tosca" />
 
             <TextView
