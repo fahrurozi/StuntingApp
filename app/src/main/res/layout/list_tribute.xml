@@ -17,6 +17,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <ImageView
+                    android:id="@+id/ivTribute"
                     android:layout_width="140dp"
                     android:layout_height="match_parent"
                     android:src="@color/tosca" />
@@ -26,7 +27,7 @@
                     android:orientation="vertical"
                     android:padding="10dp">
                     <TextView
-                        android:id="@+id/tvTitle"
+                        android:id="@+id/tvName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/bold"
@@ -66,17 +67,16 @@
                             android:text="(54)"
                             />
                     </LinearLayout>
-
-                    <Button
-                        android:id="@+id/btn_write_a_review"
-                        android:layout_width="90dp"
-                        android:layout_height="20dp"
-                        android:layout_marginTop="20dp"
-                        android:background="@drawable/button_border"
-                        android:text="Review"
-                        android:textColor="@color/menu_orange"
-                        android:textSize="10sp"
-                        tools:ignore="TouchTargetSizeCheck" />
+<!--                    <Button-->
+<!--                        android:id="@+id/btn_write_a_review"-->
+<!--                        android:layout_width="90dp"-->
+<!--                        android:layout_height="20dp"-->
+<!--                        android:layout_marginTop="20dp"-->
+<!--                        android:background="@drawable/button_border"-->
+<!--                        android:text="Review"-->
+<!--                        android:textColor="@color/menu_orange"-->
+<!--                        android:textSize="10sp"-->
+<!--                        tools:ignore="TouchTargetSizeCheck" />-->
 
                 </LinearLayout>
             </LinearLayout>

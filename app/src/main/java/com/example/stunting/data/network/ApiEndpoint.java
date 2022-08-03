@@ -8,6 +8,8 @@ import com.example.stunting.data.model.maps.ResponseMaps;
 import com.example.stunting.data.model.register.ResponseRegister;
 import com.example.stunting.data.model.reminder.ResponseAddReminder;
 import com.example.stunting.data.model.reminder.ResponseReminder;
+import com.example.stunting.data.model.review.ResponseAddReview;
+import com.example.stunting.data.model.review.ResponseReview;
 import com.example.stunting.data.model.token.ResponseToken;
 
 import okhttp3.RequestBody;
@@ -77,6 +79,16 @@ public interface ApiEndpoint {
 
     @POST("api/v1/article")
     Call<ResponseCare> getStuntingInfo(
+            @Body RequestBody body
+    );
+
+    @GET("api/v1/review")
+    Call<ResponseReview> getReview(
+            @Body RequestBody body
+    );
+
+    @POST("api/v1/review")
+    Call<ResponseAddReview> addReview(
             @Body RequestBody body
     );
 

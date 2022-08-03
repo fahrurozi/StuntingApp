@@ -17,6 +17,15 @@
         android:theme="@style/Theme.SplashScreen"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.stunting_tribute.detail.AddReviewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.stunting_tribute.StuntingTributeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.stunting_tribute.detail.TributeDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.reminder.ReminderAddActivity"
             android:exported="false" />
         <activity
