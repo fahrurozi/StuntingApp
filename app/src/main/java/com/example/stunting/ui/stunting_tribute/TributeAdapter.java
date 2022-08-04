@@ -65,6 +65,7 @@ public class TributeAdapter extends RecyclerView.Adapter<TributeAdapter.ViewHold
         DataPlace data = rvData.get(position);
         holder.tvName.setText(data.getPlaceDetail().getName());
         holder.tvSubtitle.setText(data.getPlaceDetail().getTypes().get(0));
+        holder.rbRating.setRating(data.getDbData().getAvg_rating());
         if (data.getPlaceDetail().getPhotos() != null && data.getPlaceDetail().getPhotos().size() > 0) {
             String url = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&key=AIzaSyAN6a7kSklwRHnNojU72nDnCfhYGhrATh0&photo_reference=";
             Picasso.get().load(

@@ -20,6 +20,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface ApiEndpoint {
 
@@ -84,7 +85,7 @@ public interface ApiEndpoint {
 
     @GET("api/v1/review")
     Call<ResponseReview> getReview(
-            @Body RequestBody body
+            @Query("json_body") String body
     );
 
     @POST("api/v1/review")

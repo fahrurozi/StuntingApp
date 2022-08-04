@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class DataDbData {
     @SerializedName("avg_rating")
-    private Double avg_rating;
+    private Float avg_rating;
 
     @SerializedName("desc")
     private String desc;
@@ -27,7 +27,7 @@ public class DataDbData {
     @SerializedName("place_name")
     private String place_name;
 
-    public DataDbData(Double avg_rating, String desc, String gmap_place_id, Integer id, Double location_lat, Double location_lng, String phone, String place_name) {
+    public DataDbData(Float avg_rating, String desc, String gmap_place_id, Integer id, Double location_lat, Double location_lng, String phone, String place_name) {
         this.avg_rating = avg_rating;
         this.desc = desc;
         this.gmap_place_id = gmap_place_id;
@@ -38,11 +38,11 @@ public class DataDbData {
         this.place_name = place_name;
     }
 
-    public Double getAvg_rating() {
+    public Float getAvg_rating() {
         return avg_rating;
     }
 
-    public void setAvg_rating(Double avg_rating) {
+    public void setAvg_rating(Float avg_rating) {
         this.avg_rating = avg_rating;
     }
 

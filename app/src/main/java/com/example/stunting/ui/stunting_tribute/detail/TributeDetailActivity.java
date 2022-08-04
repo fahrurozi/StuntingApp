@@ -37,7 +37,7 @@ import retrofit2.Call;
 public class TributeDetailActivity extends AppCompatActivity {
     private Integer idMaps;
     private String desc, place_name, address, photo_ref;
-    private Double avg_rating;
+    private Float avg_rating;
     private ApiEndpoint endpoint = ApiService.getRetrofitInstance();
     private ListReviewAdapter adapter;
     private SharedPreferences sharedPref;
@@ -61,7 +61,7 @@ public class TributeDetailActivity extends AppCompatActivity {
         idMaps = getIntent().getIntExtra("place_id", 0);
         place_name = getIntent().getStringExtra("place_name");
         address = getIntent().getStringExtra("address");
-        avg_rating = getIntent().getDoubleExtra("avg_rating", 0);
+        avg_rating = getIntent().getFloatExtra("avg_rating", 0);
         photo_ref = getIntent().getStringExtra("photo_ref");
 
         tvTitle.setText(place_name);
@@ -85,7 +85,7 @@ public class TributeDetailActivity extends AppCompatActivity {
             }
         });
 
-//        getListReview();
+        getListReview();
 
     }
 
@@ -100,8 +100,8 @@ public class TributeDetailActivity extends AppCompatActivity {
             json.key("user_email").value(null);
             json.endObject();
             json.endObject();
-            body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), json.toString());
-            endpoint.getReview(body).enqueue(new retrofit2.Callback<ResponseReview>() {
+//            body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), json.toString());
+            endpoint.getReview(json.toString()).enqueue(new retrofit2.Callback<ResponseReview>() {
                 @Override
                 public void onResponse(Call<ResponseReview> call, retrofit2.Response<ResponseReview> response) {
                     if (response.isSuccessful() && response.body() != null && response.body().getReviews() != null) {
