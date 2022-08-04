@@ -22,7 +22,7 @@ import java.util.List;
 
 public class ListReviewAdapter extends RecyclerView.Adapter<ListReviewAdapter.ViewHolder>{
     private List<DataReview> rvDataReview = new ArrayList();
-    ;
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView tvName, tvDescription;
         public RatingBar rbRating;

@@ -57,6 +57,7 @@
                             android:rating="4.1"
                             />
                         <TextView
+                            android:visibility="invisible"
                             android:id="@+id/tvRating"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

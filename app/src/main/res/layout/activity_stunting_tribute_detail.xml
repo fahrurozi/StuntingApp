@@ -143,7 +143,7 @@
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="215dp"
                 android:layout_height="wrap_content"
-                android:progress="80"
+                android:progress="0"
                 app:layout_constraintVertical_bias="0.0"
                 tools:ignore="MissingConstraints" />
             <ProgressBar
@@ -151,7 +151,7 @@
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="215dp"
                 android:layout_height="wrap_content"
-                android:progress="70"
+                android:progress="0"
                 app:layout_constraintVertical_bias="0.0"
                 tools:ignore="MissingConstraints" />
             <ProgressBar
@@ -159,7 +159,7 @@
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="215dp"
                 android:layout_height="wrap_content"
-                android:progress="30"
+                android:progress="0"
                 app:layout_constraintVertical_bias="0.0"
                 tools:ignore="MissingConstraints" />
             <ProgressBar
@@ -167,7 +167,7 @@
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="215dp"
                 android:layout_height="wrap_content"
-                android:progress="5"
+                android:progress="0"
                 app:layout_constraintVertical_bias="0.0"
                 tools:ignore="MissingConstraints" />
             <ProgressBar
@@ -175,7 +175,7 @@
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="215dp"
                 android:layout_height="wrap_content"
-                android:progress="10"
+                android:progress="0"
                 app:layout_constraintVertical_bias="0.0"
                 tools:ignore="MissingConstraints" />
         </LinearLayout>

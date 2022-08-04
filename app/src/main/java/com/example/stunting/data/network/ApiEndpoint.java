@@ -5,6 +5,7 @@ import com.example.stunting.data.model.child.ResponseChild;
 import com.example.stunting.data.model.child.ResponsePutChild;
 import com.example.stunting.data.model.login.ResponseLogin;
 import com.example.stunting.data.model.maps.ResponseMaps;
+import com.example.stunting.data.model.maps.ResponseMapsById;
 import com.example.stunting.data.model.register.ResponseRegister;
 import com.example.stunting.data.model.reminder.ResponseAddReminder;
 import com.example.stunting.data.model.reminder.ResponseReminder;
@@ -66,6 +67,11 @@ public interface ApiEndpoint {
 
     @GET("api/v1/maps")
     Call<ResponseMaps> getMaps(
+            @Query("json_body") String body
+    );
+
+    @GET("api/v1/maps")
+    Call<ResponseMapsById> getMapsById(
             @Query("json_body") String body
     );
 
