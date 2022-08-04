@@ -154,13 +154,15 @@ public class StuntingMapActivity extends AppCompatActivity implements OnMapReady
             RequestBody body;
             JSONStringer json = new JSONStringer();
             json.object();
+            json.key("get_type").value("registered_filter_users");
             json.key("location").value(location.getLatitude() + "," + location.getLongitude());
             json.key("keyword").value(query);
             json.key("radius").value(100000);
             json.endObject();
             body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), json.toString());
 
-            Call<ResponseMaps> mapsCall = endpoint.getMaps( body);
+//            Call<ResponseMaps> mapsCall = endpoint.getMaps( body);
+            Call<ResponseMaps> mapsCall = endpoint.getMaps( json.toString());
             mapsCall.enqueue(new Callback<ResponseMaps>() {
 
                 @Override

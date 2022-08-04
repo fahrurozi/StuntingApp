@@ -59,9 +59,14 @@ public interface ApiEndpoint {
     );
 
 
-    @POST("api/v1/maps")
+//    @POST("api/v1/maps")
+//    Call<ResponseMaps> getMaps(
+//            @Body RequestBody body
+//    );
+
+    @GET("api/v1/maps")
     Call<ResponseMaps> getMaps(
-            @Body RequestBody body
+            @Query("json_body") String body
     );
 
     @POST("api/v1/article")
