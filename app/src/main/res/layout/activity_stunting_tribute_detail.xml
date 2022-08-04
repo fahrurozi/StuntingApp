@@ -104,7 +104,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:fontFamily="@font/medium"
-                android:text="4.0"
+                android:text="0.0"
                 android:textAlignment="center"
                 android:textSize="35sp"
                 app:layout_constraintEnd_toEndOf="parent"

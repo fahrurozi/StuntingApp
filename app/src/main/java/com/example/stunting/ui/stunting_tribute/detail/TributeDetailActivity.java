@@ -136,7 +136,8 @@ public class TributeDetailActivity extends AppCompatActivity {
                         ImageView ivArticle = findViewById(R.id.ivArticle);
                         tvTitle.setText(place_name);
                         tvSubtitle.setText(address);
-                        tvAvgRating.setText(avg_rating.toString());
+//                        tvAvgRating.setText(avg_rating.toString());
+                        tvAvgRating.setText(String.format("%.1f", response.body().getDataMapsById().get(0).getAvg_rating()));
                         rbRating.setRating(avg_rating.floatValue());
                         String url_photo = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&key=AIzaSyAN6a7kSklwRHnNojU72nDnCfhYGhrATh0&photo_reference=";
                         Picasso.get().load(url_photo + photo_ref).into(ivArticle);
