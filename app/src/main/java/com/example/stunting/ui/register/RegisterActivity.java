@@ -30,16 +30,16 @@ public class RegisterActivity extends AppCompatActivity {
         EditText etName, etUsername, etEmail, etPassword;
         etName = findViewById(R.id.et_name);
         etUsername = findViewById(R.id.et_username);
-        etEmail = findViewById(R.id.et_email);
+//        etEmail = findViewById(R.id.et_email);
         etPassword = findViewById(R.id.et_password);
 
         Button btnSubmit = findViewById(R.id.btn_submit_register);
         btnSubmit.setOnClickListener(v -> {
             String name = etName.getText().toString();
-            String email = etEmail.getText().toString();
+//            String email = etEmail.getText().toString();
             String username = etUsername.getText().toString();
             String password = etPassword.getText().toString();
-            if (name.isEmpty() || username.isEmpty() || email.isEmpty() || password.isEmpty()) {
+            if (name.isEmpty() || username.isEmpty()  || password.isEmpty()) {
                 Toast.makeText(getApplicationContext(), "Silahkan lengkapi field yang ada!", Toast.LENGTH_SHORT).show();
             } else {
                 try {
@@ -48,7 +48,7 @@ public class RegisterActivity extends AppCompatActivity {
                     json.object();
                     json.key("name").value(name);
                     json.key("username").value(username);
-                    json.key("email").value(email);
+                    json.key("email").value("");
                     json.key("b64_profile_img").value("");
                     json.key("role_name").value("user");
                     json.key("password").value(password);

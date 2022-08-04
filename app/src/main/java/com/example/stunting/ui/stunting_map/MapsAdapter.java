@@ -69,7 +69,7 @@ public class MapsAdapter extends RecyclerView.Adapter<MapsAdapter.ViewHolder> {
         holder.tvOpen.setText(data.getPlaceDetail().getOpening_hours().getOpenNow() ? open : "Closed");
         holder.tvOpen.setTextColor(data.getPlaceDetail().getOpening_hours().getOpenNow() ? holder.tvOpen.getContext().getResources().getColor(R.color.blue) : holder.tvOpen.getContext().getResources().getColor(R.color.red_no));
         if (data.getPlaceDetail().getPhotos() != null && data.getPlaceDetail().getPhotos().size() > 0) {
-            String url = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&key=AIzaSyANMqbpveaHFPV89TiLaziyYFiNdd_PQlU&photo_reference=";
+            String url = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&key=AIzaSyAN6a7kSklwRHnNojU72nDnCfhYGhrATh0&photo_reference=";
             Picasso.get().load(
                     url + data.getPlaceDetail().getPhotos().get(0).getPhotoReference()).into(holder.ivMaps);
         }

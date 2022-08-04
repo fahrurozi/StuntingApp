@@ -5,9 +5,12 @@ import com.example.stunting.data.model.child.ResponseChild;
 import com.example.stunting.data.model.child.ResponsePutChild;
 import com.example.stunting.data.model.login.ResponseLogin;
 import com.example.stunting.data.model.maps.ResponseMaps;
+import com.example.stunting.data.model.maps.ResponseMapsById;
 import com.example.stunting.data.model.register.ResponseRegister;
 import com.example.stunting.data.model.reminder.ResponseAddReminder;
 import com.example.stunting.data.model.reminder.ResponseReminder;
+import com.example.stunting.data.model.review.ResponseAddReview;
+import com.example.stunting.data.model.review.ResponseReview;
 import com.example.stunting.data.model.token.ResponseToken;
 
 import okhttp3.RequestBody;
@@ -18,6 +21,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface ApiEndpoint {
 
@@ -56,9 +60,19 @@ public interface ApiEndpoint {
     );
 
 
-    @POST("api/v1/maps")
+//    @POST("api/v1/maps")
+//    Call<ResponseMaps> getMaps(
+//            @Body RequestBody body
+//    );
+
+    @GET("api/v1/maps")
     Call<ResponseMaps> getMaps(
-            @Body RequestBody body
+            @Query("json_body") String body
+    );
+
+    @GET("api/v1/maps")
+    Call<ResponseMapsById> getMapsById(
+            @Query("json_body") String body
     );
 
     @POST("api/v1/article")
@@ -77,6 +91,16 @@ public interface ApiEndpoint {
 
     @POST("api/v1/article")
     Call<ResponseCare> getStuntingInfo(
+            @Body RequestBody body
+    );
+
+    @GET("api/v1/review")
+    Call<ResponseReview> getReview(
+            @Query("json_body") String body
+    );
+
+    @POST("api/v1/review")
+    Call<ResponseAddReview> addReview(
             @Body RequestBody body
     );
 
