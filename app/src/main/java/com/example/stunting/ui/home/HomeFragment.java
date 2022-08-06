@@ -1,5 +1,6 @@
 package com.example.stunting.ui.home;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,12 +16,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.stunting.BuildConfig;
 import com.example.stunting.R;
 import com.example.stunting.ui.MainInterface;
 import com.example.stunting.ui.care_nutrition.CareNutritionActivity;
 import com.example.stunting.ui.child.ChildFragment;
+import com.example.stunting.ui.child.management.ChildManagementFragment;
 import com.example.stunting.ui.food_help.FoodHelpActivity;
 import com.example.stunting.ui.hello_stunting.HelloStuntingActivity;
 import com.example.stunting.ui.info.StuntingInfoActivity;
@@ -38,6 +41,9 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        Button btnTest = view.findViewById(R.id.btn_new_account_create);
+
         Button btnInfo = view.findViewById(R.id.btn_goto_info);
         LinearLayout btnStuntingTrace = view.findViewById(R.id.btn_menu_trace);
         LinearLayout btnStuntingMap = view.findViewById(R.id.btn_stunting_map);
@@ -100,6 +106,24 @@ public class HomeFragment extends Fragment {
 //        btnTrace.setOnClickListener(c ->
 //                startActivity(new Intent(requireContext(), StuntingInfoActivityBak.class))
 //        );
+
+        btnTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadFragment(new ChildManagementFragment());
+            }
+        });
+    }
+
+
+    private void loadFragment(Fragment fragment) {
+// create a FragmentManager
+        FragmentManager fm = getFragmentManager();
+// create a FragmentTransaction to begin the transaction and replace the Fragment
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+// replace the FrameLayout with new Fragment
+        fragmentTransaction.replace(R.id.flHome, fragment);
+        fragmentTransaction.commit(); // save the changes
     }
 
     public HomeFragment() {

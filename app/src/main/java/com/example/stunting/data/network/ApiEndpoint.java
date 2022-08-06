@@ -3,6 +3,8 @@ package com.example.stunting.data.network;
 import com.example.stunting.data.model.care.ResponseCare;
 import com.example.stunting.data.model.child.ResponseChild;
 import com.example.stunting.data.model.child.ResponsePutChild;
+import com.example.stunting.data.model.children.ResponseAddChildren;
+import com.example.stunting.data.model.children.ResponseChildren;
 import com.example.stunting.data.model.login.ResponseLogin;
 import com.example.stunting.data.model.maps.ResponseMaps;
 import com.example.stunting.data.model.maps.ResponseMapsById;
@@ -104,4 +106,11 @@ public interface ApiEndpoint {
             @Body RequestBody body
     );
 
+    @GET("api/v1/children_management")
+    Call<ResponseChildren> getChildrenList();
+
+    @POST("api/v1/children_management")
+    Call<ResponseAddChildren> addChildren(
+            @Body RequestBody body
+    );
 }
