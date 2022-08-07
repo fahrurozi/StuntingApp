@@ -24,11 +24,14 @@ public class DataChild {
     private Boolean disease_history;
     @SerializedName("immunization_history")
     private String immunization_history;
+    @SerializedName("children")
+    private Integer children;
 
-    public DataChild(String week_name, String week_title, Integer week_count) {
+    public DataChild(String week_name, String week_title, Integer week_count, Integer child_id) {
         this.week_name = week_name;
         this.week_title = week_title;
         this.week_count = week_count;
+        this.children = child_id;
     }
 
     public void setDataChildServer(DataChild dataChild) {
@@ -41,6 +44,7 @@ public class DataChild {
         this.exclusive_asi = dataChild.exclusive_asi;
         this.disease_history = dataChild.disease_history;
         this.immunization_history = dataChild.immunization_history;
+        this.children = dataChild.children;
     }
 
     public String getWeek_title() {
@@ -139,6 +143,14 @@ public class DataChild {
         this.immunization_history = immunization_history;
     }
 
+    public Integer getChildren() {
+        return children;
+    }
+
+    public void setChildren(Integer children) {
+        this.children = children;
+    }
+
     @Override
     public String toString() {
         return "DataChild{" +
@@ -154,6 +166,7 @@ public class DataChild {
                 ", exclusive_asi=" + exclusive_asi +
                 ", disease_history=" + disease_history +
                 ", immunization_history='" + immunization_history + '\'' +
+                ", children=" + children +
                 '}';
     }
 }

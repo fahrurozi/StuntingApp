@@ -54,6 +54,7 @@ public interface ApiEndpoint {
 
     @GET("api/v1/trace")
     Call<ResponseChild> getTrace(
+            @Query("child_id") Integer child_id
     );
 
     @POST("api/v1/trace")
@@ -112,5 +113,10 @@ public interface ApiEndpoint {
     @POST("api/v1/children_management")
     Call<ResponseAddChildren> addChildren(
             @Body RequestBody body
+    );
+
+    @GET("api/v1/children_management")
+    Call<ResponseChildren> getChildren(
+            @Query("child_id") Integer child_id
     );
 }

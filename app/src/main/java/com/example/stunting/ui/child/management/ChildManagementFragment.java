@@ -27,7 +27,7 @@ import com.example.stunting.data.model.children.ResponseChildren;
 import com.example.stunting.data.network.ApiEndpoint;
 import com.example.stunting.data.network.ApiService;
 import com.example.stunting.ui.child.ChildAdapter;
-import com.example.stunting.ui.child.ChildManagementAdapter;
+import com.example.stunting.ui.child.management.ChildManagementAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONException;
