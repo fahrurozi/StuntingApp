@@ -28,6 +28,7 @@ import com.example.stunting.R;
 import com.example.stunting.data.model.child.DataChild;
 import com.example.stunting.data.model.child.ResponseChild;
 import com.example.stunting.data.model.child.ResponsePutChild;
+import com.example.stunting.data.model.child.ResponseUpdateChild;
 import com.example.stunting.data.model.children.ResponseChildren;
 import com.example.stunting.data.network.ApiEndpoint;
 import com.example.stunting.data.network.ApiService;
@@ -286,7 +287,6 @@ public class ChildFragment extends Fragment implements ChildInterface {
 
         btnEdit.setOnClickListener(v -> {
             String inputImunisasiString = String.join("|",inputImunisasi);
-            Log.e("Cok2", "onChildClick: " + inputImunisasiString);
             child.setImmunization_history(inputImunisasiString);
             if (!etUsia.getText().toString().isEmpty()) {
                 child.setAge_day(Integer.parseInt(etUsia.getText().toString()));
@@ -307,7 +307,11 @@ public class ChildFragment extends Fragment implements ChildInterface {
                 alertDialog.dismiss();
                 try {
                     dataChildReq = child;
-                    putTrace(child);
+                    if(child.getId() != null){
+                        patchTrace(child);
+                    }else{
+                        putTrace(child);
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -362,7 +366,50 @@ public class ChildFragment extends Fragment implements ChildInterface {
                 }
             }
         });
+    }
 
+    private void patchTrace(DataChild child) throws JSONException {
+        RequestBody body;
+        JSONStringer json = new JSONStringer();
+        json.object();
+        json.key("all_traces");
+        json.array();
+        json.object();
+        json.key("week").value(child.getWeek_count());
+        json.key("height").value(child.getHeight());
+        json.key("weight").value(child.getWeight());
+        json.key("age_day").value(child.getAge_day());
+        json.key("exclusive_asi").value(child.getExclusive_asi());
+        json.key("disease_history").value(child.getDisease_history());
+        json.key("immunization_history").value(child.getImmunization_history());
+        json.endObject();
+        json.endArray();
+        json.key("child_id").value(child.getChildren());
+        json.endObject();
+
+        body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), json.toString());
+        Call<ResponseUpdateChild> patchChildCall = endpoint.patchTrace( body);
+
+        patchChildCall.enqueue(new Callback<ResponseUpdateChild>() {
+
+            @Override
+            public void onResponse(Call<ResponseUpdateChild> call, Response<ResponseUpdateChild> response) {
+                getTrace(child.getChildren());
+            }
+
+            @Override
+            public void onFailure(Call<ResponseUpdateChild> call, Throwable t) {
+                if (Objects.equals(t.getMessage(), "closed")){
+                    try {
+                        patchTrace(child);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }else{
+                    Toast.makeText(getContext(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
 }

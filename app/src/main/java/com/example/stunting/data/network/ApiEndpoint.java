@@ -3,6 +3,7 @@ package com.example.stunting.data.network;
 import com.example.stunting.data.model.care.ResponseCare;
 import com.example.stunting.data.model.child.ResponseChild;
 import com.example.stunting.data.model.child.ResponsePutChild;
+import com.example.stunting.data.model.child.ResponseUpdateChild;
 import com.example.stunting.data.model.children.ResponseAddChildren;
 import com.example.stunting.data.model.children.ResponseChildren;
 import com.example.stunting.data.model.login.ResponseLogin;
@@ -22,6 +23,7 @@ import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
@@ -59,6 +61,11 @@ public interface ApiEndpoint {
 
     @POST("api/v1/trace")
     Call<ResponsePutChild> putTrace(
+            @Body RequestBody body
+    );
+
+    @PATCH("api/v1/trace")
+    Call<ResponseUpdateChild> patchTrace(
             @Body RequestBody body
     );
 
