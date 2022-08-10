@@ -7,6 +7,7 @@ import com.example.stunting.data.model.child.ResponseUpdateChild;
 import com.example.stunting.data.model.children.ResponseAddChildren;
 import com.example.stunting.data.model.children.ResponseChildren;
 import com.example.stunting.data.model.fun.ResponseLevelAvailable;
+import com.example.stunting.data.model.fun.ResponseScorePerLevel;
 import com.example.stunting.data.model.login.ResponseLogin;
 import com.example.stunting.data.model.maps.ResponseMaps;
 import com.example.stunting.data.model.maps.ResponseMapsById;
@@ -130,6 +131,11 @@ public interface ApiEndpoint {
 
     @GET("/api/v1/fun_stunt_user")
     Call<ResponseLevelAvailable> getFunStuntUser(
+            @Query("json_body") String json_body
+    );
+
+    @GET("/api/v1/fun_stunt_user")
+    Call<ResponseScorePerLevel> getFunUserSummary(
             @Query("json_body") String json_body
     );
 }

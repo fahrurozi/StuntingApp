@@ -20,4 +20,6 @@ public class ResponseLevelAvailable {
     public void setLevels(List<Integer> levels) {
         this.levels = levels;
     }
+
+
 }
