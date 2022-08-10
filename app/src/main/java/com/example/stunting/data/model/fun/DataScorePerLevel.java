@@ -10,9 +10,13 @@ public class DataScorePerLevel {
     @SerializedName("correct_answers_count")
     private Integer CorrectAnswerCount;
 
-    public DataScorePerLevel(Integer questionLevelCount, Integer correctAnswerCount) {
+    @SerializedName("level")
+    private Integer level;
+
+    public DataScorePerLevel(Integer questionLevelCount, Integer correctAnswerCount, Integer level) {
         this.questionLevelCount = questionLevelCount;
         CorrectAnswerCount = correctAnswerCount;
+        this.level = level;
     }
 
     public Integer getQuestionLevelCount() {
@@ -29,5 +33,13 @@ public class DataScorePerLevel {
 
     public void setCorrectAnswerCount(Integer correctAnswerCount) {
         CorrectAnswerCount = correctAnswerCount;
+    }
+
+    public Integer getLevel() {
+        return level;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
     }
 }

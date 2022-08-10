@@ -2,6 +2,7 @@ package com.example.stunting.data.model.fun;
 
 import com.google.gson.annotations.SerializedName;
 
+//endpoint submit answer
 public class ResponseSubmitFun {
 
     @SerializedName("answer")

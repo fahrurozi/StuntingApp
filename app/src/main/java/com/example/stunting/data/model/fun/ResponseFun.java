@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+//endpoint get qas
 public class ResponseFun {
 
     @SerializedName("qas")
