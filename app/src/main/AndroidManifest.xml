@@ -17,6 +17,9 @@
         android:theme="@style/Theme.SplashScreen"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.fun.FunActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.stunting_tribute.detail.AddReviewActivity"
             android:exported="false" />
         <activity
