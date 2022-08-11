@@ -132,8 +132,8 @@ public class FunActivity extends AppCompatActivity implements FunInterface {
                 @Override
                 public void onResponse(Call<ResponseScorePerLevel> call, Response<ResponseScorePerLevel> response) {
                     spotsDialog.dismiss();
-                    if (response.isSuccessful() && response.body().getUserAnswers() != null && response.body().getUserScorePerLevel() != null) {
-                        if (response.body().getUserAnswers().size() == 0){
+                    if (response.isSuccessful() && response.body().getUserScorePerLevel() != null && response.body().getUserScorePerLevel() != null) {
+                        if (response.body().getUserScorePerLevel().size() == 0){
                             Toast.makeText(getApplicationContext(), "Data tidak ditemukan", Toast.LENGTH_SHORT).show();
                         }else{
                             Log.d("ASASDAS", "onCreate: " + listLevelAvailable.get(0));
