@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.info.StuntingInfoActivity">
+    tools:context=".ui.fun.play.PlayActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout2"
@@ -49,13 +49,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
+    <TextView
+        android:id="@+id/tvQuestionNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/bold"
+        android:text="Pertanyaan"
+        android:textSize="16sp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
     <WebView
         android:id="@+id/wvQuestion"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_marginHorizontal="15dp"
         android:scrollbars="none"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvQuestionNumber"
         tools:layout_editor_absoluteX="15dp" />
 
     <LinearLayout
@@ -64,13 +76,14 @@
         android:layout_marginTop="15dp"
         app:layout_constraintTop_toBottomOf="@+id/wvQuestion"
         android:id="@+id/llChoices"
+        android:layout_marginHorizontal="15dp"
         android:orientation="vertical">
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/ans_A"
+            android:id="@+id/ansA"
             android:layout_margin="5dp"
-            android:backgroundTint="@color/white"
+            android:background="@color/white"
             android:padding="10dp"
             android:text="Ans A"
             android:textColor="@color/black"/>
@@ -78,37 +91,39 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/ans_B"
+            android:id="@+id/ansB"
             android:layout_margin="5dp"
-            android:backgroundTint="@color/white"
+            android:background="@color/white"
             android:text="Ans B"
             android:textColor="@color/black"/>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/ans_C"
+            android:id="@+id/ansC"
             android:layout_margin="5dp"
-            android:backgroundTint="@color/white"
+            android:background="@color/white"
             android:text="Ans C"
             android:textColor="@color/black"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/ans_D"
+            android:id="@+id/ansD"
             android:layout_margin="5dp"
-            android:backgroundTint="@color/white"
+            android:background="@color/white"
             android:text="Ans D"
             android:textColor="@color/black"/>
     </LinearLayout>
 
     <Button
-        android:id="@+id/submit_btn"
+        android:id="@+id/btnSubmit"
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
+        android:background="@color/blue"
         android:text="Submit"
+        android:textColor="@color/white"
         app:layout_constraintTop_toBottomOf="@+id/llChoices" />
 
 

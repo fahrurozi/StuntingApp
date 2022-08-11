@@ -20,6 +20,7 @@ import com.example.stunting.R;
 import com.example.stunting.data.model.child.DataChild;
 import com.example.stunting.data.model.fun.ResponseLevelAvailable;
 import com.example.stunting.data.model.fun.TestModel;
+import com.example.stunting.data.model.maps.DataPlace;
 import com.example.stunting.ui.MainActivity;
 import com.example.stunting.ui.child.ChildAdapter;
 import com.example.stunting.ui.child.ChildFragment;
@@ -33,12 +34,12 @@ public class FunAdapter extends RecyclerView.Adapter<FunAdapter.ViewHolder>{
 //    List<Integer> rvData = new ArrayList<Integer>();
 
     private List<TestModel> rvData = new ArrayList();;
-//    private FunInterface funInterface;
+    private FunInterface funInterface;
 
 //
-//    public FunAdapter(FunInterface funInterface) {
-//        this.funInterface = funInterface;
-//    }
+    public FunAdapter(FunInterface funInterface) {
+        this.funInterface = funInterface;
+    }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView tvLevel;
@@ -67,6 +68,7 @@ public class FunAdapter extends RecyclerView.Adapter<FunAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(FunAdapter.ViewHolder holder, int position) {
 //        DataChild data = rvData.get(position);
+        TestModel data = rvData.get(position);
         holder.tvLevel.setText(rvData.get(position).getLevel().toString());
         if (rvData.get(position).getDataScorePerLevel().getCorrectAnswerCount() == null || rvData.get(position).getDataScorePerLevel().getCorrectAnswerCount() == 0) {
             holder.llRoot.setBackground(holder.llRoot.getContext().getResources().getDrawable(R.drawable.round_week_null));
@@ -77,7 +79,8 @@ public class FunAdapter extends RecyclerView.Adapter<FunAdapter.ViewHolder>{
 
         if(position==0){
             holder.llRoot.setOnClickListener(r -> {
-                Toast.makeText(holder.llRoot.getContext(), "Clicked Level "+rvData.get(position).getLevel().toString(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(holder.llRoot.getContext(), "Clicked Level "+rvData.get(position).getLevel().toString(), Toast.LENGTH_SHORT).show();
+                holder.llRoot.setOnClickListener(v -> funInterface.onChildClick(data));
             });
         }else{
             if(rvData.get(position-1).getDataScorePerLevel().getCorrectAnswerCount() == null || rvData.get(position-1).getDataScorePerLevel().getCorrectAnswerCount() == 0) {
@@ -90,7 +93,8 @@ public class FunAdapter extends RecyclerView.Adapter<FunAdapter.ViewHolder>{
                 });
             }else{
                 holder.llRoot.setOnClickListener(r -> {
-                    Toast.makeText(holder.llRoot.getContext(), "Clicked Level "+rvData.get(position).getLevel().toString(), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(holder.llRoot.getContext(), "Clicked Level "+rvData.get(position).getLevel().toString(), Toast.LENGTH_SHORT).show();
+                    holder.llRoot.setOnClickListener(v -> funInterface.onChildClick(data));
                 });
             }
         }

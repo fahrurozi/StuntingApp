@@ -1,6 +1,7 @@
 package com.example.stunting.ui.fun;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
@@ -20,6 +21,7 @@ import com.example.stunting.data.model.fun.ResponseScorePerLevel;
 import com.example.stunting.data.model.fun.TestModel;
 import com.example.stunting.data.network.ApiEndpoint;
 import com.example.stunting.data.network.ApiService;
+import com.example.stunting.ui.fun.play.PlayActivity;
 
 import org.json.JSONException;
 import org.json.JSONStringer;
@@ -34,7 +36,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FunActivity extends AppCompatActivity {
+public class FunActivity extends AppCompatActivity implements FunInterface {
     private FunAdapter adapter;
 
     private RecyclerView rvView;
@@ -61,33 +63,13 @@ public class FunActivity extends AppCompatActivity {
 
         TextView tvTitle = findViewById(R.id.tvTitle);
 
-        adapter = new FunAdapter();
+        adapter = new FunAdapter(this);
         RecyclerView rvData = findViewById(R.id.rvFunData);
         rvData.setAdapter(adapter);
         rvData.setLayoutManager(new GridLayoutManager(this, 4));
 
         ImageView btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(v -> finish());
-
-//        adapter.insertDataList(data);
-//        rvHello.setAdapter(adapter);
-//        rvHello.setLayoutManager(new LinearLayoutManager(this));
-
-//        dataSet = new ArrayList<>();
-//        initDataset();
-//
-//        rvView = (RecyclerView) findViewById(R.id.rv_main);
-//        rvView.setHasFixedSize(true);
-//
-//        layoutManager = new LinearLayoutManager(this);
-//        rvView.setLayoutManager(layoutManager);
-//
-//        adapter = new RecyclerViewAdapterSInfo(dataSet);
-//        rvView.setAdapter(adapter);
-
-
-//        getUserSummary();
-//        Log.d("HAI", "onCreate: " + data.toString());
     }
 
     private void getLevelAvailable(){
@@ -170,5 +152,12 @@ public class FunActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onChildClick(TestModel testModel) {
+        Intent intent = new Intent(this, PlayActivity.class);
+        intent.putExtra("level", testModel.getLevel());
+        startActivity(intent);
     }
 }

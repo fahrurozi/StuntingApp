@@ -1,5 +1,7 @@
 package com.example.stunting.ui.fun;
 
+import com.example.stunting.data.model.fun.TestModel;
+
 public interface FunInterface {
-    public void onChildClick(Integer levelId);
+    public void onChildClick(TestModel testModel);
 }
