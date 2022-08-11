@@ -3,6 +3,7 @@ package com.example.stunting.ui.fun;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -64,6 +65,9 @@ public class FunActivity extends AppCompatActivity {
         RecyclerView rvData = findViewById(R.id.rvFunData);
         rvData.setAdapter(adapter);
         rvData.setLayoutManager(new GridLayoutManager(this, 4));
+
+        ImageView btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(v -> finish());
 
 //        adapter.insertDataList(data);
 //        rvHello.setAdapter(adapter);

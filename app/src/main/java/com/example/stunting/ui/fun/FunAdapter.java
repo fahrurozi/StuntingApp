@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -44,6 +45,7 @@ public class FunAdapter extends RecyclerView.Adapter<FunAdapter.ViewHolder>{
         public TextView tvWeek;
         public LinearLayout llRoot;
         public RatingBar rbRating;
+        public ImageView ivLock;
 
         public ViewHolder(View v) {
             super(v);
@@ -51,6 +53,7 @@ public class FunAdapter extends RecyclerView.Adapter<FunAdapter.ViewHolder>{
             rbRating = v.findViewById(R.id.rbRating);
 //            tvWeek = v.findViewById(R.id.tvWeek);
             llRoot = v.findViewById(R.id.llRoot);
+            ivLock = v.findViewById(R.id.ivLock);
         }
     }
 
@@ -79,6 +82,9 @@ public class FunAdapter extends RecyclerView.Adapter<FunAdapter.ViewHolder>{
         }else{
             if(rvData.get(position-1).getDataScorePerLevel().getCorrectAnswerCount() == null || rvData.get(position-1).getDataScorePerLevel().getCorrectAnswerCount() == 0) {
                 holder.llRoot.setBackground(holder.llRoot.getContext().getResources().getDrawable(R.drawable.round_week_disable));
+                holder.tvLevel.setVisibility(View.GONE);
+                holder.rbRating.setVisibility(View.GONE);
+                holder.ivLock.setVisibility(View.VISIBLE);
                 holder.llRoot.setOnClickListener(r -> {
                     Toast.makeText(holder.llRoot.getContext(), "Disable " + rvData.get(position).getLevel().toString(), Toast.LENGTH_SHORT).show();
                 });
