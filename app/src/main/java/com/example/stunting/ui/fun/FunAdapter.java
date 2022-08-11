@@ -79,7 +79,6 @@ public class FunAdapter extends RecyclerView.Adapter<FunAdapter.ViewHolder>{
 
         if(position==0){
             holder.llRoot.setOnClickListener(r -> {
-//                Toast.makeText(holder.llRoot.getContext(), "Clicked Level "+rvData.get(position).getLevel().toString(), Toast.LENGTH_SHORT).show();
                 holder.llRoot.setOnClickListener(v -> funInterface.onChildClick(data));
             });
         }else{
@@ -89,11 +88,10 @@ public class FunAdapter extends RecyclerView.Adapter<FunAdapter.ViewHolder>{
                 holder.rbRating.setVisibility(View.GONE);
                 holder.ivLock.setVisibility(View.VISIBLE);
                 holder.llRoot.setOnClickListener(r -> {
-                    Toast.makeText(holder.llRoot.getContext(), "Disable " + rvData.get(position).getLevel().toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(holder.llRoot.getContext(), "Selesaikan level sebelumnya! ", Toast.LENGTH_SHORT).show();
                 });
             }else{
                 holder.llRoot.setOnClickListener(r -> {
-//                    Toast.makeText(holder.llRoot.getContext(), "Clicked Level "+rvData.get(position).getLevel().toString(), Toast.LENGTH_SHORT).show();
                     holder.llRoot.setOnClickListener(v -> funInterface.onChildClick(data));
                 });
             }

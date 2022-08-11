@@ -1,6 +1,7 @@
 package com.example.stunting.ui.fun.play;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,8 +21,12 @@ import com.example.stunting.R;
 import com.example.stunting.data.model.fun.DataFun;
 import com.example.stunting.data.model.fun.ResponseFun;
 import com.example.stunting.data.model.fun.ResponseLevelAvailable;
+import com.example.stunting.data.model.fun.ResponseSubmitFun;
+import com.example.stunting.data.model.review.ResponseAddReview;
 import com.example.stunting.data.network.ApiEndpoint;
 import com.example.stunting.data.network.ApiService;
+import com.example.stunting.ui.fun.FunActivity;
+import com.example.stunting.ui.stunting_tribute.detail.AddReviewActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,6 +38,7 @@ import java.util.List;
 import java.util.Objects;
 
 import dmax.dialog.SpotsDialog;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -58,6 +64,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
     Integer pickAnswer = 0;
     ArrayList<Integer> listPickAnswer = new ArrayList<>();
     ArrayList<Integer> listQuestionId = new ArrayList<>();
+    ArrayList<Integer> listCorrectAnswer = new ArrayList<>();
     Integer currentQuestionIndex = 0;
     Integer correctAnswer = 0;
     Integer questionId = 0;
@@ -93,9 +100,12 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
 
         getQuestionPerLevel(level);
 
-//        Log.d("HAI", "onResponse: " + jsonObject);
         ImageView btnBack = findViewById(R.id.btnBack);
-        btnBack.setOnClickListener(v -> finish());
+        btnBack.setOnClickListener(v -> {
+            Intent intent = new Intent(PlayActivity.this, FunActivity.class);
+            startActivity(intent);
+            finish();
+        });
     }
 
     @Override
@@ -112,7 +122,6 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
             currentQuestionIndex++;
             loadDataToUI(dataFunList);
 
-            Toast.makeText(this, "submit", Toast.LENGTH_SHORT).show();
         }else{
             //choices button clicked
             clickedButton.setBackgroundColor(Color.LTGRAY);
@@ -127,29 +136,9 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
             }
 
 
-//            Toast.makeText(this, "jawaban", Toast.LENGTH_SHORT).show();
-//            Log.d("HAI", "onClick: "+listAnswersObj);
-//            Log.d("HAI", "onClick: "+daftarJawabanArray);
-//            Log.d("HAI", "onClick: "+pickAnswer);
-            Log.d("HAI", "Correct Answer: "+correctAnswer);
-
         }
     }
 
-//    void loadNewQuestion(){
-//
-//        if(currentQuestionIndex == totalQuestion ){
-//            finishQuiz();
-//            return;
-//        }
-//
-//        questionTextView.setText(QuestionAnswer.question[currentQuestionIndex]);
-//        ansA.setText(QuestionAnswer.choices[currentQuestionIndex][0]);
-//        ansB.setText(QuestionAnswer.choices[currentQuestionIndex][1]);
-//        ansC.setText(QuestionAnswer.choices[currentQuestionIndex][2]);
-//        ansD.setText(QuestionAnswer.choices[currentQuestionIndex][3]);
-//
-//    }
 
     public void getQuestionPerLevel(Integer level){
         try {
@@ -208,6 +197,8 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         correctAnswer = dataFun.get(currentQuestionIndex).getCorrectAnswer();
         questionId = dataFun.get(currentQuestionIndex).getId();
         wvQuestion.loadUrl(ApiService.BASE_URL + "static/" + dataFun.get(0).getQuestionFile());
+
+        listCorrectAnswer.add(correctAnswer);
         tvQuestionNumber.setText("Soal " + (currentQuestionIndex + 1) + " dari " + totalQuestion);
         tvLevel.setText("Level " + level);
         try {
@@ -226,17 +217,70 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    public void postAnswer(){
+    public void postAnswer(Integer questionId, Integer answer) throws JSONException{
+        RequestBody body;
+        JSONStringer json = new JSONStringer();
+        json.object();
+        json.key("qa_id").value(questionId);
+        json.key("submitted_answer").value(answer);
+        json.endObject();
 
+        body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), json.toString());
+        Call<ResponseSubmitFun> submitAnswerCall = endpoint.postSubmitAnswer(body);
+
+        submitAnswerCall.enqueue(new Callback<ResponseSubmitFun>() {
+
+            @Override
+            public void onResponse(Call<ResponseSubmitFun> call, Response<ResponseSubmitFun> response) {
+                try {
+                    if (response.isSuccessful() && response.body().getAnswer() != null) {
+                        Log.d("HAI", "onResponse: "+"OK");
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Gagal Mengirim Data", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), "Gagal Mengirim Data!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseSubmitFun> call, Throwable t) {
+                Toast.makeText(PlayActivity.this, "Gagal mengirim data"+t.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.e("GAGAL", "onFailure: "+t.getMessage());
+            }
+        });
     }
 
     void finishQuiz(){
+        Log.d("HAI", "Pick Answer: "+listPickAnswer);
+        Log.d("HAI", "Correct Answer: "+listCorrectAnswer);
+        Log.d("HAI", "Question Id: "+listQuestionId);
+        for(int i = 0; i < listPickAnswer.size(); i++){
+            try {
+                postAnswer(listQuestionId.get(i), listPickAnswer.get(i));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        for (int i = 0; i < listPickAnswer.size(); i++){
+            if(listPickAnswer.get(i) == listCorrectAnswer.get(i)){
+                score += 1;
+            }
+        }
+
 
         new AlertDialog.Builder(this)
-                .setTitle("HAI")
+                .setTitle("RESULT")
                 .setMessage("Score is "+ score+" out of "+ totalQuestion)
+                .setPositiveButton("Selesai",(dialogInterface, i) -> closeQuiz() )
                 .setCancelable(false)
                 .show();
+    }
+
+    public void closeQuiz(){
+        Intent intent = new Intent(this, FunActivity.class);
+        startActivity(intent);
+        finish();
     }
 
 

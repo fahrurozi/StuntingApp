@@ -21,6 +21,7 @@ import com.example.stunting.data.model.fun.ResponseScorePerLevel;
 import com.example.stunting.data.model.fun.TestModel;
 import com.example.stunting.data.network.ApiEndpoint;
 import com.example.stunting.data.network.ApiService;
+import com.example.stunting.ui.MainActivity;
 import com.example.stunting.ui.fun.play.PlayActivity;
 
 import org.json.JSONException;
@@ -69,7 +70,13 @@ public class FunActivity extends AppCompatActivity implements FunInterface {
         rvData.setLayoutManager(new GridLayoutManager(this, 4));
 
         ImageView btnBack = findViewById(R.id.btnBack);
-        btnBack.setOnClickListener(v -> finish());
+//        btnBack.setOnClickListener(v -> finish());
+//        btn back open home fragment
+        btnBack.setOnClickListener(v -> {
+            Intent intent = new Intent(FunActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        });
     }
 
     private void getLevelAvailable(){
