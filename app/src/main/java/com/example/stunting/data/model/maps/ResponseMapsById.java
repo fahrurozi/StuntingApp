@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class ResponseMapsById {
-    @SerializedName("registerd_places")
+    @SerializedName("registered_places")
     private List<DataDbData> dataMapsById;
 
     public ResponseMapsById(List<DataDbData> dataMapsById) {

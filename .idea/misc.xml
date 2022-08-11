@@ -22,10 +22,12 @@
         <entry key="..\:/Kuliah/1 - Universitas Gadjah Mada/Semester 4/Praktikum Pemrograman Perangkat Bergerak 2/Tugas Akhir Java/Stunting/app/src/main/res/drawable/button_border.xml" value="0.18" />
         <entry key="..\:/Kuliah/1 - Universitas Gadjah Mada/Semester 4/Praktikum Pemrograman Perangkat Bergerak 2/Tugas Akhir Java/Stunting/app/src/main/res/drawable/button_login.xml" value="0.18" />
         <entry key="..\:/Kuliah/1 - Universitas Gadjah Mada/Semester 4/Praktikum Pemrograman Perangkat Bergerak 2/Tugas Akhir Java/Stunting/app/src/main/res/drawable/ic_add.xml" value="0.118" />
+        <entry key="..\:/Kuliah/1 - Universitas Gadjah Mada/Semester 4/Praktikum Pemrograman Perangkat Bergerak 2/Tugas Akhir Java/Stunting/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.175" />
         <entry key="..\:/Kuliah/1 - Universitas Gadjah Mada/Semester 4/Praktikum Pemrograman Perangkat Bergerak 2/Tugas Akhir Java/Stunting/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.259" />
         <entry key="..\:/Kuliah/1 - Universitas Gadjah Mada/Semester 4/Praktikum Pemrograman Perangkat Bergerak 2/Tugas Akhir Java/Stunting/app/src/main/res/drawable/ic_child.xml" value="0.2465" />
         <entry key="..\:/Kuliah/1 - Universitas Gadjah Mada/Semester 4/Praktikum Pemrograman Perangkat Bergerak 2/Tugas Akhir Java/Stunting/app/src/main/res/drawable/round_stroke_orange.xml" value="0.2465" />
         <entry key="..\:/Kuliah/1 - Universitas Gadjah Mada/Semester 4/Praktikum Pemrograman Perangkat Bergerak 2/Tugas Akhir Java/Stunting/app/src/main/res/drawable/round_week.xml" value="0.187" />
+        <entry key="..\:/Kuliah/1 - Universitas Gadjah Mada/Semester 4/Praktikum Pemrograman Perangkat Bergerak 2/Tugas Akhir Java/Stunting/app/src/main/res/drawable/round_week_disable.xml" value="0.175" />
         <entry key="..\:/Kuliah/1 - Universitas Gadjah Mada/Semester 4/Praktikum Pemrograman Perangkat Bergerak 2/Tugas Akhir Java/Stunting/app/src/main/res/drawable/round_week_null.xml" value="0.187" />
         <entry key="..\:/Kuliah/1 - Universitas Gadjah Mada/Semester 4/Praktikum Pemrograman Perangkat Bergerak 2/Tugas Akhir Java/Stunting/app/src/main/res/layout/activity_account.xml" value="0.371875" />
         <entry key="..\:/Kuliah/1 - Universitas Gadjah Mada/Semester 4/Praktikum Pemrograman Perangkat Bergerak 2/Tugas Akhir Java/Stunting/app/src/main/res/layout/activity_care_category.xml" value="0.2557291666666667" />
@@ -33,6 +35,7 @@
         <entry key="..\:/Kuliah/1 - Universitas Gadjah Mada/Semester 4/Praktikum Pemrograman Perangkat Bergerak 2/Tugas Akhir Java/Stunting/app/src/main/res/layout/activity_care_nutrition.xml" value="0.2557291666666667" />
         <entry key="..\:/Kuliah/1 - Universitas Gadjah Mada/Semester 4/Praktikum Pemrograman Perangkat Bergerak 2/Tugas Akhir Java/Stunting/app/src/main/res/layout/activity_food_detail.xml" value="0.2" />
         <entry key="..\:/Kuliah/1 - Universitas Gadjah Mada/Semester 4/Praktikum Pemrograman Perangkat Bergerak 2/Tugas Akhir Java/Stunting/app/src/main/res/layout/activity_food_help.xml" value="0.27708333333333335" />
+        <entry key="..\:/Kuliah/1 - Universitas Gadjah Mada/Semester 4/Praktikum Pemrograman Perangkat Bergerak 2/Tugas Akhir Java/Stunting/app/src/main/res/layout/activity_fun_question.xml" value="0.28532608695652173" />
         <entry key="..\:/Kuliah/1 - Universitas Gadjah Mada/Semester 4/Praktikum Pemrograman Perangkat Bergerak 2/Tugas Akhir Java/Stunting/app/src/main/res/layout/activity_fun_stunting.xml" value="0.33605072463768115" />
         <entry key="..\:/Kuliah/1 - Universitas Gadjah Mada/Semester 4/Praktikum Pemrograman Perangkat Bergerak 2/Tugas Akhir Java/Stunting/app/src/main/res/layout/activity_get_started.xml" value="0.33" />
         <entry key="..\:/Kuliah/1 - Universitas Gadjah Mada/Semester 4/Praktikum Pemrograman Perangkat Bergerak 2/Tugas Akhir Java/Stunting/app/src/main/res/layout/activity_hello_detail.xml" value="0.2953125" />
@@ -55,8 +58,11 @@
         <entry key="..\:/Kuliah/1 - Universitas Gadjah Mada/Semester 4/Praktikum Pemrograman Perangkat Bergerak 2/Tugas Akhir Java/Stunting/app/src/main/res/layout/activity_stunting_tribute_detail.xml" value="0.25" />
         <entry key="..\:/Kuliah/1 - Universitas Gadjah Mada/Semester 4/Praktikum Pemrograman Perangkat Bergerak 2/Tugas Akhir Java/Stunting/app/src/main/res/layout/custom_dialog_child.xml" value="0.33" />
         <entry key="..\:/Kuliah/1 - Universitas Gadjah Mada/Semester 4/Praktikum Pemrograman Perangkat Bergerak 2/Tugas Akhir Java/Stunting/app/src/main/res/layout/fragment_account.xml" value="0.33" />
+        <entry key="..\:/Kuliah/1 - Universitas Gadjah Mada/Semester 4/Praktikum Pemrograman Perangkat Bergerak 2/Tugas Akhir Java/Stunting/app/src/main/res/layout/fragment_add_anak.xml" value="0.25" />
+        <entry key="..\:/Kuliah/1 - Universitas Gadjah Mada/Semester 4/Praktikum Pemrograman Perangkat Bergerak 2/Tugas Akhir Java/Stunting/app/src/main/res/layout/fragment_anak.xml" value="0.31351351351351353" />
         <entry key="..\:/Kuliah/1 - Universitas Gadjah Mada/Semester 4/Praktikum Pemrograman Perangkat Bergerak 2/Tugas Akhir Java/Stunting/app/src/main/res/layout/fragment_child.xml" value="0.22" />
         <entry key="..\:/Kuliah/1 - Universitas Gadjah Mada/Semester 4/Praktikum Pemrograman Perangkat Bergerak 2/Tugas Akhir Java/Stunting/app/src/main/res/layout/fragment_home.xml" value="0.2" />
+        <entry key="..\:/Kuliah/1 - Universitas Gadjah Mada/Semester 4/Praktikum Pemrograman Perangkat Bergerak 2/Tugas Akhir Java/Stunting/app/src/main/res/layout/list_anak.xml" value="0.2694746376811594" />
         <entry key="..\:/Kuliah/1 - Universitas Gadjah Mada/Semester 4/Praktikum Pemrograman Perangkat Bergerak 2/Tugas Akhir Java/Stunting/app/src/main/res/layout/list_care.xml" value="0.21557971014492755" />
         <entry key="..\:/Kuliah/1 - Universitas Gadjah Mada/Semester 4/Praktikum Pemrograman Perangkat Bergerak 2/Tugas Akhir Java/Stunting/app/src/main/res/layout/list_child.xml" value="0.2557291666666667" />
         <entry key="..\:/Kuliah/1 - Universitas Gadjah Mada/Semester 4/Praktikum Pemrograman Perangkat Bergerak 2/Tugas Akhir Java/Stunting/app/src/main/res/layout/list_food.xml" value="0.27708333333333335" />

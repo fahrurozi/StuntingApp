@@ -28,6 +28,8 @@ import com.example.stunting.R;
 import com.example.stunting.data.model.child.DataChild;
 import com.example.stunting.data.model.child.ResponseChild;
 import com.example.stunting.data.model.child.ResponsePutChild;
+import com.example.stunting.data.model.child.ResponseUpdateChild;
+import com.example.stunting.data.model.children.ResponseChildren;
 import com.example.stunting.data.network.ApiEndpoint;
 import com.example.stunting.data.network.ApiService;
 
@@ -53,6 +55,7 @@ public class ChildFragment extends Fragment implements ChildInterface {
     private ApiEndpoint endpoint = ApiService.getRetrofitInstance();
     private SharedPreferences sharedPref;
     private ChildAdapter adapter;
+    private String namaAnak;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -60,15 +63,20 @@ public class ChildFragment extends Fragment implements ChildInterface {
         sharedPref = getContext().getSharedPreferences(BuildConfig.APPLICATION_ID, Context.MODE_PRIVATE);
         adapter = new ChildAdapter(this);
 
+        Integer childId = getArguments().getInt("childId");
+
         TextView tvName = view.findViewById(R.id.tvName);
         TextView tvDate = view.findViewById(R.id.tvDate);
 
         DateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
         Calendar cal = Calendar.getInstance();
 
-        tvName.setText(sharedPref.getString(getString(R.string.name), ""));
+        getChildrenData(childId, tvName);
+
+
+//        tvName.setText(namaAnak);
         tvDate.setText(dateFormat.format(cal.getTime()));
-        initData();
+        initData(childId);
 
         RecyclerView rvData = view.findViewById(R.id.rvData);
         rvData.setAdapter(adapter);
@@ -76,30 +84,45 @@ public class ChildFragment extends Fragment implements ChildInterface {
 
         adapter.insertDataList(data);
 
-        getTrace();
+        getTrace(childId);
     }
 
-    private void initData() {
-        data.add(new DataChild("Bulan", "1", 1));
-        data.add(new DataChild("Bulan", "2", 4));
-        data.add(new DataChild("Bulan", "3", 8));
-        data.add(new DataChild("Bulan", "4", 12));
-        data.add(new DataChild("Bulan", "5", 16));
-        data.add(new DataChild("Bulan", "6", 20));
-        data.add(new DataChild("Bulan", "7", 24));
-        data.add(new DataChild("Bulan", "8", 28));
-        data.add(new DataChild("Bulan", "9", 32));
-        data.add(new DataChild("Bulan", "10", 36));
-        data.add(new DataChild("Bulan", "11", 40));
-        data.add(new DataChild("Bulan", "12", 44));
-        data.add(new DataChild("Bulan", "13", 48));
-        data.add(new DataChild("Bulan", "14", 52));
-        data.add(new DataChild("Bulan", "15", 56));
-        data.add(new DataChild("Bulan", "16", 60));
+    private void initData(Integer childId) {
+        data.add(new DataChild("Bulan", "1", 1, childId));
+        data.add(new DataChild("Bulan", "2", 4, childId));
+        data.add(new DataChild("Bulan", "3", 8, childId));
+        data.add(new DataChild("Bulan", "4", 12, childId));
+        data.add(new DataChild("Bulan", "5", 16, childId));
+        data.add(new DataChild("Bulan", "6", 20, childId));
+        data.add(new DataChild("Bulan", "7", 24, childId));
+        data.add(new DataChild("Bulan", "8", 28, childId));
+        data.add(new DataChild("Bulan", "9", 32, childId));
+        data.add(new DataChild("Bulan", "10", 36, childId));
+        data.add(new DataChild("Bulan", "11", 40, childId));
+        data.add(new DataChild("Bulan", "12", 44, childId));
+        data.add(new DataChild("Bulan", "13", 48, childId));
+        data.add(new DataChild("Bulan", "14", 52, childId));
+        data.add(new DataChild("Bulan", "15", 56, childId));
+        data.add(new DataChild("Bulan", "16", 60, childId));
     }
 
-    private void getTrace() {
-        Call<ResponseChild> getTraceCall = endpoint.getTrace();
+    private void getChildrenData(Integer childId, TextView tvName) {
+            endpoint.getChildren(childId).enqueue(new Callback<ResponseChildren>() {
+            @Override
+            public void onResponse(Call<ResponseChildren> call, Response<ResponseChildren> response) {
+                if (response.isSuccessful()){
+                    namaAnak = response.body().getChildrens().get(0).getName();
+                    tvName.setText(namaAnak);
+                }
+            }
+            @Override
+            public void onFailure(Call<ResponseChildren> call, Throwable t) {
+                Toast.makeText(getContext(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
+            }
+        }); }
+
+    private void getTrace(Integer childId) {
+        Call<ResponseChild> getTraceCall = endpoint.getTrace(childId);
         Log.e("TAG", "getTrace() returned: ");
         getTraceCall.enqueue(new retrofit2.Callback<ResponseChild>() {
 
@@ -124,7 +147,7 @@ public class ChildFragment extends Fragment implements ChildInterface {
             @Override
             public void onFailure(Call<ResponseChild> call, Throwable t) {
                 if (Objects.equals(t.getMessage(), "closed")){
-                    getTrace();
+                    getTrace(childId);
                 }else{
                     Toast.makeText(getContext(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
                 }
@@ -139,6 +162,7 @@ public class ChildFragment extends Fragment implements ChildInterface {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_child, container, false);
     }
 
@@ -263,7 +287,6 @@ public class ChildFragment extends Fragment implements ChildInterface {
 
         btnEdit.setOnClickListener(v -> {
             String inputImunisasiString = String.join("|",inputImunisasi);
-            Log.e("Cok2", "onChildClick: " + inputImunisasiString);
             child.setImmunization_history(inputImunisasiString);
             if (!etUsia.getText().toString().isEmpty()) {
                 child.setAge_day(Integer.parseInt(etUsia.getText().toString()));
@@ -284,7 +307,11 @@ public class ChildFragment extends Fragment implements ChildInterface {
                 alertDialog.dismiss();
                 try {
                     dataChildReq = child;
-                    putTrace(child);
+                    if(child.getId() != null){
+                        patchTrace(child);
+                    }else{
+                        putTrace(child);
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -313,6 +340,7 @@ public class ChildFragment extends Fragment implements ChildInterface {
         json.key("immunization_history").value(child.getImmunization_history());
         json.endObject();
         json.endArray();
+        json.key("child_id").value(child.getChildren());
         json.endObject();
 
         body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), json.toString());
@@ -322,7 +350,7 @@ public class ChildFragment extends Fragment implements ChildInterface {
 
             @Override
             public void onResponse(Call<ResponsePutChild> call, Response<ResponsePutChild> response) {
-                getTrace();
+                getTrace(child.getChildren());
             }
 
             @Override
@@ -338,7 +366,50 @@ public class ChildFragment extends Fragment implements ChildInterface {
                 }
             }
         });
+    }
 
+    private void patchTrace(DataChild child) throws JSONException {
+        RequestBody body;
+        JSONStringer json = new JSONStringer();
+        json.object();
+        json.key("all_traces");
+        json.array();
+        json.object();
+        json.key("week").value(child.getWeek_count());
+        json.key("height").value(child.getHeight());
+        json.key("weight").value(child.getWeight());
+        json.key("age_day").value(child.getAge_day());
+        json.key("exclusive_asi").value(child.getExclusive_asi());
+        json.key("disease_history").value(child.getDisease_history());
+        json.key("immunization_history").value(child.getImmunization_history());
+        json.endObject();
+        json.endArray();
+        json.key("child_id").value(child.getChildren());
+        json.endObject();
+
+        body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), json.toString());
+        Call<ResponseUpdateChild> patchChildCall = endpoint.patchTrace( body);
+
+        patchChildCall.enqueue(new Callback<ResponseUpdateChild>() {
+
+            @Override
+            public void onResponse(Call<ResponseUpdateChild> call, Response<ResponseUpdateChild> response) {
+                getTrace(child.getChildren());
+            }
+
+            @Override
+            public void onFailure(Call<ResponseUpdateChild> call, Throwable t) {
+                if (Objects.equals(t.getMessage(), "closed")){
+                    try {
+                        patchTrace(child);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }else{
+                    Toast.makeText(getContext(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
 }

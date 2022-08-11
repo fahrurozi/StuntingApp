@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import com.example.stunting.R;
 import com.example.stunting.ui.account.AccountFragment;
 import com.example.stunting.ui.child.ChildFragment;
+import com.example.stunting.ui.child.management.ChildManagementFragment;
 import com.example.stunting.ui.home.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -39,7 +40,8 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
                 getSupportFragmentManager().beginTransaction().replace(R.id.flHome, new HomeFragment()).commit();
                 return true;
             case R.id.nav_child:
-                getSupportFragmentManager().beginTransaction().replace(R.id.flHome, new ChildFragment()).commit();
+//                getSupportFragmentManager().beginTransaction().replace(R.id.flHome, new ChildFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.flHome, new ChildManagementFragment()).commit();
                 return true;
             case R.id.nav_account:
                 getSupportFragmentManager().beginTransaction().replace(R.id.flHome, new AccountFragment()).commit();

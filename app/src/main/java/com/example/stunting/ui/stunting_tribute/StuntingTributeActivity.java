@@ -106,6 +106,7 @@ public class StuntingTributeActivity extends AppCompatActivity implements Locati
 //        Log.e("TESTT", "location: " + location.getLatitude() + " " + location.getLongitude());
     }
 
+
     private void searchLocation(String query) {
         try {
             spotsDialog.show();
