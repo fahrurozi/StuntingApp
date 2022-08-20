@@ -111,7 +111,7 @@ public class ChildFragment extends Fragment implements ChildInterface {
             @Override
             public void onResponse(Call<ResponseChildren> call, Response<ResponseChildren> response) {
                 if (response.isSuccessful()){
-                    namaAnak = response.body().getChildrens().get(0).getName();
+                    namaAnak = response.body().getChildrens().get(0).getDataChildren().getName();
                     tvName.setText(namaAnak);
                 }
             }

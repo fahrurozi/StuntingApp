@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.stunting.R;
 import com.example.stunting.data.model.child.DataChild;
 import com.example.stunting.data.model.children.DataChildren;
+import com.example.stunting.data.model.children.ResponseDetailAllChildren;
 import com.example.stunting.ui.MainActivity;
 import com.example.stunting.ui.child.ChildFragment;
 
@@ -26,7 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChildManagementAdapter extends RecyclerView.Adapter<ChildManagementAdapter.ViewHolder> {
-    private List<DataChildren> rvData = new ArrayList();;
+    private List<ResponseDetailAllChildren> rvData = new ArrayList();;
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -52,13 +53,13 @@ public class ChildManagementAdapter extends RecyclerView.Adapter<ChildManagement
     @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        DataChildren data = rvData.get(position);
-        holder.tvName.setText(data.getName());
-        holder.tvdescription.setText(data.getBornDate());
+        ResponseDetailAllChildren data = rvData.get(position);
+        holder.tvName.setText(data.getDataChildren().getName());
+        holder.tvdescription.setText(data.getDataChildren().getBornDate());
 
         holder.cvRoot.setOnClickListener(r -> {
             Bundle bundle = new Bundle();
-            bundle.putInt("childId", data.getId());
+            bundle.putInt("childId", data.getDataChildren().getId());
 // set Fragmentclass Arguments
             ChildFragment fragmentobj = new ChildFragment();
             fragmentobj.setArguments(bundle);
@@ -74,7 +75,7 @@ public class ChildManagementAdapter extends RecyclerView.Adapter<ChildManagement
         return rvData.size();
     }
 
-    public void insertDataList(List<DataChildren> inputData) {
+    public void insertDataList(List<ResponseDetailAllChildren> inputData) {
         this.rvData.clear();
         this.rvData.addAll(inputData);
         notifyDataSetChanged();
