@@ -1,5 +1,6 @@
 package com.example.stunting.ui.child.management;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -7,7 +8,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,6 +23,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.stunting.BuildConfig;
 import com.example.stunting.R;
+import com.example.stunting.components.DatePickerFragment;
 import com.example.stunting.data.model.children.ResponseAddChildren;
 import com.example.stunting.data.network.ApiEndpoint;
 import com.example.stunting.data.network.ApiService;
@@ -28,17 +33,22 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import org.json.JSONException;
 import org.json.JSONStringer;
 
+import java.text.DateFormat;
+import java.util.Calendar;
+
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ChildAddFragment extends Fragment {
+public class ChildAddFragment extends Fragment implements DatePickerDialog.OnDateSetListener {
     private SharedPreferences sharedPref;
-    private EditText etDOB;
+    private TextView etDOB;
     private FloatingActionButton fabSimpan;
 
     private ApiEndpoint endpoint = ApiService.getRetrofitInstance();
+
+    public String dates, months, years;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -48,6 +58,28 @@ public class ChildAddFragment extends Fragment {
 
         etDOB = view.findViewById(R.id.etDOB);
         fabSimpan = view.findViewById(R.id.fabSimpan);
+
+        etDOB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment datePicker = new DatePickerFragment();
+                datePicker.setTargetFragment(ChildAddFragment.this, 0);
+                datePicker.show(getFragmentManager(), "date picker");
+
+            }
+        });
+
+//        etDOB.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//                if (hasFocus) {
+//                    DialogFragment datePicker = new DatePickerFragment();
+//                    datePicker.setTargetFragment(ChildAddFragment.this, 0);
+//                    datePicker.show(getFragmentManager(), "date picker");
+//
+//                }
+//            }
+//        });
 
         fabSimpan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,5 +157,22 @@ public class ChildAddFragment extends Fragment {
 // replace the FrameLayout with new Fragment
         fragmentTransaction.replace(R.id.flHome, fragment);
         fragmentTransaction.commit(); // save the changes
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.YEAR, year);
+        c.set(Calendar.MONTH, month);
+        c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+        String currentDate = DateFormat.getDateInstance().format(c.getTime());
+
+        dates = Integer.toString(dayOfMonth);
+        months = Integer.toString(month);
+        years = Integer.toString(year);
+
+        Log.d("HAI", "onDateSet: "+dates+"-"+months+"-"+years);
+
+        etDOB.setText(currentDate);
     }
 }

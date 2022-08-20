@@ -60,14 +60,18 @@
             android:textColor="@color/black"
             android:textSize="16sp" />
 
-        <EditText
+        <TextView
             android:id="@+id/etDOB"
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:background="@drawable/button_border"
             android:inputType="text"
+            android:textColor="@color/black"
+            android:paddingTop="4dp"
+            android:textSize="18sp"
             android:lines="1"
-            android:paddingLeft="12dp" />
+            android:paddingLeft="12dp"
+            android:keyboardNavigationCluster="false"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -85,6 +89,7 @@
             android:inputType="text"
             android:lines="1"
             android:paddingLeft="12dp" />
+        
     </LinearLayout>
 
 
