@@ -44,7 +44,7 @@
             android:textSize="16sp" />
 
         <EditText
-            android:id="@+id/et_name"
+            android:id="@+id/etName"
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:background="@drawable/button_border"
@@ -81,15 +81,15 @@
             android:textColor="@color/black"
             android:textSize="16sp" />
 
-        <EditText
-            android:id="@+id/etGender"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
+        <Spinner
+            android:id="@+id/spinnerGender"
+            android:padding="8dp"
             android:background="@drawable/button_border"
-            android:inputType="text"
-            android:lines="1"
-            android:paddingLeft="12dp" />
-        
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:entries="@array/jenis_kelamin_list"
+            android:prompt="@string/dropdown_jenis_kelamin"/>
     </LinearLayout>
 
 

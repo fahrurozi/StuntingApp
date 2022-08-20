@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,12 +44,13 @@ import retrofit2.Response;
 
 public class ChildAddFragment extends Fragment implements DatePickerDialog.OnDateSetListener {
     private SharedPreferences sharedPref;
-    private TextView etDOB;
+    private TextView etDOB, etName;
     private FloatingActionButton fabSimpan;
 
     private ApiEndpoint endpoint = ApiService.getRetrofitInstance();
 
-    public String dates, months, years;
+    public Integer dates, months, years;
+    public Integer intGender;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -58,6 +60,7 @@ public class ChildAddFragment extends Fragment implements DatePickerDialog.OnDat
 
         etDOB = view.findViewById(R.id.etDOB);
         fabSimpan = view.findViewById(R.id.fabSimpan);
+        etName = view.findViewById(R.id.etName);
 
         etDOB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,45 +72,49 @@ public class ChildAddFragment extends Fragment implements DatePickerDialog.OnDat
             }
         });
 
-//        etDOB.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//            @Override
-//            public void onFocusChange(View v, boolean hasFocus) {
-//                if (hasFocus) {
-//                    DialogFragment datePicker = new DatePickerFragment();
-//                    datePicker.setTargetFragment(ChildAddFragment.this, 0);
-//                    datePicker.show(getFragmentManager(), "date picker");
-//
-//                }
-//            }
-//        });
-
         fabSimpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    addChildren();
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                Spinner drop_jenisKelamin=(Spinner) getView().findViewById(R.id.spinnerGender);
+                String valJenisKelamin=drop_jenisKelamin.getSelectedItem().toString();
+                String name = etName.getText().toString();
+                String dob = etDOB.getText().toString();
+                if (name.isEmpty() || dob.isEmpty()) {
+                    Toast.makeText(getContext(), "Silahkan lengkapi field yang ada!", Toast.LENGTH_SHORT).show();
+                } else {
+//                    Toast.makeText(getContext(), name+dob+valJenisKelamin, Toast.LENGTH_SHORT).show();
+                    if(valJenisKelamin.equals("Perempuan")){
+                        intGender = 1;
+                    }else if(valJenisKelamin.equals("Laki-laki")) {
+                        intGender = 0;
+                    }
+
+                    try {
+                        addChildren(name, dates, months, years, intGender);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
+
             }
         });
 
     }
 
-    private void addChildren() throws JSONException {
+    private void addChildren(String childName, Integer date, Integer month, Integer year, Integer gender) throws JSONException {
         RequestBody body;
         JSONStringer json = new JSONStringer();
         json.object();
         json.key("child_info");
         json.object();
-        json.key("name").value("halo");
+        json.key("name").value(childName);
         json.key("born_date");
         json.array();
-        json.value(2020);
-        json.value(01);
-        json.value(11);
+        json.value(year);
+        json.value(month);
+        json.value(date);
         json.endArray();
-        json.key("gender").value(1);
+        json.key("gender").value(gender);
         json.key("active").value(true);
         json.endObject();
         json.endObject();
@@ -167,9 +174,13 @@ public class ChildAddFragment extends Fragment implements DatePickerDialog.OnDat
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
         String currentDate = DateFormat.getDateInstance().format(c.getTime());
 
-        dates = Integer.toString(dayOfMonth);
-        months = Integer.toString(month);
-        years = Integer.toString(year);
+//        dates = Integer.toString(dayOfMonth);
+//        months = Integer.toString(month);
+//        years = Integer.toString(year);
+
+        dates = dayOfMonth;
+        months = month;
+        years = year;
 
         Log.d("HAI", "onDateSet: "+dates+"-"+months+"-"+years);
 

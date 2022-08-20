@@ -46,4 +46,12 @@
     <string name="fat">Fat</string>
     <string name="select_level">Select Level</string>
 
+
+
+    <string name="dropdown_jenis_kelamin" translatable="false">Jenis Kelamin</string>
+    <string-array name="jenis_kelamin_list">
+        <item>Laki-laki</item>
+        <item>Perempuan</item>
+    </string-array>
+
 </resources>
