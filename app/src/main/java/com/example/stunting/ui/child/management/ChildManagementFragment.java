@@ -74,7 +74,7 @@ public class ChildManagementFragment extends Fragment {
     }
 
     private void getAnak(){
-            endpoint.getChildrenList().enqueue(new retrofit2.Callback<ResponseChildren>() {
+            endpoint.getChildrenList("all").enqueue(new retrofit2.Callback<ResponseChildren>() {
                 @Override
                 public void onResponse(Call<ResponseChildren> call, retrofit2.Response<ResponseChildren> response) {
                     if (response.isSuccessful() && response.body() != null && response.body().getChildrens() != null) {

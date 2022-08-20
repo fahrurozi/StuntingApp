@@ -119,7 +119,9 @@ public interface ApiEndpoint {
     );
 
     @GET("api/v1/children_management")
-    Call<ResponseChildren> getChildrenList();
+    Call<ResponseChildren> getChildrenList(
+            @Query("get_type") String get_type
+    );
 
     @POST("api/v1/children_management")
     Call<ResponseAddChildren> addChildren(
@@ -128,6 +130,7 @@ public interface ApiEndpoint {
 
     @GET("api/v1/children_management")
     Call<ResponseChildren> getChildren(
+            @Query("get_type") String get_type,
             @Query("child_id") Integer child_id
     );
 

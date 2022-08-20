@@ -25,4 +25,9 @@
     <color name="teks">#38456D</color>
     <color name="orange_disable">#8f7a59</color>
 
+    <color name="hs_danger">#FF501E</color>
+    <color name="hs_warning">#FFAC25</color>
+    <color name="hs_success">#10BB92</color>
+
+
 </resources>
