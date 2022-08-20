@@ -2,6 +2,7 @@ package com.example.stunting.ui.child.management;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,16 +30,25 @@ import java.util.List;
 public class ChildManagementAdapter extends RecyclerView.Adapter<ChildManagementAdapter.ViewHolder> {
     private List<ResponseDetailAllChildren> rvData = new ArrayList();;
 
+    private Integer glSangatPendek = -2;
+    private Integer glPendek = -1;
+    private Integer glTengah = 0;
+    private Integer glNormal = 1;
+    private Integer glTinggi = 2;
+    private Integer growthLevel;
+
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView tvName;
-        public TextView tvdescription;
+        public TextView tvdescription, tvChildGender, tvHealthStatus;
         public CardView cvRoot;
 
         public ViewHolder(View v) {
             super(v);
             tvName = v.findViewById(R.id.tvChildName);
             tvdescription = v.findViewById(R.id.tvChildDescription);
+            tvChildGender = v.findViewById(R.id.tvChildGender);
+            tvHealthStatus = v.findViewById(R.id.tvHealthStatus);
             cvRoot = v.findViewById(R.id.cvRoot);
 
         }
@@ -56,6 +66,36 @@ public class ChildManagementAdapter extends RecyclerView.Adapter<ChildManagement
         ResponseDetailAllChildren data = rvData.get(position);
         holder.tvName.setText(data.getDataChildren().getName());
         holder.tvdescription.setText(data.getDataChildren().getBornDate());
+        if(data.getDataChildren().getGender().equals(0)){
+            holder.tvChildGender.setText("Laki-laki");
+        }else{
+            holder.tvChildGender.setText("Perempuan");
+        }
+
+        if(data.getDataChildTrace()!= null){
+            growthLevel = data.getDataChildTrace().getGrowth_level();
+            Log.d("HAI", String.valueOf(growthLevel));
+            if(growthLevel == glSangatPendek){
+                holder.tvHealthStatus.setText("Sangat Pendek");
+                holder.tvHealthStatus.setBackgroundResource(R.drawable.cyrcle_danger);
+            }else if(growthLevel == glPendek){
+                holder.tvHealthStatus.setText("Pendek");
+                holder.tvHealthStatus.setBackgroundResource(R.drawable.cyrcle_warning);
+            }else if(growthLevel == glTengah){
+                holder.tvHealthStatus.setText("Normal");
+                holder.tvHealthStatus.setBackgroundResource(R.drawable.cyrcle_success);
+            }else if(growthLevel == glNormal){
+                holder.tvHealthStatus.setText("Normal");
+                holder.tvHealthStatus.setBackgroundResource(R.drawable.cyrcle_success);
+            }else if(growthLevel == glTinggi){
+                holder.tvHealthStatus.setText("Tinggi");
+                holder.tvHealthStatus.setBackgroundResource(R.drawable.cyrcle_danger);
+            }
+        }else{
+            holder.tvHealthStatus.setText("Tidak ada data");
+        }
+
+
 
         holder.cvRoot.setOnClickListener(r -> {
             Bundle bundle = new Bundle();
