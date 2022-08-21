@@ -29,5 +29,7 @@
     <color name="hs_warning">#FFAC25</color>
     <color name="hs_success">#10BB92</color>
 
+    <color name="dark_grey">#6e6e6e</color>
+
 
 </resources>

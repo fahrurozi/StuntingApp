@@ -3,6 +3,7 @@ package com.example.stunting.ui.child.management;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -116,16 +117,22 @@ public class ChildManagementAdapter extends RecyclerView.Adapter<ChildManagement
             holder.tvHealthStatus.setText("Tidak ada data");
         }
 
-
+        if(data.getDataChildren().getStatus()==false){
+            holder.cvRoot.setCardBackgroundColor(Color.parseColor("#a6a6a6"));
+            holder.tvHealthStatus.setVisibility(View.INVISIBLE);
+        }
 
         holder.cvRoot.setOnClickListener(r -> {
-            Bundle bundle = new Bundle();
-            bundle.putInt("childId", data.getDataChildren().getId());
-            ChildFragment fragmentobj = new ChildFragment();
-            fragmentobj.setArguments(bundle);
-            FragmentManager manager = ((MainActivity)r.getContext()).getSupportFragmentManager();
-            manager.beginTransaction().replace(R.id.flHome, fragmentobj).addToBackStack(null).commit();
-            Toast.makeText(holder.cvRoot.getContext(), "Clicked", Toast.LENGTH_SHORT).show();
+            if(data.getDataChildren().getStatus()==true){
+                Bundle bundle = new Bundle();
+                bundle.putInt("childId", data.getDataChildren().getId());
+                ChildFragment fragmentobj = new ChildFragment();
+                fragmentobj.setArguments(bundle);
+                FragmentManager manager = ((MainActivity)r.getContext()).getSupportFragmentManager();
+                manager.beginTransaction().replace(R.id.flHome, fragmentobj).addToBackStack(null).commit();
+            }else{
+                Toast.makeText(holder.cvRoot.getContext(), "Anak ini tidak aktif", Toast.LENGTH_SHORT).show();
+            }
         });
 
         holder.cvRoot.setOnLongClickListener(new View.OnLongClickListener() {
