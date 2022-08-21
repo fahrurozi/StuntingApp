@@ -26,6 +26,7 @@ import com.example.stunting.data.model.children.DataChildren;
 import com.example.stunting.data.model.children.ResponseChildren;
 import com.example.stunting.data.network.ApiEndpoint;
 import com.example.stunting.data.network.ApiService;
+import com.example.stunting.ui.MainActivity;
 import com.example.stunting.ui.child.ChildAdapter;
 import com.example.stunting.ui.child.management.ChildManagementAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -37,6 +38,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import dmax.dialog.SpotsDialog;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 
@@ -47,6 +49,7 @@ public class ChildManagementFragment extends Fragment {
     private SharedPreferences sharedPref;
     private ChildManagementAdapter adapter;
     private FloatingActionButton fabButton;
+    private SpotsDialog spotsDialog;
 
 
     @Override
@@ -60,8 +63,14 @@ public class ChildManagementFragment extends Fragment {
         FloatingActionButton fabButton = view.findViewById(R.id.fabAddChildren);
         fabButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                loadFragment(new ChildAddFragment());
+
+//            public void onClick(View v) {
+//                loadFragment(new ChildAddFragment());
+//            }
+            public void onClick(View v){
+                ChildAddFragment fragmentobj = new ChildAddFragment();
+                FragmentManager manager = ((MainActivity)v.getContext()).getSupportFragmentManager();
+                manager.beginTransaction().replace(R.id.flHome, fragmentobj).addToBackStack(null).commit();
             }
         });
 
@@ -70,13 +79,16 @@ public class ChildManagementFragment extends Fragment {
         rvData.setAdapter(adapter);
         rvData.setLayoutManager(new LinearLayoutManager(getContext()));
 //        adapter.insertDataList(data);
+        spotsDialog = new SpotsDialog(getContext(), "Mohon Tunggu...");
+        spotsDialog.show();
         getAnak();
     }
 
     private void getAnak(){
-            endpoint.getChildrenList().enqueue(new retrofit2.Callback<ResponseChildren>() {
+            endpoint.getChildrenList("all").enqueue(new retrofit2.Callback<ResponseChildren>() {
                 @Override
                 public void onResponse(Call<ResponseChildren> call, retrofit2.Response<ResponseChildren> response) {
+                    spotsDialog.dismiss();
                     if (response.isSuccessful() && response.body() != null && response.body().getChildrens() != null) {
                         Log.e("TTSSTTS", "onResponse: " + response.body().getChildrens().size());
                         adapter.insertDataList(response.body().getChildrens());

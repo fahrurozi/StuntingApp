@@ -35,6 +35,7 @@ import com.example.stunting.data.network.ApiService;
 
 import org.json.JSONException;
 import org.json.JSONStringer;
+import org.w3c.dom.Text;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -56,6 +57,20 @@ public class ChildFragment extends Fragment implements ChildInterface {
     private SharedPreferences sharedPref;
     private ChildAdapter adapter;
     private String namaAnak;
+    private Float zScore;
+    private Integer growthLevel;
+
+    private Integer glSangatPendek = -2;
+    private Integer glPendek = -1;
+    private Integer glTengah = 0;
+    private Integer glNormal = 1;
+    private Integer glTinggi = 2;
+
+    public TextView tvHealthStatus;
+    public TextView tvTitleScoreInfo;
+    public TextView tvDescScoreInfo;
+    public TextView tvName;
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -63,15 +78,20 @@ public class ChildFragment extends Fragment implements ChildInterface {
         sharedPref = getContext().getSharedPreferences(BuildConfig.APPLICATION_ID, Context.MODE_PRIVATE);
         adapter = new ChildAdapter(this);
 
+
         Integer childId = getArguments().getInt("childId");
 
-        TextView tvName = view.findViewById(R.id.tvName);
+        tvName = view.findViewById(R.id.tvName);
         TextView tvDate = view.findViewById(R.id.tvDate);
+        tvHealthStatus = view.findViewById(R.id.tvHealthStatus);
+        tvTitleScoreInfo = view.findViewById(R.id.tvTitleScoreInfo);
+        tvDescScoreInfo = view.findViewById(R.id.tvDescScoreInfo);
+        TextView tvReadmore = view.findViewById(R.id.tvReadmore);
 
         DateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
         Calendar cal = Calendar.getInstance();
 
-        getChildrenData(childId, tvName);
+        getChildrenData(childId);
 
 
 //        tvName.setText(namaAnak);
@@ -106,13 +126,51 @@ public class ChildFragment extends Fragment implements ChildInterface {
         data.add(new DataChild("Bulan", "16", 60, childId));
     }
 
-    private void getChildrenData(Integer childId, TextView tvName) {
-            endpoint.getChildren(childId).enqueue(new Callback<ResponseChildren>() {
+    private void getChildrenData(Integer childId) {
+            endpoint.getChildren("by_id",childId).enqueue(new Callback<ResponseChildren>() {
             @Override
             public void onResponse(Call<ResponseChildren> call, Response<ResponseChildren> response) {
                 if (response.isSuccessful()){
-                    namaAnak = response.body().getChildrens().get(0).getName();
+                    namaAnak = response.body().getChildrens().get(0).getDataChildren().getName();
                     tvName.setText(namaAnak);
+
+                    if(response.body().getChildrens().get(0).getDataChildTrace()!= null){
+                        zScore = response.body().getChildrens().get(0).getDataChildTrace().getZ_score();
+                        growthLevel = response.body().getChildrens().get(0).getDataChildTrace().getGrowth_level();
+                        Log.d("HAI", String.valueOf(growthLevel));
+                        Log.d("HAI", String.valueOf(zScore));
+                        Log.d("HAI", String.valueOf(childId));
+                        if(growthLevel == glSangatPendek){
+                            tvHealthStatus.setText("Sangat Pendek");
+                            tvTitleScoreInfo.setText("Sangat Pendek");
+                            tvDescScoreInfo.setText(String.valueOf(zScore));
+                            tvHealthStatus.setBackgroundResource(R.drawable.cyrcle_danger);
+                        }else if(growthLevel == glPendek){
+                            tvHealthStatus.setText("Pendek");
+                            tvTitleScoreInfo.setText("Pendek");
+                            tvDescScoreInfo.setText(String.valueOf(zScore));
+                            tvHealthStatus.setBackgroundResource(R.drawable.cyrcle_warning);
+                        }else if(growthLevel == glTengah){
+                            tvHealthStatus.setText("Normal");
+                            tvTitleScoreInfo.setText("Normal");
+                            tvDescScoreInfo.setText(String.valueOf(zScore));
+                            tvHealthStatus.setBackgroundResource(R.drawable.cyrcle_success);
+                        }else if(growthLevel == glNormal){
+                            tvHealthStatus.setText("Normal");
+                            tvTitleScoreInfo.setText("Normal");
+                            tvDescScoreInfo.setText(String.valueOf(zScore));
+                            tvHealthStatus.setBackgroundResource(R.drawable.cyrcle_success);
+                        }else if(growthLevel == glTinggi){
+                            tvHealthStatus.setText("Tinggi");
+                            tvTitleScoreInfo.setText("Tinggi");
+                            tvDescScoreInfo.setText(String.valueOf(zScore));
+                            tvHealthStatus.setBackgroundResource(R.drawable.cyrcle_danger);
+                        }
+                    }else{
+                        tvHealthStatus.setText("Tidak ada data");
+                        tvTitleScoreInfo.setText("Tidak ada data");
+                        tvDescScoreInfo.setText("Tidak ada data");
+                    }
                 }
             }
             @Override
@@ -351,6 +409,7 @@ public class ChildFragment extends Fragment implements ChildInterface {
             @Override
             public void onResponse(Call<ResponsePutChild> call, Response<ResponsePutChild> response) {
                 getTrace(child.getChildren());
+                getChildrenData(child.getChildren());
             }
 
             @Override
@@ -395,6 +454,7 @@ public class ChildFragment extends Fragment implements ChildInterface {
             @Override
             public void onResponse(Call<ResponseUpdateChild> call, Response<ResponseUpdateChild> response) {
                 getTrace(child.getChildren());
+                getChildrenData(child.getChildren());
             }
 
             @Override

@@ -26,6 +26,10 @@ public class DataChild {
     private String immunization_history;
     @SerializedName("children")
     private Integer children;
+    @SerializedName("z_score")
+    private Float z_score;
+    @SerializedName("growth_level")
+    private Integer growth_level;
 
     public DataChild(String week_name, String week_title, Integer week_count, Integer child_id) {
         this.week_name = week_name;
@@ -45,6 +49,8 @@ public class DataChild {
         this.disease_history = dataChild.disease_history;
         this.immunization_history = dataChild.immunization_history;
         this.children = dataChild.children;
+        this.z_score = dataChild.z_score;
+        this.growth_level = dataChild.growth_level;
     }
 
     public String getWeek_title() {
@@ -151,6 +157,22 @@ public class DataChild {
         this.children = children;
     }
 
+    public Float getZ_score() {
+        return z_score;
+    }
+
+    public void setZ_score(Float z_score) {
+        this.z_score = z_score;
+    }
+
+    public Integer getGrowth_level() {
+        return growth_level;
+    }
+
+    public void setGrowth_level(Integer growth_level) {
+        this.growth_level = growth_level;
+    }
+
     @Override
     public String toString() {
         return "DataChild{" +
@@ -167,6 +189,8 @@ public class DataChild {
                 ", disease_history=" + disease_history +
                 ", immunization_history='" + immunization_history + '\'' +
                 ", children=" + children +
+                ", z_score=" + z_score +
+                ", growth_level=" + growth_level +
                 '}';
     }
 }
