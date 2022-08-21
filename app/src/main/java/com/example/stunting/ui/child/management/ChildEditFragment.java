@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -56,6 +58,7 @@ public class ChildEditFragment extends Fragment implements DatePickerDialog.OnDa
     public Integer dates, months, years;
     public String stringGender;
     public Integer intInputGender;
+    public Boolean inputActive;
     public String date;
 
     @Override
@@ -75,7 +78,34 @@ public class ChildEditFragment extends Fragment implements DatePickerDialog.OnDa
         String childDOB = getArguments().getString("childDOB");
         Integer childGender = getArguments().getInt("childGender");
         Boolean childActive = getArguments().getBoolean("childActive");
+        inputActive = childActive;
         Integer childParent = getArguments().getInt("childParent");
+        RadioButton rbActive = view.findViewById(R.id.radioActive);
+
+//        boolean checked = ((RadioButton) view).isChecked();
+        final RadioGroup rgActive = view.findViewById(R.id.rgActive);
+        // Check which radio button was clicked
+        if(childActive == true){
+            rgActive.check(R.id.radioActive);
+        }else{
+            rgActive.check(R.id.radioInactive);
+        }
+
+
+        rgActive.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId){
+                    case R.id.radioActive :
+                        inputActive = true;
+                        break;
+                    case R.id.radioInactive :
+                        inputActive = false;
+                        break;
+                }
+            }
+        });
+
 
         try{
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -137,6 +167,12 @@ public class ChildEditFragment extends Fragment implements DatePickerDialog.OnDa
                 String valJenisKelamin=drop_jenisKelamin.getSelectedItem().toString();
                 Log.d("HAI", "Jenis Kelamin: "+valJenisKelamin);
 
+
+
+
+
+                Log.d("HAI", "Active: "+inputActive.toString());
+
                 String inputName = etName.getText().toString();
 
                 String name = etName.getText().toString();
@@ -149,10 +185,10 @@ public class ChildEditFragment extends Fragment implements DatePickerDialog.OnDa
                     }else if(valJenisKelamin.equals("Laki-laki")) {
                         intInputGender = 0;
                     }
-
+//
                     try {
                         spotsDialog.show();
-                        updateChildren(childId, name, dates, months, years, intInputGender);
+                        updateChildren(childId, name, dates, months, years, intInputGender, inputActive);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -161,6 +197,23 @@ public class ChildEditFragment extends Fragment implements DatePickerDialog.OnDa
             }
         });
 
+    }
+
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.radioActive:
+                if (checked)
+                    inputActive=true;
+                    break;
+            case R.id.radioInactive:
+                if (checked)
+                    inputActive=false;
+                    break;
+        }
     }
 
 
@@ -202,7 +255,7 @@ public class ChildEditFragment extends Fragment implements DatePickerDialog.OnDa
         etDOB.setText(currentDate);
     }
 
-    private void updateChildren(Integer childId, String childName, Integer date, Integer month, Integer year, Integer gender) throws JSONException {
+    private void updateChildren(Integer childId, String childName, Integer date, Integer month, Integer year, Integer gender, Boolean inputActive) throws JSONException {
         RequestBody body;
         JSONStringer json = new JSONStringer();
         json.object();
@@ -216,7 +269,7 @@ public class ChildEditFragment extends Fragment implements DatePickerDialog.OnDa
         json.value(date);
         json.endArray();
         json.key("gender").value(gender);
-        json.key("active").value(true);
+        json.key("active").value(inputActive);
         json.endObject();
         json.key("child_id").value(childId);
         json.endObject();
