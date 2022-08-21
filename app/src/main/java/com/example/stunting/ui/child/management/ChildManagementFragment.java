@@ -37,6 +37,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import dmax.dialog.SpotsDialog;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 
@@ -47,6 +48,7 @@ public class ChildManagementFragment extends Fragment {
     private SharedPreferences sharedPref;
     private ChildManagementAdapter adapter;
     private FloatingActionButton fabButton;
+    private SpotsDialog spotsDialog;
 
 
     @Override
@@ -70,6 +72,8 @@ public class ChildManagementFragment extends Fragment {
         rvData.setAdapter(adapter);
         rvData.setLayoutManager(new LinearLayoutManager(getContext()));
 //        adapter.insertDataList(data);
+        spotsDialog = new SpotsDialog(getContext(), "Mohon Tunggu...");
+        spotsDialog.show();
         getAnak();
     }
 
@@ -77,6 +81,7 @@ public class ChildManagementFragment extends Fragment {
             endpoint.getChildrenList("all").enqueue(new retrofit2.Callback<ResponseChildren>() {
                 @Override
                 public void onResponse(Call<ResponseChildren> call, retrofit2.Response<ResponseChildren> response) {
+                    spotsDialog.dismiss();
                     if (response.isSuccessful() && response.body() != null && response.body().getChildrens() != null) {
                         Log.e("TTSSTTS", "onResponse: " + response.body().getChildrens().size());
                         adapter.insertDataList(response.body().getChildrens());
