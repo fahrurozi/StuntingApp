@@ -25,6 +25,7 @@ import com.example.stunting.R;
 import com.example.stunting.data.model.child.DataChild;
 import com.example.stunting.data.model.children.DataChildren;
 import com.example.stunting.data.model.children.ResponseAddChildren;
+import com.example.stunting.data.model.children.ResponseChildren;
 import com.example.stunting.data.model.children.ResponseDeleteChildren;
 import com.example.stunting.data.model.children.ResponseDetailAllChildren;
 import com.example.stunting.data.network.ApiEndpoint;
@@ -130,7 +131,6 @@ public class ChildManagementAdapter extends RecyclerView.Adapter<ChildManagement
         holder.cvRoot.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                Toast.makeText(holder.cvRoot.getContext(), "Long Clicked", Toast.LENGTH_SHORT).show();
                 AlertDialog.Builder dialogPesan = new AlertDialog.Builder(holder.cvRoot.getContext());
                 dialogPesan.setMessage("Pilih Operasi yang Akan Dilakukan");
                 dialogPesan.setTitle("Perhatian");
@@ -150,12 +150,18 @@ public class ChildManagementAdapter extends RecyclerView.Adapter<ChildManagement
                         hand.postDelayed(new Runnable() {
                             @Override
                             public void run() {
-//                                ((MainActivity) ctx).retrieveData();
-//                                Toast.makeText(holder.cvRoot.getContext(), "Data Berhasil Dihapusaaaa", Toast.LENGTH_SHORT).show();
                                 FragmentManager manager = ((MainActivity)v.getContext()).getSupportFragmentManager();
                                 manager.beginTransaction().replace(R.id.flHome, new ChildManagementFragment()).addToBackStack(null).commit();
                             }
                         }, 1000);
+                    }
+                });
+
+                dialogPesan.setNegativeButton("Ubah", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        getData(data.getDataChildren().getId(), ((MainActivity)v.getContext()));
+                        dialogInterface.dismiss();
                     }
                 });
 
@@ -190,7 +196,7 @@ public class ChildManagementAdapter extends RecyclerView.Adapter<ChildManagement
 
             @Override
             public void onResponse(Call<ResponseDeleteChildren> call, Response<ResponseDeleteChildren> response) {
-//                try {
+                try {
                     if (response.body().getData() != null) {
                         Toast.makeText(ctxDelete, "Berhasil Menghapus Anak!", Toast.LENGTH_SHORT).show();
                         Log.d("HAI", "onResponse: "+response.body().getData().getName());
@@ -199,15 +205,47 @@ public class ChildManagementAdapter extends RecyclerView.Adapter<ChildManagement
                         Toast.makeText(ctxDelete, "Gagal", Toast.LENGTH_SHORT).show();
                         Log.d("HAI", "onResponse: data kosong ");
                     }
-//                } catch (Exception e) {
-//                    Log.d("HAI", "onResponse: data catch ");
-//                }
+                } catch (Exception e) {
+                    Log.d("HAI", "onResponse: data catch ");
+                }
             }
 
             @Override
             public void onFailure(Call<ResponseDeleteChildren> call, Throwable t) {
 //                Toast.makeText(AddReviewActivity.this, "Gagal mengirim data"+t.getMessage(), Toast.LENGTH_SHORT).show();
                 Log.e("GAGAL", "onFailure: "+t.getMessage());
+            }
+        });
+    }
+
+    private void getData(Integer childId, Context ctxGetData){
+        endpoint.getChildren("by_id",childId).enqueue(new Callback<ResponseChildren>() {
+            @Override
+            public void onResponse(Call<ResponseChildren> call, Response<ResponseChildren> response) {
+                if (response.isSuccessful()) {
+                    String namaAnak = response.body().getChildrens().get(0).getDataChildren().getName();
+                    String dob = response.body().getChildrens().get(0).getDataChildren().getBornDate();
+                    Integer gender = response.body().getChildrens().get(0).getDataChildren().getGender();
+                    Boolean active = response.body().getChildrens().get(0).getDataChildren().getStatus();
+                    Integer parent = response.body().getChildrens().get(0).getDataChildren().getParent();
+
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("childId", childId);
+                    bundle.putString("childName", namaAnak);
+                    bundle.putString("childDOB", dob);
+                    bundle.putInt("childGender", gender);
+                    bundle.putBoolean("childActive", active);
+                    bundle.putInt("childParent", parent);
+                    ChildEditFragment fragmentobj = new ChildEditFragment();
+                    fragmentobj.setArguments(bundle);
+                    FragmentManager manager = ((MainActivity)ctxGetData).getSupportFragmentManager();
+                    manager.beginTransaction().replace(R.id.flHome, fragmentobj).addToBackStack(null).commit();
+//                    Toast.makeText(holder.cvRoot.getContext(), "Clicked", Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<ResponseChildren> call, Throwable t) {
+                Toast.makeText(ctxGetData, "Gagal mengambil data", Toast.LENGTH_SHORT).show();
             }
         });
     }

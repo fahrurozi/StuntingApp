@@ -26,6 +26,7 @@ import com.example.stunting.data.model.children.DataChildren;
 import com.example.stunting.data.model.children.ResponseChildren;
 import com.example.stunting.data.network.ApiEndpoint;
 import com.example.stunting.data.network.ApiService;
+import com.example.stunting.ui.MainActivity;
 import com.example.stunting.ui.child.ChildAdapter;
 import com.example.stunting.ui.child.management.ChildManagementAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -62,8 +63,14 @@ public class ChildManagementFragment extends Fragment {
         FloatingActionButton fabButton = view.findViewById(R.id.fabAddChildren);
         fabButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                loadFragment(new ChildAddFragment());
+
+//            public void onClick(View v) {
+//                loadFragment(new ChildAddFragment());
+//            }
+            public void onClick(View v){
+                ChildAddFragment fragmentobj = new ChildAddFragment();
+                FragmentManager manager = ((MainActivity)v.getContext()).getSupportFragmentManager();
+                manager.beginTransaction().replace(R.id.flHome, fragmentobj).addToBackStack(null).commit();
             }
         });
 

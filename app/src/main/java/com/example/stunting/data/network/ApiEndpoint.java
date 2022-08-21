@@ -7,6 +7,7 @@ import com.example.stunting.data.model.child.ResponseUpdateChild;
 import com.example.stunting.data.model.children.ResponseAddChildren;
 import com.example.stunting.data.model.children.ResponseChildren;
 import com.example.stunting.data.model.children.ResponseDeleteChildren;
+import com.example.stunting.data.model.children.ResponseUpdateChildren;
 import com.example.stunting.data.model.fun.ResponseFun;
 import com.example.stunting.data.model.fun.ResponseLevelAvailable;
 import com.example.stunting.data.model.fun.ResponseScorePerLevel;
@@ -136,6 +137,10 @@ public interface ApiEndpoint {
             @Query("child_id") Integer child_id
     );
 
+    @PATCH("api/v1/children_management")
+    Call<ResponseUpdateChildren> updateChildren(
+            @Body RequestBody body
+    );
 
 //    @DELETE("api/v1/children_management", hasBody = true)
     @HTTP(method = "DELETE", path = "/api/v1/children_management", hasBody = true)
