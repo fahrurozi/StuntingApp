@@ -6,6 +6,7 @@ import com.example.stunting.data.model.child.ResponsePutChild;
 import com.example.stunting.data.model.child.ResponseUpdateChild;
 import com.example.stunting.data.model.children.ResponseAddChildren;
 import com.example.stunting.data.model.children.ResponseChildren;
+import com.example.stunting.data.model.children.ResponseDeleteChildren;
 import com.example.stunting.data.model.fun.ResponseFun;
 import com.example.stunting.data.model.fun.ResponseLevelAvailable;
 import com.example.stunting.data.model.fun.ResponseScorePerLevel;
@@ -25,6 +26,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.HTTP;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.PATCH;
@@ -133,6 +135,14 @@ public interface ApiEndpoint {
             @Query("get_type") String get_type,
             @Query("child_id") Integer child_id
     );
+
+
+//    @DELETE("api/v1/children_management", hasBody = true)
+    @HTTP(method = "DELETE", path = "/api/v1/children_management", hasBody = true)
+    Call<ResponseDeleteChildren> deleteChildren(
+            @Body RequestBody body
+    );
+
 
     @GET("/api/v1/fun_stunt_user")
     Call<ResponseLevelAvailable> getFunStuntUser(

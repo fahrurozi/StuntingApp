@@ -37,6 +37,7 @@ import org.json.JSONStringer;
 import java.text.DateFormat;
 import java.util.Calendar;
 
+import dmax.dialog.SpotsDialog;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -46,6 +47,8 @@ public class ChildAddFragment extends Fragment implements DatePickerDialog.OnDat
     private SharedPreferences sharedPref;
     private TextView etDOB, etName;
     private FloatingActionButton fabSimpan;
+
+    private SpotsDialog spotsDialog;
 
     private ApiEndpoint endpoint = ApiService.getRetrofitInstance();
 
@@ -61,6 +64,8 @@ public class ChildAddFragment extends Fragment implements DatePickerDialog.OnDat
         etDOB = view.findViewById(R.id.etDOB);
         fabSimpan = view.findViewById(R.id.fabSimpan);
         etName = view.findViewById(R.id.etName);
+
+        spotsDialog = new SpotsDialog(getContext(), "Mohon Tunggu...");
 
         etDOB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +95,7 @@ public class ChildAddFragment extends Fragment implements DatePickerDialog.OnDat
                     }
 
                     try {
+                        spotsDialog.show();
                         addChildren(name, dates, months, years, intGender);
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -127,6 +133,7 @@ public class ChildAddFragment extends Fragment implements DatePickerDialog.OnDat
 
             @Override
             public void onResponse(Call<ResponseAddChildren> call, Response<ResponseAddChildren> response) {
+                spotsDialog.dismiss();
                 try {
                     if (response.body().getDataChildren() != null) {
                         Toast.makeText(getContext(), "Berhasil Menambah Anak!", Toast.LENGTH_SHORT).show();
