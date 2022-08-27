@@ -124,6 +124,14 @@ public class ChildFragment extends Fragment implements ChildInterface {
         data.add(new DataChild("Bulan", "14", 52, childId));
         data.add(new DataChild("Bulan", "15", 56, childId));
         data.add(new DataChild("Bulan", "16", 60, childId));
+        data.add(new DataChild("Bulan", "17", 64, childId));
+        data.add(new DataChild("Bulan", "18", 68, childId));
+        data.add(new DataChild("Bulan", "19", 72, childId));
+        data.add(new DataChild("Bulan", "20", 76, childId));
+        data.add(new DataChild("Bulan", "21", 80, childId));
+        data.add(new DataChild("Bulan", "22", 84, childId));
+        data.add(new DataChild("Bulan", "23", 88, childId));
+        data.add(new DataChild("Bulan", "24", 92, childId));
     }
 
     private void getChildrenData(Integer childId) {

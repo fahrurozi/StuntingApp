@@ -756,13 +756,13 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="9"
                             android:gravity="left"
-                            android:text="@string/title_stunting_info"
+                            android:text="@string/title_stunting_trace"
                             android:textColor="@color/blue"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
                         <Button
-                            android:id="@+id/btn_goto_info"
+                            android:id="@+id/btn_go_to_trace"
                             android:layout_width="5dp"
                             android:layout_height="24dp"
                             android:layout_weight="1"
@@ -770,47 +770,56 @@
                             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
                     </LinearLayout>
 
+<!--                    <LinearLayout-->
+<!--                        android:id="@+id/stuntingInfoHome"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="10dp"-->
+<!--                        android:background="@color/white"-->
+<!--                        android:orientation="horizontal">-->
+
+<!--                        <ImageView-->
+<!--                            android:layout_width="150dp"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:background="@drawable/ex_stunting_info_home" />-->
+
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:orientation="vertical"-->
+<!--                            android:paddingLeft="12dp">-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:text="Stunting Berbahaya?!"-->
+<!--                                android:textColor="@color/blue"-->
+<!--                                android:textSize="15sp"-->
+<!--                                android:textStyle="bold" />-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:text="Lorem ipsum dolor sit amet, consectetur egestas..."-->
+<!--                                android:textColor="@color/black"-->
+<!--                                android:textSize="12sp" />-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_marginTop="5dp"-->
+<!--                                android:text="22.01.2022"-->
+<!--                                android:textSize="10sp" />-->
+<!--                        </LinearLayout>-->
+<!--                    </LinearLayout>-->
+
                     <LinearLayout
-                        android:id="@+id/stuntingInfoHome"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:background="@color/white"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/ex_stunting_info_home" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:paddingLeft="12dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Stunting Berbahaya?!"
-                                android:textColor="@color/blue"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Lorem ipsum dolor sit amet, consectetur egestas..."
-                                android:textColor="@color/black"
-                                android:textSize="12sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="22.01.2022"
-                                android:textSize="10sp" />
-                        </LinearLayout>
+                        android:layout_height="match_parent">
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvTraceData"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"/>
                     </LinearLayout>
 
                 </LinearLayout>
