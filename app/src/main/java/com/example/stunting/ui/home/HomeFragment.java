@@ -30,6 +30,7 @@ import com.example.stunting.ui.hello_stunting.HelloStuntingActivity;
 import com.example.stunting.ui.info.StuntingInfoActivity;
 import com.example.stunting.ui.info.StuntingInfoActivityBak;
 import com.example.stunting.ui.reminder.ReminderActivity;
+import com.example.stunting.ui.reminderv2.ReminderV2Activity;
 import com.example.stunting.ui.stunting_health.StuntingHealthActivity;
 import com.example.stunting.ui.stunting_map.StuntingMapActivity;
 import com.example.stunting.ui.stunting_tribute.StuntingTributeActivity;
@@ -86,7 +87,7 @@ public class HomeFragment extends Fragment {
         );
 
         btnReminder.setOnClickListener(c ->
-                startActivity(new Intent(requireContext(), ReminderActivity.class))
+                startActivity(new Intent(requireContext(), ReminderV2Activity.class))
         );
 
         btnHealth.setOnClickListener(c ->

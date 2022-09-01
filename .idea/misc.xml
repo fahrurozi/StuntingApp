@@ -82,8 +82,46 @@
         <entry key="..\:/Kuliah/1 - Universitas Gadjah Mada/Semester 4/Praktikum Pemrograman Perangkat Bergerak 2/Tugas Akhir Java/Stunting/app/src/main/res/layout/view_rv_item_stunting_info.xml" value="0.2557291666666667" />
         <entry key="..\:/Kuliah/1 - Universitas Gadjah Mada/Semester 4/Praktikum Pemrograman Perangkat Bergerak 2/Tugas Akhir Java/Stunting/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.18" />
         <entry key="..\:/Kuliah/1 - Universitas Gadjah Mada/Semester 4/Praktikum Pemrograman Perangkat Bergerak 2/Tugas Akhir Java/Stunting/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.18" />
+        <entry key="..\:/Users/MSI/AndroidStudioProjects/StuntingApp/app/src/main/res/layout/activity_care_category.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/MSI/AndroidStudioProjects/StuntingApp/app/src/main/res/layout/activity_care_detail.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/MSI/AndroidStudioProjects/StuntingApp/app/src/main/res/layout/activity_care_nutrition.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/MSI/AndroidStudioProjects/StuntingApp/app/src/main/res/layout/activity_food_detail.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/MSI/AndroidStudioProjects/StuntingApp/app/src/main/res/layout/activity_fun_question.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/MSI/AndroidStudioProjects/StuntingApp/app/src/main/res/layout/activity_fun_stunting.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/MSI/AndroidStudioProjects/StuntingApp/app/src/main/res/layout/activity_get_started.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/MSI/AndroidStudioProjects/StuntingApp/app/src/main/res/layout/activity_login.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/MSI/AndroidStudioProjects/StuntingApp/app/src/main/res/layout/activity_main.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/MSI/AndroidStudioProjects/StuntingApp/app/src/main/res/layout/activity_nutrition_info.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/MSI/AndroidStudioProjects/StuntingApp/app/src/main/res/layout/activity_register.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/MSI/AndroidStudioProjects/StuntingApp/app/src/main/res/layout/activity_reminder.xml" value="0.2" />
+        <entry key="..\:/Users/MSI/AndroidStudioProjects/StuntingApp/app/src/main/res/layout/activity_reminder_add.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/MSI/AndroidStudioProjects/StuntingApp/app/src/main/res/layout/activity_reminder_v2.xml" value="0.33" />
+        <entry key="..\:/Users/MSI/AndroidStudioProjects/StuntingApp/app/src/main/res/layout/activity_reminder_v2_add.xml" value="0.33" />
+        <entry key="..\:/Users/MSI/AndroidStudioProjects/StuntingApp/app/src/main/res/layout/activity_reminder_v3.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/MSI/AndroidStudioProjects/StuntingApp/app/src/main/res/layout/activity_splash_screen.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/MSI/AndroidStudioProjects/StuntingApp/app/src/main/res/layout/activity_stunting_info.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/MSI/AndroidStudioProjects/StuntingApp/app/src/main/res/layout/activity_stunting_info_bak.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/MSI/AndroidStudioProjects/StuntingApp/app/src/main/res/layout/activity_stunting_info_detail.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/MSI/AndroidStudioProjects/StuntingApp/app/src/main/res/layout/activity_stunting_map.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/MSI/AndroidStudioProjects/StuntingApp/app/src/main/res/layout/activity_stunting_tribute.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/MSI/AndroidStudioProjects/StuntingApp/app/src/main/res/layout/activity_stunting_tribute_add_review.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/MSI/AndroidStudioProjects/StuntingApp/app/src/main/res/layout/activity_stunting_tribute_detail.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/MSI/AndroidStudioProjects/StuntingApp/app/src/main/res/layout/custom_dialog_child.xml" value="0.18541666666666667" />
         <entry key="..\:/Users/MSI/AndroidStudioProjects/StuntingApp/app/src/main/res/layout/fragment_account.xml" value="0.2682291666666667" />
+        <entry key="..\:/Users/MSI/AndroidStudioProjects/StuntingApp/app/src/main/res/layout/fragment_add_anak.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/MSI/AndroidStudioProjects/StuntingApp/app/src/main/res/layout/fragment_anak.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/MSI/AndroidStudioProjects/StuntingApp/app/src/main/res/layout/fragment_child.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/MSI/AndroidStudioProjects/StuntingApp/app/src/main/res/layout/fragment_edit_anak.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/MSI/AndroidStudioProjects/StuntingApp/app/src/main/res/layout/fragment_first.xml" value="0.18541666666666667" />
         <entry key="..\:/Users/MSI/AndroidStudioProjects/StuntingApp/app/src/main/res/layout/fragment_home.xml" value="0.16576086956521738" />
+        <entry key="..\:/Users/MSI/AndroidStudioProjects/StuntingApp/app/src/main/res/layout/list_anak.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/MSI/AndroidStudioProjects/StuntingApp/app/src/main/res/layout/list_care.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/MSI/AndroidStudioProjects/StuntingApp/app/src/main/res/layout/list_child.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/MSI/AndroidStudioProjects/StuntingApp/app/src/main/res/layout/list_food.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/MSI/AndroidStudioProjects/StuntingApp/app/src/main/res/layout/list_reminder.xml" value="0.259375" />
+        <entry key="..\:/Users/MSI/AndroidStudioProjects/StuntingApp/app/src/main/res/layout/list_reminderv2.xml" value="0.5" />
+        <entry key="..\:/Users/MSI/AndroidStudioProjects/StuntingApp/app/src/main/res/layout/list_review_data.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/MSI/AndroidStudioProjects/StuntingApp/app/src/main/res/layout/list_tribute.xml" value="0.18541666666666667" />
         <entry key="..\:/Users/MSI/AndroidStudioProjects/StuntingApp/app/src/main/res/menu/navigation.xml" value="0.2682291666666667" />
         <entry key="..\:/Users/kevin/Documents/PPAPB2/StuntingApp/app/src/main/res/layout/activity_reminder_add.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1915" />
