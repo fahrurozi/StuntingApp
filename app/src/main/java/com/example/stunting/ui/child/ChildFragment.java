@@ -108,30 +108,31 @@ public class ChildFragment extends Fragment implements ChildInterface {
     }
 
     private void initData(Integer childId) {
-        data.add(new DataChild("Bulan", "1", 1, childId));
-        data.add(new DataChild("Bulan", "2", 4, childId));
-        data.add(new DataChild("Bulan", "3", 8, childId));
-        data.add(new DataChild("Bulan", "4", 12, childId));
-        data.add(new DataChild("Bulan", "5", 16, childId));
-        data.add(new DataChild("Bulan", "6", 20, childId));
-        data.add(new DataChild("Bulan", "7", 24, childId));
-        data.add(new DataChild("Bulan", "8", 28, childId));
-        data.add(new DataChild("Bulan", "9", 32, childId));
-        data.add(new DataChild("Bulan", "10", 36, childId));
-        data.add(new DataChild("Bulan", "11", 40, childId));
-        data.add(new DataChild("Bulan", "12", 44, childId));
-        data.add(new DataChild("Bulan", "13", 48, childId));
-        data.add(new DataChild("Bulan", "14", 52, childId));
-        data.add(new DataChild("Bulan", "15", 56, childId));
-        data.add(new DataChild("Bulan", "16", 60, childId));
-        data.add(new DataChild("Bulan", "17", 64, childId));
-        data.add(new DataChild("Bulan", "18", 68, childId));
-        data.add(new DataChild("Bulan", "19", 72, childId));
-        data.add(new DataChild("Bulan", "20", 76, childId));
-        data.add(new DataChild("Bulan", "21", 80, childId));
-        data.add(new DataChild("Bulan", "22", 84, childId));
-        data.add(new DataChild("Bulan", "23", 88, childId));
-        data.add(new DataChild("Bulan", "24", 92, childId));
+        data.add(new DataChild("", "Lahir", 0, childId));
+        data.add(new DataChild("Bulan", "1", 4, childId));
+        data.add(new DataChild("Bulan", "2", 8, childId));
+        data.add(new DataChild("Bulan", "3", 12, childId));
+        data.add(new DataChild("Bulan", "4", 16, childId));
+        data.add(new DataChild("Bulan", "5", 20, childId));
+        data.add(new DataChild("Bulan", "6", 24, childId));
+        data.add(new DataChild("Bulan", "7", 28, childId));
+        data.add(new DataChild("Bulan", "8", 32, childId));
+        data.add(new DataChild("Bulan", "9", 36, childId));
+        data.add(new DataChild("Bulan", "10", 40, childId));
+        data.add(new DataChild("Bulan", "11", 44, childId));
+        data.add(new DataChild("Bulan", "12", 48, childId));
+        data.add(new DataChild("Bulan", "13", 52, childId));
+        data.add(new DataChild("Bulan", "14", 56, childId));
+        data.add(new DataChild("Bulan", "15", 60, childId));
+        data.add(new DataChild("Bulan", "16", 64, childId));
+        data.add(new DataChild("Bulan", "17", 68, childId));
+        data.add(new DataChild("Bulan", "18", 72, childId));
+        data.add(new DataChild("Bulan", "19", 76, childId));
+        data.add(new DataChild("Bulan", "20", 80, childId));
+        data.add(new DataChild("Bulan", "21", 84, childId));
+        data.add(new DataChild("Bulan", "22", 88, childId));
+        data.add(new DataChild("Bulan", "23", 92, childId));
+        data.add(new DataChild("Bulan", "24", 96, childId));
     }
 
     private void getChildrenData(Integer childId) {
