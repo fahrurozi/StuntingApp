@@ -115,11 +115,16 @@ public class ChildAddFragment extends Fragment implements DatePickerDialog.OnDat
         json.object();
         json.key("name").value(childName);
         json.key("born_date");
-        json.array();
-        json.value(year);
-        json.value(month);
-        json.value(date);
-        json.endArray();
+//        json.array();
+        json.object();
+        json.key("year").value(year);
+        json.key("month").value(month);
+        json.key("day").value(date);
+//        json.value(year);
+//        json.value(month);
+//        json.value(date);
+        json.endObject();
+//        json.endArray();
         json.key("gender").value(gender);
         json.key("active").value(true);
         json.endObject();
@@ -186,7 +191,7 @@ public class ChildAddFragment extends Fragment implements DatePickerDialog.OnDat
 //        years = Integer.toString(year);
 
         dates = dayOfMonth;
-        months = month;
+        months = month+1;
         years = year;
 
         Log.d("HAI", "onDateSet: "+dates+"-"+months+"-"+years);
