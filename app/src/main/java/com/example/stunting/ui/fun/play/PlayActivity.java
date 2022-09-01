@@ -164,6 +164,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
                             Toast.makeText(getApplicationContext(), "Data tidak ditemukan", Toast.LENGTH_SHORT).show();
                         }else{
                             totalQuestion = response.body().getQas().size();
+                            Log.d("HAI", "total Question: "+totalQuestion);
                             dataFunList = response.body().getQas();
                             loadDataToUI(response.body().getQas());
                         }
@@ -196,13 +197,13 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         webSettings.setJavaScriptEnabled(true);
         correctAnswer = dataFun.get(currentQuestionIndex).getCorrectAnswer();
         questionId = dataFun.get(currentQuestionIndex).getId();
-        wvQuestion.loadUrl(ApiService.BASE_URL + "static/" + dataFun.get(0).getQuestionFile());
+        wvQuestion.loadUrl(ApiService.BASE_URL + "static/" + dataFun.get(currentQuestionIndex).getQuestionFile());
 
         listCorrectAnswer.add(correctAnswer);
         tvQuestionNumber.setText("Soal " + (currentQuestionIndex + 1) + " dari " + totalQuestion);
         tvLevel.setText("Level " + level);
         try {
-            listAnswersObj = new JSONObject(dataFun.get(0).getAnswersContent());
+            listAnswersObj = new JSONObject(dataFun.get(currentQuestionIndex).getAnswersContent());
         } catch (JSONException e) {
             e.printStackTrace();
         }
