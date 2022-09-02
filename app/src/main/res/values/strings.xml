@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Stunting</string>
+    <string name="app_name">Stuntech</string>
     <string name="title_home">Home</string>
     <string name="title_child">Child</string>
     <string name="title_account">Account</string>
@@ -52,14 +52,14 @@
         <item>Laki-laki</item>
         <item>Perempuan</item>
     </string-array>
-    <string name="title_activity_reminder_v3">ReminderV3Activity</string>
+    <string name="title_activity_reminder_v3" translatable="false">ReminderV3Activity</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
+    <string name="first_fragment_label" translatable="false">First Fragment</string>
+    <string name="second_fragment_label" translatable="false">Second Fragment</string>
+    <string name="next" translatable="false">Next</string>
+    <string name="previous" translatable="false">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_first_fragment" translatable="false">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_repeat">Repeat</string>
     <string name="title_notes">Notes</string>

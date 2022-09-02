@@ -42,6 +42,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
@@ -71,6 +72,22 @@ public class ChildFragment extends Fragment implements ChildInterface {
     public TextView tvDescScoreInfo;
     public TextView tvName;
 
+//    public HashMap<String, Integer> mapYear0 = new HashMap<String, Integer>(){
+//        {put("month", 0); put("year", 0);}
+//    };
+//    public HashMap<String, Integer> mapYear0 = new HashMap<String, Integer>();
+//    public HashMap<String, Integer> mapYear1 = new HashMap<String, Integer>();
+//    public HashMap<String, Integer> mapYear2 = new HashMap<String, Integer>();
+//    public HashMap<String, Integer> mapYear3 = new HashMap<String, Integer>();
+//    public HashMap<String, Integer> mapYear4 = new HashMap<String, Integer>();
+
+//    new array list with value
+    public List<Integer> listYear0 = new ArrayList<Integer>(Arrays.asList(4,8,12,16,20,24,28,32,36,40,44));
+    public List<Integer> listYear1 = new ArrayList<Integer>(Arrays.asList(48,52,56,60,64,68,72,76,80,84,88,92));
+    public List<Integer> listYear2 = new ArrayList<Integer>(Arrays.asList(96,100,104,108,112,116,120,124,128,132,136,140));
+    public List<Integer> listYear3 = new ArrayList<Integer>(Arrays.asList(144,148,152,156,160,164,168,172,176,180,184,188));
+    public List<Integer> listYear4 = new ArrayList<Integer>(Arrays.asList(192,196,200,204,208,212,216,220,224,228,232,236));
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -80,6 +97,8 @@ public class ChildFragment extends Fragment implements ChildInterface {
 
 
         Integer childId = getArguments().getInt("childId");
+        Integer catYear = getArguments().getInt("catYear");
+        Log.d("catYear", "onViewCreated: "+catYear);
 
         tvName = view.findViewById(R.id.tvName);
         TextView tvDate = view.findViewById(R.id.tvDate);
@@ -96,7 +115,8 @@ public class ChildFragment extends Fragment implements ChildInterface {
 
 //        tvName.setText(namaAnak);
         tvDate.setText(dateFormat.format(cal.getTime()));
-        initData(childId);
+//        initData(childId);
+        initDataBasedYear(childId, catYear);
 
         RecyclerView rvData = view.findViewById(R.id.rvData);
         rvData.setAdapter(adapter);
@@ -105,6 +125,32 @@ public class ChildFragment extends Fragment implements ChildInterface {
         adapter.insertDataList(data);
 
         getTrace(childId);
+    }
+
+    public void initDataBasedYear(Integer childId, Integer catYear){
+        if(catYear == 0){
+            data.add(new DataChild("", "Lahir", 0, childId));
+            for(int i = 0; i < listYear0.size(); i++) {
+                data.add(new DataChild("Bulan", String.valueOf(i+1), listYear0.get(i), childId));
+            }
+        }else if(catYear == 1){
+            for(int i = 0; i < listYear1.size(); i++) {
+                data.add(new DataChild("Bulan", String.valueOf(i), listYear1.get(i), childId));
+            }
+        }else if(catYear == 2) {
+            for (int i = 0; i < listYear2.size(); i++) {
+                data.add(new DataChild("Bulan", String.valueOf(i), listYear2.get(i), childId));
+            }
+        }else if(catYear == 3) {
+            for (int i = 0; i < listYear3.size(); i++) {
+                data.add(new DataChild("Bulan", String.valueOf(i), listYear3.get(i), childId));
+            }
+        }else if(catYear == 4) {
+            for (int i = 0; i < listYear4.size(); i++) {
+                data.add(new DataChild("Bulan", String.valueOf(i), listYear4.get(i), childId));
+            }
+            data.add(new DataChild("Tahun", "5", 240, childId));
+        }
     }
 
     private void initData(Integer childId) {
@@ -190,7 +236,6 @@ public class ChildFragment extends Fragment implements ChildInterface {
 
     private void getTrace(Integer childId) {
         Call<ResponseChild> getTraceCall = endpoint.getTrace(childId);
-        Log.e("TAG", "getTrace() returned: ");
         getTraceCall.enqueue(new retrofit2.Callback<ResponseChild>() {
 
             @Override
@@ -253,6 +298,8 @@ public class ChildFragment extends Fragment implements ChildInterface {
         TextView noPenyakit = dialogView.findViewById(R.id.tvNoPenyakit);
 
         EditText etUsia = dialogView.findViewById(R.id.etUsia);
+        EditText etUsiaShow = dialogView.findViewById(R.id.etUsiaShow);
+        etUsiaShow.setEnabled(false);
         EditText etTinggi = dialogView.findViewById(R.id.etTinggiBadan);
         EditText etBerat = dialogView.findViewById(R.id.etBeratBadan);
 
@@ -268,8 +315,10 @@ public class ChildFragment extends Fragment implements ChildInterface {
 
         if (child.getId() != null) {
             etUsia.setText(child.getAge_day().toString());
-            etBerat.setText(String.valueOf(Math.round(child.getWeight())));
-            etTinggi.setText(String.valueOf(Math.round(child.getHeight())));
+//            etBerat.setText(String.valueOf(Math.round(child.getWeight())));
+//            etTinggi.setText(String.valueOf(Math.round(child.getHeight())));
+            etBerat.setText(String.valueOf(child.getWeight()));
+            etTinggi.setText(String.valueOf(child.getHeight()));
             yesASI.setBackground(child.getExclusive_asi() ? getResources().getDrawable(R.drawable.round_yes) : getResources().getDrawable(R.drawable.round_no));
             noASI.setBackground(child.getExclusive_asi() ? getResources().getDrawable(R.drawable.round_no) : getResources().getDrawable(R.drawable.round_yes));
 
@@ -290,6 +339,31 @@ public class ChildFragment extends Fragment implements ChildInterface {
 
         }else{
             child.setImmunization_history("");
+
+//            String custom_hari = child.get
+            etUsia.setText(String.valueOf(0));
+            float testCountYearByWeek = child.getWeek_count()/4;
+
+            if( testCountYearByWeek== 12 || testCountYearByWeek == 24 || testCountYearByWeek == 36 || testCountYearByWeek == 48 || testCountYearByWeek == 60 || testCountYearByWeek==0) {
+                if(testCountYearByWeek == 0 ){
+                    etUsiaShow.setText("0 Bulan");
+                }else{
+                    etUsiaShow.setText(Math.round(testCountYearByWeek/12) + " Tahun");
+                }
+            }else if(child.getWeek_count()/4/12 < 1){
+                etUsiaShow.setText("0 Tahun "+ child.getWeek_count()/4 + " Bulan");
+            }else if(child.getWeek_count()/4/12 < 2){
+                etUsiaShow.setText("1 Tahun "+ child.getWeek_title() + " Bulan");
+            }else if(child.getWeek_count()/4/12 < 3){
+                etUsiaShow.setText("2 Tahun "+ child.getWeek_title() + " Bulan");
+            }else if(child.getWeek_count()/4/12 < 4){
+                etUsiaShow.setText("3 Tahun "+ child.getWeek_title() + " Bulan");
+            }else if(child.getWeek_count()/4/12 < 5){
+                etUsiaShow.setText("4 Tahun "+ child.getWeek_title() + " Bulan");
+            }
+
+
+            Log.d("HAI", "onChildClick: "+child.getWeek_name());
         }
 
         yesASI.setOnClickListener(v -> {

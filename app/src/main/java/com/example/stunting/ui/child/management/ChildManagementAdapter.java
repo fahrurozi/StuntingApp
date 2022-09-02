@@ -126,10 +126,15 @@ public class ChildManagementAdapter extends RecyclerView.Adapter<ChildManagement
             if(data.getDataChildren().getStatus()==true){
                 Bundle bundle = new Bundle();
                 bundle.putInt("childId", data.getDataChildren().getId());
-                ChildFragment fragmentobj = new ChildFragment();
+//                ChildFragment fragmentobj = new ChildFragment();
+//                fragmentobj.setArguments(bundle);
+//                FragmentManager manager = ((MainActivity)r.getContext()).getSupportFragmentManager();
+//                manager.beginTransaction().replace(R.id.flHome, fragmentobj).addToBackStack(null).commit();
+                ChildSelectYearFragment fragmentobj = new ChildSelectYearFragment();
                 fragmentobj.setArguments(bundle);
                 FragmentManager manager = ((MainActivity)r.getContext()).getSupportFragmentManager();
                 manager.beginTransaction().replace(R.id.flHome, fragmentobj).addToBackStack(null).commit();
+
             }else{
                 Toast.makeText(holder.cvRoot.getContext(), "Anak ini tidak aktif", Toast.LENGTH_SHORT).show();
             }
