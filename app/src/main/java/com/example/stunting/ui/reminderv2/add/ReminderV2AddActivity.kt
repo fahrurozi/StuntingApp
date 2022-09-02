@@ -36,13 +36,13 @@ class ReminderV2AddActivity : AppCompatActivity() {
                         date.toString(),
                         time,
                         etNotes.text.toString(),
-                        checkMon.isChecked,
-                        checkTue.isChecked,
-                        checkWed.isChecked,
-                        checkThu.isChecked,
-                        checkFri.isChecked,
-                        checkSat.isChecked,
-                        checkSun.isChecked,
+                        checkMon.isSelected,
+                        checkTue.isSelected,
+                        checkWed.isSelected,
+                        checkThu.isSelected,
+                        checkFri.isSelected,
+                        checkSat.isSelected,
+                        checkSun.isSelected,
                         true
                     )
                 )
