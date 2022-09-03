@@ -325,6 +325,7 @@ public class ChildFragment extends Fragment implements ChildInterface {
             yesPenyakit.setBackground(child.getDisease_history() ? getResources().getDrawable(R.drawable.round_yes) : getResources().getDrawable(R.drawable.round_no));
             noPenyakit.setBackground(child.getDisease_history() ? getResources().getDrawable(R.drawable.round_no) : getResources().getDrawable(R.drawable.round_yes));
 
+            Log.d("Test Immunizations", "onChildClick: "+child.getImmunization_history());
             String[] imunisasi = child.getImmunization_history().split("\\|");
 //            boolean haveCampak = Arrays.asList(immunisasi).contains("Campak");
 //            boolean haveHepB = Arrays.asList(immunisasi).contains("HepB");
@@ -338,7 +339,7 @@ public class ChildFragment extends Fragment implements ChildInterface {
             //            rbImunisasi.setChecked(!child.getImmunization_history().equals(""));
 
         }else{
-            child.setImmunization_history("");
+            child.setImmunization_history("null|null");
 
 //            String custom_hari = child.get
             etUsia.setText(String.valueOf(0));
