@@ -18,13 +18,16 @@
         android:theme="@style/Theme.SplashScreen"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.reminderv2.edit.ReminderV2EditActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.reminderv2.add.ReminderV2AddActivity"
             android:exported="false" />
         <activity
             android:name=".ui.reminderv2.ReminderV2Activity"
             android:exported="false"
             android:label="@string/title_activity_reminder_v3"
-            android:theme="@style/Theme.SplashScreen.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".ui.fun.play.PlayActivity"
             android:exported="false" />

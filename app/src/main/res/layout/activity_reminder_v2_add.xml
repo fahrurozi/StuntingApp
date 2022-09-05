@@ -23,7 +23,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/tvTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/title_add_reminder"
@@ -74,48 +74,56 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:weightSum="7"
             android:orientation="horizontal">
 
             <com.example.stunting.components.view.CustomCheckReminder
                 android:id="@+id/checkSun"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 app:text="SU" />
 
             <com.example.stunting.components.view.CustomCheckReminder
                 android:id="@+id/checkMon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 app:text="M" />
 
             <com.example.stunting.components.view.CustomCheckReminder
                 android:id="@+id/checkTue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 app:text="TU" />
 
             <com.example.stunting.components.view.CustomCheckReminder
                 android:id="@+id/checkWed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 app:text="W" />
 
             <com.example.stunting.components.view.CustomCheckReminder
                 android:id="@+id/checkThu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 app:text="TH" />
 
             <com.example.stunting.components.view.CustomCheckReminder
                 android:id="@+id/checkFri"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 app:text="F" />
 
             <com.example.stunting.components.view.CustomCheckReminder
                 android:id="@+id/checkSat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 app:text="SA" />
 
         </LinearLayout>
@@ -138,6 +146,9 @@
             android:id="@+id/etNotes"
             android:layout_width="match_parent"
             android:layout_height="100dp"
+            android:background="@drawable/round_edit_text"
+            android:hint="@string/title_notes"
+            android:padding="10dp"
             android:gravity="top" />
 
     </LinearLayout>

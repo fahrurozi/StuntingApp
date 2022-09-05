@@ -35,14 +35,12 @@ import com.example.stunting.data.network.ApiService;
 
 import org.json.JSONException;
 import org.json.JSONStringer;
-import org.w3c.dom.Text;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 

@@ -26,6 +26,12 @@ class ReminderV2ViewModel : ViewModel() {
         }
     }
 
+    fun deleteReminder(dataReminder: DataReminder) {
+        viewModelScope.launch(Dispatchers.IO) {
+            App.roomDB.reminderDao().deleteData(dataReminder)
+        }
+    }
+
     fun updateReminder(dataReminder: DataReminder) {
         viewModelScope.launch(Dispatchers.IO) {
             App.roomDB.reminderDao().update(dataReminder)

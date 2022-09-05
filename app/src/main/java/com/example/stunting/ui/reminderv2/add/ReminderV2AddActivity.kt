@@ -8,6 +8,7 @@ import com.example.stunting.databinding.ActivityReminderV2AddBinding
 import com.example.stunting.ui.reminderv2.ReminderV2ViewModel
 import com.oratakashi.viewbinding.core.binding.activity.viewBinding
 import com.oratakashi.viewbinding.core.tools.onClick
+import com.oratakashi.viewbinding.core.tools.toast
 import java.util.*
 
 class ReminderV2AddActivity : AppCompatActivity() {
@@ -20,33 +21,52 @@ class ReminderV2AddActivity : AppCompatActivity() {
         with(binding) {
             btnBack.onClick { finish() }
             fabSimpan.onClick {
-                val hour: Int
-                val minute: Int
-                if (Build.VERSION.SDK_INT >= 23) {
-                    hour = tpInputTime.hour
-                    minute = tpInputTime.minute
-                } else {
-                    hour = tpInputTime.currentHour
-                    minute = tpInputTime.currentMinute
+                var isSelected = false
+                listOf(
+                    checkMon,
+                    checkTue,
+                    checkWed,
+                    checkThu,
+                    checkFri,
+                    checkSat,
+                    checkSun
+                ).forEach {
+                    if (it.isSelected) {
+                        isSelected = true
+                    }
                 }
-                val time = "$hour:$minute"
-                val date = Calendar.getInstance().time.time
-                viewModel.addReminder(
-                    DataReminder(
-                        date.toString(),
-                        time,
-                        etNotes.text.toString(),
-                        checkMon.isSelected,
-                        checkTue.isSelected,
-                        checkWed.isSelected,
-                        checkThu.isSelected,
-                        checkFri.isSelected,
-                        checkSat.isSelected,
-                        checkSun.isSelected,
-                        true
+
+                if (!isSelected || etNotes.text.toString().isEmpty()) {
+                    toast("Mohon isi semua filed yang ada")
+                } else {
+                    val hour: Int
+                    val minute: Int
+                    if (Build.VERSION.SDK_INT >= 23) {
+                        hour = tpInputTime.hour
+                        minute = tpInputTime.minute
+                    } else {
+                        hour = tpInputTime.currentHour
+                        minute = tpInputTime.currentMinute
+                    }
+                    val time = "$hour:$minute"
+                    val date = Calendar.getInstance().time.time
+                    viewModel.addReminder(
+                        DataReminder(
+                            date.toString(),
+                            time,
+                            etNotes.text.toString(),
+                            checkMon.isSelected,
+                            checkTue.isSelected,
+                            checkWed.isSelected,
+                            checkThu.isSelected,
+                            checkFri.isSelected,
+                            checkSat.isSelected,
+                            checkSun.isSelected,
+                            true
+                        )
                     )
-                )
-                finish()
+                    finish()
+                }
             }
         }
     }

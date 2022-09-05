@@ -10,7 +10,8 @@ import com.oratakashi.viewbinding.core.binding.recyclerview.viewBinding
 
 
 class ReminderV2Adapter(
-    val onUpdate: (DataReminder) -> Unit
+    val onUpdate: (DataReminder) -> Unit,
+    val onLongClick: (DataReminder) -> Unit
 ) : RecyclerView.Adapter<ViewHolder<ListReminderv2Binding>>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -36,6 +37,10 @@ class ReminderV2Adapter(
 
             sReminder.setOnCheckedChangeListener { _, b ->
                 onUpdate.invoke(dataReminder.also { it.status = b })
+            }
+            holder.binding.root.setOnLongClickListener {
+                onLongClick.invoke(dataReminder)
+                true
             }
         }
     }
