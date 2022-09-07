@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.stunting">
+    package="com.stuntech.stunting">
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
 
     <application
-        android:name=".root.App"
+        android:name="com.stuntech.stunting.root.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -18,95 +18,93 @@
         android:theme="@style/Theme.SplashScreen"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".ui.reminderv2.edit.ReminderV2EditActivity"
+            android:name="com.stuntech.stunting.ui.reminderv2.edit.ReminderV2EditActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.reminderv2.add.ReminderV2AddActivity"
+            android:name="com.stuntech.stunting.ui.reminderv2.add.ReminderV2AddActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.reminderv2.ReminderV2Activity"
-            android:exported="false"
-            android:label="@string/title_activity_reminder_v3"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".ui.fun.play.PlayActivity"
+            android:name="com.stuntech.stunting.ui.reminderv2.ReminderV2Activity"
             android:exported="false" />
         <activity
-            android:name=".ui.fun.FunActivity"
+            android:name="com.stuntech.stunting.ui.fun.play.PlayActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.stunting_tribute.detail.AddReviewActivity"
+            android:name="com.stuntech.stunting.ui.fun.FunActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.stunting_tribute.StuntingTributeActivity"
+            android:name="com.stuntech.stunting.ui.stunting_tribute.detail.AddReviewActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.stunting_tribute.detail.TributeDetailActivity"
+            android:name="com.stuntech.stunting.ui.stunting_tribute.StuntingTributeActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.reminder.ReminderAddActivity"
+            android:name="com.stuntech.stunting.ui.stunting_tribute.detail.TributeDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.reminder.ReminderActivity"
+            android:name="com.stuntech.stunting.ui.reminder.ReminderAddActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.care_nutrition.detail.CareDetailActivity"
+            android:name="com.stuntech.stunting.ui.reminder.ReminderActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.care_nutrition.CareCategoryActivity"
+            android:name="com.stuntech.stunting.ui.care_nutrition.detail.CareDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.care_nutrition.CareNutritionActivity"
+            android:name="com.stuntech.stunting.ui.care_nutrition.CareCategoryActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.nutrition_info.NutritionInfoActivity"
+            android:name="com.stuntech.stunting.ui.care_nutrition.CareNutritionActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.nutrition_info.NutritionInfoCategoryActivity"
+            android:name="com.stuntech.stunting.ui.nutrition_info.NutritionInfoActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.stunting_map.StuntingMapActivity"
+            android:name="com.stuntech.stunting.ui.nutrition_info.NutritionInfoCategoryActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.food_help.FoodHelpActivity"
+            android:name="com.stuntech.stunting.ui.stunting_map.StuntingMapActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.food_help.detail.FoodDetailActivity"
+            android:name="com.stuntech.stunting.ui.food_help.FoodHelpActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.hello_stunting.HelloStuntingActivity"
+            android:name="com.stuntech.stunting.ui.food_help.detail.FoodDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.hello_stunting.detail.HelloDetailActivity"
+            android:name="com.stuntech.stunting.ui.hello_stunting.HelloStuntingActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.StuntingHealth"
+            android:name="com.stuntech.stunting.ui.hello_stunting.detail.HelloDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.stuntech.stunting.ui.StuntingHealth"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
         <activity
-            android:name=".ui.info.StuntingInfoActivityBak"
+            android:name="com.stuntech.stunting.ui.info.StuntingInfoActivityBak"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
         <activity
-            android:name=".ui.info.StuntingInfoActivity"
+            android:name="com.stuntech.stunting.ui.info.StuntingInfoActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.info.detail.InfoDetailActivity"
+            android:name="com.stuntech.stunting.ui.info.detail.InfoDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.register.RegisterActivity"
+            android:name="com.stuntech.stunting.ui.register.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.login.LoginActivity"
+            android:name="com.stuntech.stunting.ui.login.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.GetStartedActivity"
+            android:name="com.stuntech.stunting.ui.GetStartedActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.stunting_health.StuntingHealthActivity"
+            android:name="com.stuntech.stunting.ui.stunting_health.StuntingHealthActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.SplashScreen"
+            android:name="com.stuntech.stunting.ui.SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -114,14 +112,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.MainActivity" />
+        <activity android:name="com.stuntech.stunting.ui.MainActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="${MAPS_API_KEY}" />
 
         <receiver
-            android:name=".components.NotificationBroadcastReceiver"
+            android:name="com.stuntech.stunting.components.NotificationBroadcastReceiver"
             android:enabled="true"
             android:exported="true" />
     </application>

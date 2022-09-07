@@ -77,49 +77,49 @@
             android:weightSum="7"
             android:orientation="horizontal">
 
-            <com.example.stunting.components.view.CustomCheckReminder
+            <com.stuntech.stunting.components.view.CustomCheckReminder
                 android:id="@+id/checkSun"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 app:text="SU" />
 
-            <com.example.stunting.components.view.CustomCheckReminder
+            <com.stuntech.stunting.components.view.CustomCheckReminder
                 android:id="@+id/checkMon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 app:text="M" />
 
-            <com.example.stunting.components.view.CustomCheckReminder
+            <com.stuntech.stunting.components.view.CustomCheckReminder
                 android:id="@+id/checkTue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 app:text="TU" />
 
-            <com.example.stunting.components.view.CustomCheckReminder
+            <com.stuntech.stunting.components.view.CustomCheckReminder
                 android:id="@+id/checkWed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 app:text="W" />
 
-            <com.example.stunting.components.view.CustomCheckReminder
+            <com.stuntech.stunting.components.view.CustomCheckReminder
                 android:id="@+id/checkThu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 app:text="TH" />
 
-            <com.example.stunting.components.view.CustomCheckReminder
+            <com.stuntech.stunting.components.view.CustomCheckReminder
                 android:id="@+id/checkFri"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 app:text="F" />
 
-            <com.example.stunting.components.view.CustomCheckReminder
+            <com.stuntech.stunting.components.view.CustomCheckReminder
                 android:id="@+id/checkSat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
