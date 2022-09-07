@@ -18,6 +18,9 @@
         android:theme="@style/Theme.SplashScreen"
         android:usesCleartextTraffic="true">
         <activity
+            android:name="com.stuntech.stunting.ui.health_status.HealthStatusReadMoreActivity"
+            android:exported="false" />
+        <activity
             android:name="com.stuntech.stunting.ui.reminderv2.edit.ReminderV2EditActivity"
             android:exported="false" />
         <activity
