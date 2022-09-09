@@ -9,7 +9,6 @@ import com.example.stunting.ui.reminderv2.ReminderV2ViewModel
 import com.oratakashi.viewbinding.core.binding.activity.viewBinding
 import com.oratakashi.viewbinding.core.binding.intent.intent
 import com.oratakashi.viewbinding.core.tools.onClick
-import java.util.*
 
 class ReminderV2EditActivity : AppCompatActivity() {
     private val binding: ActivityReminderV2AddBinding by viewBinding()
@@ -57,7 +56,9 @@ class ReminderV2EditActivity : AppCompatActivity() {
                     hour = tpInputTime.currentHour
                     minute = tpInputTime.currentMinute
                 }
-                val time = "$hour:$minute"
+                val fixHour = fixTime(hour.toString())
+                val fixMinute = fixTime(minute.toString())
+                val time = "$fixHour:$fixMinute"
                 viewModel.updateReminder(
                     DataReminder(
                         data.id_reminder,
@@ -76,5 +77,12 @@ class ReminderV2EditActivity : AppCompatActivity() {
                 finish()
             }
         }
+    }
+
+    private fun fixTime(time: String): String {
+        if (time.length == 1) {
+            return "0$time"
+        }
+        return time
     }
 }

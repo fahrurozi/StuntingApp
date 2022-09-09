@@ -48,7 +48,9 @@ class ReminderV2AddActivity : AppCompatActivity() {
                         hour = tpInputTime.currentHour
                         minute = tpInputTime.currentMinute
                     }
-                    val time = "$hour:$minute"
+                    val fixHour = fixTime(hour.toString())
+                    val fixMinute = fixTime(minute.toString())
+                    val time = "$fixHour:$fixMinute"
                     val date = Calendar.getInstance().time.time
                     viewModel.addReminder(
                         DataReminder(
@@ -69,5 +71,12 @@ class ReminderV2AddActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun fixTime(time: String) : String {
+        if (time.length == 1) {
+            return "0$time"
+        }
+        return time
     }
 }
