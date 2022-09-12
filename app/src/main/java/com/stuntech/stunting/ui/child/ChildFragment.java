@@ -2,6 +2,7 @@ package com.stuntech.stunting.ui.child;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -38,6 +39,7 @@ import com.stuntech.stunting.data.model.child.ResponsePutChild;
 import com.stuntech.stunting.data.model.child.ResponseUpdateChild;
 import com.stuntech.stunting.data.network.ApiEndpoint;
 import com.stuntech.stunting.data.network.ApiService;
+import com.stuntech.stunting.ui.health_status.HealthStatusReadMoreActivity;
 
 import org.json.JSONException;
 import org.json.JSONStringer;
@@ -129,6 +131,14 @@ public class ChildFragment extends Fragment implements ChildInterface {
         adapter.insertDataList(data);
 
         getTrace(childId);
+
+        tvReadmore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), HealthStatusReadMoreActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void initDataBasedYear(Integer childId, Integer catYear){
