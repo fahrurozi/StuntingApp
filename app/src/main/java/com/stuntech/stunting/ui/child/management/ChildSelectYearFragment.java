@@ -1,6 +1,7 @@
 package com.stuntech.stunting.ui.child.management;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,6 +29,7 @@ import com.stuntech.stunting.data.network.ApiService;
 import com.stuntech.stunting.ui.MainActivity;
 import com.stuntech.stunting.ui.child.ChildFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.stuntech.stunting.ui.health_status.HealthStatusReadMoreActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +47,7 @@ public class ChildSelectYearFragment extends Fragment {
     private SharedPreferences sharedPref;
 
 
-    public TextView tvName, tvHealthStatus, tvTitleScoreInfo, tvDescScoreInfo;
+    public TextView tvName, tvHealthStatus, tvTitleScoreInfo, tvDescScoreInfo, tvReadmore;
     public CardView cvYear0, cvYear1, cvYear2, cvYear3, cvYear4;
 
     private SpotsDialog spotsDialog;
@@ -69,6 +71,8 @@ public class ChildSelectYearFragment extends Fragment {
         tvHealthStatus = view.findViewById(R.id.tvHealthStatus);
         tvTitleScoreInfo = view.findViewById(R.id.tvTitleScoreInfo);
         tvDescScoreInfo = view.findViewById(R.id.tvDescScoreInfo);
+        tvReadmore = view.findViewById(R.id.tvReadmore);
+
         cvYear0 = view.findViewById(R.id.cvYear0);
         cvYear1 = view.findViewById(R.id.cvYear1);
         cvYear2 = view.findViewById(R.id.cvYear2);
@@ -145,6 +149,14 @@ public class ChildSelectYearFragment extends Fragment {
                 fragmentobj.setArguments(bundle);
                 FragmentManager manager = ((MainActivity)v.getContext()).getSupportFragmentManager();
                 manager.beginTransaction().replace(R.id.flHome, fragmentobj).addToBackStack(null).commit();
+            }
+        });
+
+        tvReadmore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), HealthStatusReadMoreActivity.class);
+                startActivity(intent);
             }
         });
 
